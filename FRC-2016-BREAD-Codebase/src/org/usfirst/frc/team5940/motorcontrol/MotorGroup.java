@@ -18,8 +18,6 @@ public interface MotorGroup {
 	
 	public void setGear(int gear);
 	
-	public int getCurrentGear();
-	
 	public void setEnabled(boolean enabled);
 	
 	public boolean getEnabled();
