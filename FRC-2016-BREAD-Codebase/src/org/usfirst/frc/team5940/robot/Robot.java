@@ -28,15 +28,22 @@ public class Robot extends SampleRobot {
 	
 	@Override
 	public void robotInit() {
+	/*
+	*Make sure to never do code that needs the robot to be disabled. 
+	*This will cause the robot to be bypassed in a match. 	
+	*/
+		
 		
 	}
+	
 	
 	@Override
 	public void autonomous() {
 		
 	}
 
-	/**
+	/*
+	 *
 	 * 
 	 */
 	@Override
