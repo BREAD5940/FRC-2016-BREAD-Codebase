@@ -1,5 +1,5 @@
 
-package org.usfirst.frc.team5940.robot;
+package org.usfirst.frc.team5940.management;
 
 
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -26,10 +26,7 @@ public class Robot extends SampleRobot {
 		
 	}
 
-	/*
-	 *
-	 * 
-	 */
+	
 	@Override
 	public void operatorControl() {
 		
