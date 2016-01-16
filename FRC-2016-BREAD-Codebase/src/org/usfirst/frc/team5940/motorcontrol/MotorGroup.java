@@ -2,7 +2,7 @@ package org.usfirst.frc.team5940.motorcontrol;
 
 public interface MotorGroup {
 	
-	public void setValue();
+	public void setValue(float value);
 	
 	public float getSetValue();
 	
@@ -12,11 +12,11 @@ public interface MotorGroup {
 	
 	public void getGear();
 	
-	public void setGear();
+	public void setGear(int gear);
 	
 	public int getCurrentGear();
 	
-	public void setEnabled();
+	public void setEnabled(boolean enabled);
 	
 	public boolean getEnabled();
 }
