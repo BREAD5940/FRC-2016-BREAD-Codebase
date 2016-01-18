@@ -13,7 +13,7 @@ public class DualMGDrivetrain {
 	}
 	
 	/**
-	 * This returns the maximum amount of gears that the motorGroups have.
+	 * This returns the maximum amount of gears that both the motorGroups have.
 	 * @return
 	 */
 	public int getGearsAmount() {
