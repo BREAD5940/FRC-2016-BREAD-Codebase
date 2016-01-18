@@ -4,7 +4,6 @@ public class DualMGDrivetrain {
 	
 	MotorGroup left;
 	MotorGroup right;
-	int gears;
 	
 	public DualMGDrivetrain(MotorGroup left, MotorGroup right) {
 		this.left = left;
