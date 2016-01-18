@@ -3,11 +3,15 @@ package org.usfirst.frc.team5940.motorcontrol;
 public interface MotorGroup {
 	
 	/**
-	 * Sets the value of output for the motors. This is a 
-	 * @param value
+	 * Sets the value of output for the motors.
+	 * @param value A float between -1 an 1
 	 */
 	public void setValue(float value);
 	
+	/**
+	 * 
+	 * @return
+	 */
 	public float getSetValue();
 	
 	public float getSpeed();

@@ -12,7 +12,6 @@ public abstract class State implements Runnable {
 	
 	@Override
 	public void run() {
-		// TODO Auto-generated method stub
 		this.init();
 		while (!Thread.interrupted()) {
 			update();	

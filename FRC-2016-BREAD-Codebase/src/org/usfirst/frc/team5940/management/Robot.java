@@ -5,6 +5,8 @@ package org.usfirst.frc.team5940.management;
 import edu.wpi.first.wpilibj.SampleRobot;
 
 public class Robot extends SampleRobot {
+	
+	public Thread state;
 
 	public Robot() {
 		super();
