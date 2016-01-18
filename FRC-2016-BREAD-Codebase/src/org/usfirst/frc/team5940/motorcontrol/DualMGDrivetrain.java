@@ -14,7 +14,7 @@ public class DualMGDrivetrain {
 	
 	/**
 	 * This returns the maximum amount of gears that the motorGroups have.
-	 * @return
+	 * @return an int representing above
 	 */
 	public int getGearsAmount() {
 		
@@ -91,7 +91,7 @@ public class DualMGDrivetrain {
 	 * @param leftValue the value of the left motorGroup
 	 * @param rightValue the value of the right motorGroup
 	 */
-	public void setValue(float leftValue, float rightValue) {
+	public void setValues(float leftValue, float rightValue) {
 		left.setValue(leftValue);
 		right.setValue(rightValue);
 	}
@@ -106,5 +106,43 @@ public class DualMGDrivetrain {
 		Array.setFloat(speeds, 1, right.getSetValue());
 		
 		return speeds;
+	}
+	
+	/**
+	 * this updates
+	 * @param leftSpeed
+	 * @param rightSpeed
+	 */
+	public void updateTank(float leftSpeed, float rightSpeed) {
+		left.setValue(leftSpeed);
+		right.setValue(rightSpeed);
+	}
+	
+	public void arcade(float forwardInput, float horizontalInput) {
+		forwardInput = -forwardInput;
+		horizontalInput = -horizontalInput;
+		
+		float leftOut = forwardInput;
+		float rightOut = forwardInput;
+		
+		leftOut -= horizontalInput;
+		rightOut += horizontalInput;
+		
+		float leftAbsoluteValue = Math.abs(leftOut);
+    	float rightAbsoluteValue = Math.abs(rightOut);
+    	if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
+    		if (rightAbsoluteValue > leftAbsoluteValue) {
+    			leftOut /= rightAbsoluteValue;
+    			rightOut /= rightAbsoluteValue;
+    		}
+    		else {
+    			leftOut /= leftAbsoluteValue;
+    			rightOut /= leftAbsoluteValue;
+    		}
+    	}
+    	rightOut = -rightOut;
+    	
+    	left.setValue(leftOut);
+    	right.setValue(rightOut);
 	}
 }
