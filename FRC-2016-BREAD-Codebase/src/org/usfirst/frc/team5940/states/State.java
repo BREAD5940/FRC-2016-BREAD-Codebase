@@ -14,7 +14,7 @@ public abstract class State implements Runnable {
 	public void run() {
 		this.init();
 		while (!Thread.interrupted()) {
-			update();	
+			update();
 		}
 	}
 

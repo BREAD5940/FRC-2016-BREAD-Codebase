@@ -25,6 +25,9 @@ public class Robot extends SampleRobot {
 	
 	@Override
 	public void autonomous() {
+		if (state != null) {
+			state.interrupt();
+		}
 		
 	}
 
