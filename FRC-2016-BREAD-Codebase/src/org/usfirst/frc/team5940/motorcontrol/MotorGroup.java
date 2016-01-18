@@ -33,14 +33,26 @@ public interface MotorGroup {
 	public int getGearsAmount();
 	
 	/**
-	 * 
-	 * @return
+	 * Gets the gear of the motor. This should update immediately with new gears from setGear, if shifting fails, etc.. it should update back to it's actual state.
+	 * @return An int representing the current gear of the motor group.
 	 */
 	public int getGear();
 	
+	/**
+	 * Sets the gear of the MotorGroup. This starts from 0 as the highest torque/ lowest speed, up to getGearsAmount() -1.
+	 * @param gear Sets the gear of this MotorGroup.
+	 */
 	public void setGear(int gear);
 	
+	/**
+	 * Sets whether or not this MotorGroup is enabled.
+	 * @param enabled A boolean representing enabledness.
+	 */
 	public void setEnabled(boolean enabled);
 	
+	/**
+	 * Gets whether this MotorGroup is enabled.
+	 * @return A boolean representing enabledness.
+	 */
 	public boolean getEnabled();
 }
