@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5940.motorcontrol;
 
+import java.lang.reflect.Array;
+
 public class DualMGDrivetrain {
 	
 	public final MotorGroup left;
@@ -57,5 +59,52 @@ public class DualMGDrivetrain {
 			left.setGear(gear);
 			right.setGear(gear);
 		}
+	}
+	
+	/**
+	 * This just returns the left MotorGroup gear so just hope that it is the same as the right MotorGroup gear thing.
+	 * @return
+	 */
+	public int getGears() {
+		return left.getGear();
+	}
+	
+	/**
+	 * This just returns the left MotorGroup enabled-ness so just hope that it is the same as the right MotorGroup enabled-ness thing.
+	 * @return
+	 */
+	public boolean getEnabled() {
+		return left.getEnabled();
+	}
+	
+	/**
+	 * disables both motors or enables them your choice dawg
+	 * @param enabled tells whether or not to enable it
+	 */
+	public void setEnabled(Boolean enabled) {
+		left.setEnabled(enabled);
+		right.setEnabled(enabled);
+	}
+	
+	/**
+	 * Sets the value of the two MotorGroups
+	 * @param leftValue the value of the left motorGroup
+	 * @param rightValue the value of the right motorGroup
+	 */
+	public void setValue(float leftValue, float rightValue) {
+		left.setValue(leftValue);
+		right.setValue(rightValue);
+	}
+	
+	/**
+	 * this shows the value of the two motors. It might not work fifty fifty chance.
+	 * @return it is an array with the first value being the left motorGroup value and the second value being the right motorGroup value
+	 */
+	public Array getSetValue() {
+		Array speeds = null;
+		Array.setFloat(speeds, 0, left.getSetValue());
+		Array.setFloat(speeds, 1, right.getSetValue());
+		
+		return speeds;
 	}
 }
