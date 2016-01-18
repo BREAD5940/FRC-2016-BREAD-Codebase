@@ -97,7 +97,7 @@ public class DualMGDrivetrain {
 	}
 	
 	/**
-	 * this shows the value of the two motors. It might not work fifty fifty chance.
+	 * this shows the value of the two motors. It might not work fifty fifty chance. this might work
 	 * @return it is an array with the first value being the left motorGroup value and the second value being the right motorGroup value
 	 */
 	public Array getSetValue() {
