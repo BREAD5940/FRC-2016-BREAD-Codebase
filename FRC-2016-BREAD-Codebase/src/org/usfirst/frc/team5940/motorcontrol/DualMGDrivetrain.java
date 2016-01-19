@@ -15,6 +15,11 @@ public class DualMGDrivetrain {
 	/**
 	 * This returns the maximum amount of gears that the motorGroups have.
 	 * @return an int representing above
+=======
+	/**
+	 * This returns the maximum amount of gears that both of the motorGroups have.
+	 * @return an int representing above
+>>>>>>> branch 'master' of https://github.com/BREAD5940/FRC-2016-BREAD-Codebase.git
 	 */
 	public int getGearsAmount() {
 		
@@ -119,9 +124,6 @@ public class DualMGDrivetrain {
 	}
 	
 	public void arcade(float forwardInput, float horizontalInput) {
-		forwardInput = -forwardInput;
-		horizontalInput = -horizontalInput;
-		
 		float leftOut = forwardInput;
 		float rightOut = forwardInput;
 		
@@ -140,7 +142,6 @@ public class DualMGDrivetrain {
     			rightOut /= leftAbsoluteValue;
     		}
     	}
-    	rightOut = -rightOut;
     	
     	left.setValue(leftOut);
     	right.setValue(rightOut);
