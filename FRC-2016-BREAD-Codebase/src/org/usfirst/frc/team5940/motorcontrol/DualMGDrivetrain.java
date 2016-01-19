@@ -119,9 +119,6 @@ public class DualMGDrivetrain {
 	}
 	
 	public void arcade(float forwardInput, float horizontalInput) {
-		forwardInput = -forwardInput;
-		horizontalInput = -horizontalInput;
-		
 		float leftOut = forwardInput;
 		float rightOut = forwardInput;
 		
@@ -140,7 +137,6 @@ public class DualMGDrivetrain {
     			rightOut /= leftAbsoluteValue;
     		}
     	}
-    	rightOut = -rightOut;
     	
     	left.setValue(leftOut);
     	right.setValue(rightOut);
