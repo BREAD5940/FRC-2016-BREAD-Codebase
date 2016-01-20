@@ -15,7 +15,6 @@ public class DualMGDrivetrain {
 	/**
 	 * This returns the maximum amount of gears that the motorGroups have.
 	 * @return an int representing above
-=======
 	/**
 	 * This returns the maximum amount of gears that both of the motorGroups have.
 	 * @return an int representing above
