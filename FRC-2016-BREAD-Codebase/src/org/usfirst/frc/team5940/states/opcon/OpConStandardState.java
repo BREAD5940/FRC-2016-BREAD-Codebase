@@ -2,7 +2,9 @@ package org.usfirst.frc.team5940.states.opcon;
 
 import org.usfirst.frc.team5940.states.State;
 
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.Talon;
 
 public class OpConStandardState extends State{
 
@@ -11,10 +13,16 @@ public class OpConStandardState extends State{
 		// TODO Auto-generated constructor stub
 	}
 
+	Joystick controller;
+	Talon backleft;
+	Talon frontleft;
+	Talon backright;
+	Talon frontright;
+	
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		
+		Joystick controller = new Joystick (0);
 	}
 
 	@Override
