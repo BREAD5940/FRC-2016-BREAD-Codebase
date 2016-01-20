@@ -23,6 +23,10 @@ public class OpConStandardState extends State{
 	protected void init() {
 		// TODO Auto-generated method stub
 		Joystick controller = new Joystick (0);
+		Talon backleft = new Talon (0);
+		Talon frontleft = new Talon (0);
+		Talon backright = new Talon (0);
+		Talon frontright = new Talon (0);
 	}
 
 	@Override
