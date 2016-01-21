@@ -21,10 +21,16 @@ public interface MotorGroup {
 	public float getSetValue();
 	
 	/**
-	 * Returns the speed in rpm of the motor shafts, undefined if no encoder.
+	 * Returns the speed in rpm of the motor shafts, undefined if canMeasureSpeed is false or null.
 	 * @return A float representing the speed of the motor group in rpm
 	 */
 	public float getSpeed();
+	
+	/**
+	 * Returns if this motor group has speed measurement.
+	 * @return boolean, see above.
+	 */
+	public boolean canMeasureSpeed();
 	
 	/**
 	 * Returns the number of gears this MotorGroup has. This should be a number between 1 and infinity as you always have one gear.
@@ -55,4 +61,8 @@ public interface MotorGroup {
 	 * @return A boolean representing enabledness.
 	 */
 	public boolean getEnabled();
+	
+	public void setInverted(boolean inverted);
+	
+	public boolean getInverted();
 }
