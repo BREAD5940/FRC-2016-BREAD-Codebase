@@ -1,5 +1,5 @@
 package org.usfirst.frc.team5940.states.opcon;
-import org.usfirst.frc.team5940.motorcontrol.CANTalonDrive;
+import org.usfirst.frc.team5940.motorcontrol.CANTalonSimpleGroup;
 import org.usfirst.frc.team5940.motorcontrol.DualMGDrivetrain;
 import org.usfirst.frc.team5940.states.State;
 

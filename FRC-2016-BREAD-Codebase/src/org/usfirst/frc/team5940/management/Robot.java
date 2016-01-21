@@ -38,7 +38,7 @@ public class Robot extends SampleRobot {
 		if (state != null) {
 			state.interrupt();
 		}
-		state = new Thread(new OpConStandardState(this));
+		state = new Thread(new CameraServerInit(this));
 	}
 	
 	/**
@@ -46,9 +46,6 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void test() {
-		if (state != null) {
-			state.interrupt();
-		}
-		state = new Thread(new CameraServerInit(this));
+		
 	}
 }

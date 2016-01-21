@@ -11,14 +11,14 @@ import edu.wpi.first.wpilibj.command.Command;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class CANTalonDrive implements MotorGroup {
+public class CANTalonSimpleGroup implements MotorGroup {
 	
     CANTalon[] talons;
     float motorsOut = 0;
     boolean enabled = true;
     boolean inverted = false;
     
-	public CANTalonDrive(CANTalon[] talons) {
+	public CANTalonSimpleGroup(CANTalon[] talons) {
 		//cT1 = new CANTalon(m1);
 		//cT2 = new CANTalon(m2);
 		//cT3 = new CANTalon(m3);
