@@ -36,6 +36,6 @@ public class OpConStandardState extends State{
 		right = controller.getRawAxis(4);
 		left = -left;
 		// TODO add the squaring the input thingy
-		driveThing.arcade(left, right);
+		driveThing.updateArcade(left, right);
 	}
 }
