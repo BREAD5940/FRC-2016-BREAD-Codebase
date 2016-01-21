@@ -1,10 +1,9 @@
 package org.usfirst.frc.team5940.states.opcon;
-
+import org.usfirst.frc.team5940.motorcontrol.DualMGDrivetrain;
 import org.usfirst.frc.team5940.states.State;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
-import edu.wpi.first.wpilibj.Talon;
 
 public class OpConStandardState extends State{
 
@@ -14,15 +13,14 @@ public class OpConStandardState extends State{
 	}
 
 	Joystick controller;
-	Talon backleft;
-	Talon frontleft;
-	Talon backright;
-	Talon frontright;
+	DualMGDrivetrain driver;
 	
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
+		@SuppressWarnings("unused")
 		Joystick controller = new Joystick (0);
+		//driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new CANTalonDrive(3,4));
 	}
 
 	@Override

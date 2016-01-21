@@ -12,6 +12,7 @@ public class CameraServerInit extends State {
 		
 		
 	}
+	//TODO check if losing refence to this stops server.
 	CameraServer usbcamera;
 	@Override
 	protected void init() {
@@ -20,12 +21,12 @@ public class CameraServerInit extends State {
 		usbcamera = CameraServer.getInstance();
 		usbcamera.setQuality(50);
 		usbcamera.setSize(1000);
+		usbcamera.startAutomaticCapture("cam0");
 	}
 
 	@Override
 	protected void update() {
-		// TODO Auto-generated method stub
-		usbcamera.startAutomaticCapture("cam0");
+		
 	}
 
 }

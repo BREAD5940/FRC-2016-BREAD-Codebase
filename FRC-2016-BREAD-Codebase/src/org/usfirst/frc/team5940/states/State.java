@@ -4,7 +4,9 @@ import edu.wpi.first.wpilibj.RobotBase;
 
 public abstract class State implements Runnable {
 
+	@SuppressWarnings("unused")
 	private RobotBase robot;
+	private int delay = 25;
 	
 	public State (RobotBase robot){
 		this.robot = robot;
@@ -15,6 +17,10 @@ public abstract class State implements Runnable {
 		this.init();
 		while (!Thread.interrupted()) {
 			update();
+			
+			try {
+				Thread.sleep(delay);
+			} catch (InterruptedException e) { e.printStackTrace(); }
 		}
 	}
 
