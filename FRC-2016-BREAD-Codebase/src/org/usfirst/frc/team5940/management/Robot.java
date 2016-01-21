@@ -18,7 +18,7 @@ public class Robot extends SampleRobot {
 	
 	@Override
 	public void robotInit() {
-		this.camera = new Thread(new CameraServerInit(this));
+		camera = new Thread(new CameraServerInit(this));
 	}
 	
 	

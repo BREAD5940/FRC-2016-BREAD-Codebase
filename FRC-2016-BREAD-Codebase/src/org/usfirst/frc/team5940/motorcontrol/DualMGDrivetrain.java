@@ -118,7 +118,7 @@ public class DualMGDrivetrain {
 		right.setValue(rightSpeed);
 	}
 	
-	public void arcade(float forwardInput, float horizontalInput) {
+	public void updateArcade(float forwardInput, float horizontalInput) {
 		float leftOut = forwardInput;
 		float rightOut = forwardInput;
 		
