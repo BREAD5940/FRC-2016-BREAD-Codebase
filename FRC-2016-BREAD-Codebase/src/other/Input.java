@@ -1,7 +1,7 @@
 package other;
 
 public class Input {
-	public double powInputFixed( double input, double power) {
+	public static double powInputFixed( double input, double power) {
 		boolean negative = false;
 		
 		if(input<0){
