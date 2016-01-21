@@ -1,15 +1,6 @@
 package org.usfirst.frc.team5940.motorcontrol;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
-import edu.wpi.first.wpilibj.Joystick;
-import edu.wpi.first.wpilibj.RobotDrive;
-import edu.wpi.first.wpilibj.SampleRobot;
-import edu.wpi.first.wpilibj.Timer;
-import edu.wpi.first.wpilibj.Victor;
-import edu.wpi.first.wpilibj.command.Command;
-import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CANTalonSimpleGroup implements MotorGroup {
 	
@@ -26,7 +17,7 @@ public class CANTalonSimpleGroup implements MotorGroup {
 		//TODO Set method of talons
 		this.talons = talons;
 		for (int i = 0; i < talons.length; i++){
-			talons[i].setControlMode(0);
+			this.talons[i].setControlMode(0);
 			
 		}
 		

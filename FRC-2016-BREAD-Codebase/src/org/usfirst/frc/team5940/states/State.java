@@ -4,6 +4,7 @@ import edu.wpi.first.wpilibj.RobotBase;
 
 public abstract class State implements Runnable {
 
+	@SuppressWarnings("unused")
 	private RobotBase robot;
 	private int delay = 25;
 	

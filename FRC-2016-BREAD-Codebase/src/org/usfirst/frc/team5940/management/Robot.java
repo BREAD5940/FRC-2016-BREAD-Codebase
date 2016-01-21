@@ -4,14 +4,13 @@ package org.usfirst.frc.team5940.management;
 
 import org.usfirst.frc.team5940.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.auto.AutoStandardState;
-import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
-import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.SampleRobot;
 
 public class Robot extends SampleRobot {
 	
 	public Thread state;
+	public Thread camera;
 
 	public Robot() {
 		super();
@@ -19,10 +18,7 @@ public class Robot extends SampleRobot {
 	
 	@Override
 	public void robotInit() {
-	/*
-	*Make sure to never do code that needs the robot to be disabled. 
-	*This will cause the robot to be bypassed in a match. 	
-	*/
+		this.camera = new Thread(new CameraServerInit(this));
 	}
 	
 	
@@ -32,6 +28,7 @@ public class Robot extends SampleRobot {
 			state.interrupt();
 		}
 		state = new Thread(new AutoStandardState(this));
+		state.start();
 	}
 
 	@Override
@@ -40,6 +37,7 @@ public class Robot extends SampleRobot {
 			state.interrupt();
 		}
 		state = new Thread(new CameraServerInit(this));
+		state.start();
 	}
 	
 	/**

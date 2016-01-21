@@ -1,7 +1,7 @@
-package org.usfirst.frc.team5940.usefulStuff;
+package other;
 
-public class InputCuber {
-	public double exp( double input, double power) {
+public class Input {
+	public double powInputFixed( double input, double power) {
 		boolean negative = false;
 		
 		if(input<0){
