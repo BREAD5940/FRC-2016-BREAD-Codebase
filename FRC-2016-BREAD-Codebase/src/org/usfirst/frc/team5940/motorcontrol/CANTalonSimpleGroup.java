@@ -23,6 +23,7 @@ public class CANTalonSimpleGroup implements MotorGroup {
 		
 		this.inverted = inverted;
 		
+		
 	}
 	
 	@Override
@@ -103,9 +104,12 @@ public class CANTalonSimpleGroup implements MotorGroup {
 		// TODO Auto-generated method stub
 		return false;
 	}
+	
 	public void setInverted(boolean inverted){
 		this.inverted = inverted;
+		this.setValue(this.motorsOut);
 	}
+	
 	public boolean getInverted(){
 		
 		return inverted;
