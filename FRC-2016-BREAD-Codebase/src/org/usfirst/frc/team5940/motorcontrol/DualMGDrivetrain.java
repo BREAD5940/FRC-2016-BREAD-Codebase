@@ -18,11 +18,10 @@ public class DualMGDrivetrain {
 	 */
 	public int getGearsAmount() {
 		
-		// Yo this be the current that each of the motorGroups are in dawg
+		// This is the current number of gears that each of the motorGroups have
 		int leftGearCount;
 		int rightGearCount;
 		
-		//I just be setting them to the correct amount
 		leftGearCount = left.getGearsAmount();
 		rightGearCount = right.getGearsAmount();
 		
@@ -42,10 +41,10 @@ public class DualMGDrivetrain {
 	 */
 	public void setGears(int gear) {
 		
-		//Yo dawg this be the total amount of gears in the gear box
+		//This is the total amount of gears in the gear box
 		int totalGears = 4;
 		
-		//This be because in order to set the gear you need
+		//This is because in order to set the gear you need to subtract one?
 		gear = gear - 1;
 		if (gear < 0) {
 			left.setGear(0);
@@ -78,7 +77,7 @@ public class DualMGDrivetrain {
 	}
 	
 	/**
-	 * disables both motors or enables them your choice dawg
+	 * Disables both motors or enables them your choice dawg
 	 * @param enabled tells whether or not to enable it
 	 */
 	public void setEnabled(Boolean enabled) {
@@ -97,7 +96,7 @@ public class DualMGDrivetrain {
 	}
 	
 	/**
-	 * this shows the value of the two motors. It might not work fifty fifty chance.
+	 * This shows the value of the two motors. It might not work fifty fifty chance.
 	 * @return it is an array with the first value being the left motorGroup value and the second value being the right motorGroup value
 	 */
 	public Array getSetValue() {
@@ -109,7 +108,7 @@ public class DualMGDrivetrain {
 	}
 	
 	/**
-	 * this updates
+	 * This updates the tank
 	 * @param leftSpeed
 	 * @param rightSpeed
 	 */
@@ -117,7 +116,11 @@ public class DualMGDrivetrain {
 		left.setValue(leftSpeed);
 		right.setValue(rightSpeed);
 	}
-	
+	/**
+	 * THis arcade steers
+	 * @param forwardInput amount forward
+	 * @param horiszontalInput amount horizonatl
+	*/
 	public void arcade(float forwardInput, float horizontalInput) {
 		float leftOut = forwardInput;
 		float rightOut = forwardInput;
@@ -126,19 +129,19 @@ public class DualMGDrivetrain {
 		rightOut += horizontalInput;
 		
 		float leftAbsoluteValue = Math.abs(leftOut);
-    	float rightAbsoluteValue = Math.abs(rightOut);
-    	if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
-    		if (rightAbsoluteValue > leftAbsoluteValue) {
-    			leftOut /= rightAbsoluteValue;
-    			rightOut /= rightAbsoluteValue;
+    		float rightAbsoluteValue = Math.abs(rightOut);
+    		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
+    			if (rightAbsoluteValue > leftAbsoluteValue) {
+    				leftOut /= rightAbsoluteValue;
+    				rightOut /= rightAbsoluteValue;
+    			}
+    			else {
+    				leftOut /= leftAbsoluteValue;
+    				rightOut /= leftAbsoluteValue;
+    			}
     		}
-    		else {
-    			leftOut /= leftAbsoluteValue;
-    			rightOut /= leftAbsoluteValue;
-    		}
-    	}
-    	
-    	left.setValue(leftOut);
-    	right.setValue(rightOut);
+    		
+    		left.setValue(leftOut);
+    		right.setValue(rightOut);
 	}
 }
