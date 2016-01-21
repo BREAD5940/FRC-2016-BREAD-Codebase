@@ -9,7 +9,7 @@ public class CANTalonSimpleGroup implements MotorGroup {
     boolean enabled = true;
     boolean inverted = false;
     
-	public CANTalonSimpleGroup(CANTalon[] talons) {
+	public CANTalonSimpleGroup(CANTalon[] talons, boolean inverted) {
 		//cT1 = new CANTalon(m1);
 		//cT2 = new CANTalon(m2);
 		//cT3 = new CANTalon(m3);
@@ -20,6 +20,8 @@ public class CANTalonSimpleGroup implements MotorGroup {
 			this.talons[i].setControlMode(0);
 			
 		}
+		
+		this.inverted = inverted;
 		
 	}
 	
