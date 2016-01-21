@@ -13,18 +13,23 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CANTalonDrive implements MotorGroup {
 	
-	CANTalon cT1;
-    CANTalon cT2;
-    CANTalon cT3;
-    CANTalon cT4;
-    float motorsOut;
+    CANTalon[] talons;
+    float motorsOut = 0;
     boolean enabled = true;
-
-	public CANTalonDrive(int m1, int m2, int m3, int m4) {
-		cT1 = new CANTalon(m1);
-		cT2 = new CANTalon(m2);
-		cT3 = new CANTalon(m3);
-		cT4 = new CANTalon(m4);
+    boolean inverted = false;
+    
+	public CANTalonDrive(CANTalon[] talons) {
+		//cT1 = new CANTalon(m1);
+		//cT2 = new CANTalon(m2);
+		//cT3 = new CANTalon(m3);
+		//cT4 = new CANTalon(m4);
+		//TODO Set method of talons
+		this.talons = talons;
+		for (int i = 0; i < talons.length; i++){
+			talons[i].setControlMode(0);
+			
+		}
+		
 	}
 	
 	@Override
@@ -36,10 +41,17 @@ public class CANTalonDrive implements MotorGroup {
 	@Override
 	public void setValue(float motorsOut) {
 		// TODO Auto-generated method stub
-		cT1.set(motorsOut);
-    	cT2.set(motorsOut);
-    	cT3.set(motorsOut);
-    	cT4.set(motorsOut);
+		if (inverted){this.motorsOut = motorsOut * -1;}
+		else {this.motorsOut = motorsOut;}
+		//cT1.set(motorsOut);
+    	//cT2.set(motorsOut);
+    	//cT3.set(motorsOut);
+    	//cT4.set(motorsOut);
+		//TODO set talon values
+		for (int i = 0; i < talons.length; i++){
+			talons[i].set(this.motorsOut);
+			
+		}
 	}
 
 	@Override
@@ -76,10 +88,15 @@ public class CANTalonDrive implements MotorGroup {
 	public void setEnabled(boolean enabled) {
 		// TODO Auto-generated method stub
 		this.enabled = enabled;
-		cT1.setSafetyEnabled(!enabled);
-		cT2.setSafetyEnabled(!enabled);
-		cT3.setSafetyEnabled(!enabled);
-		cT4.setSafetyEnabled(!enabled);
+		//cT1.setSafetyEnabled(!enabled);
+		//cT2.setSafetyEnabled(!enabled);
+		//cT3.setSafetyEnabled(!enabled);
+		//cT4.setSafetyEnabled(!enabled);
+		//TODO Set talons enabled
+		for (int i = 0; i < talons.length; i++){
+			talons[i].setSafetyEnabled(!enabled);
+			
+		}
 	}
 
 	@Override
@@ -92,6 +109,14 @@ public class CANTalonDrive implements MotorGroup {
 	public boolean canMeasureSpeed() {
 		// TODO Auto-generated method stub
 		return false;
+	}
+	public void setInverted(boolean inverted){
+		this.inverted = inverted;
+	}
+	public boolean getInverted(){
+		
+		return inverted;
+		
 	}
 
 }

@@ -61,4 +61,8 @@ public interface MotorGroup {
 	 * @return A boolean representing enabledness.
 	 */
 	public boolean getEnabled();
+	
+	public void setInverted(boolean inverted);
+	
+	public boolean getInverted();
 }
