@@ -112,24 +112,25 @@ public class DualMGDrivetrain {
 	 * @param leftSpeed
 	 * @param rightSpeed
 	 */
-	public void updateTank(float leftSpeed, float rightSpeed) {
-		left.setValue(leftSpeed);
-		right.setValue(rightSpeed);
+	public void updateTank(double leftSpeed, double rightSpeed) {
+		left.setValue((float) leftSpeed);
+		right.setValue((float) rightSpeed);
 	}
+	
 	/**
 	 * THis arcade steers
 	 * @param forwardInput amount forward
-	 * @param horiszontalInput amount horizonatl
+	 * @param horiszontalInput amount horizontal
 	*/
-	public void arcade(float forwardInput, float horizontalInput) {
-		float leftOut = forwardInput;
-		float rightOut = forwardInput;
+	public void updateArcade(double forwardInput, double horizontalInput) {
+		double leftOut = forwardInput;
+		double rightOut = forwardInput;
 		
 		leftOut -= horizontalInput;
 		rightOut += horizontalInput;
 		
-		float leftAbsoluteValue = Math.abs(leftOut);
-    		float rightAbsoluteValue = Math.abs(rightOut);
+		float leftAbsoluteValue = (float) Math.abs(leftOut);
+    		float rightAbsoluteValue = (float) Math.abs(rightOut);
     		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
     			if (rightAbsoluteValue > leftAbsoluteValue) {
     				leftOut /= rightAbsoluteValue;
@@ -140,8 +141,7 @@ public class DualMGDrivetrain {
     				rightOut /= leftAbsoluteValue;
     			}
     		}
-    		
-    		left.setValue(leftOut);
-    		right.setValue(rightOut);
+    		left.setValue((float) leftOut);
+    		right.setValue((float) rightOut);
 	}
 }
