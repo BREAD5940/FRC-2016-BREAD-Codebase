@@ -4,6 +4,7 @@ import org.usfirst.frc.team5940.states.State;
 
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
+import other.Input;
 
 public class OpConStandardState extends State{
 
@@ -34,8 +35,8 @@ public class OpConStandardState extends State{
 		// TODO Auto-generated method stub
 		left = controller.getRawAxis(1);
 		right = controller.getRawAxis(4);
-		left = -left;
-		// TODO add the squaring the input thingy
+		left = Input.powInputFixed(left, 2);
+		right = Input.powInputFixed(right, 2);
 		driveThing.updateArcade(left, right);
 	}
 }
