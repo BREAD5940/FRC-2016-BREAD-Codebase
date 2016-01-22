@@ -24,7 +24,7 @@ public class OpConStandardState extends State{
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		Joystick controller = new Joystick (0);
+		controller = new Joystick (0);
 		//driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new CANTalonDrive(3,4));
 		// TODO make the variables not equal to null
 		driveThing =  new DualMGDrivetrain(null, null);
