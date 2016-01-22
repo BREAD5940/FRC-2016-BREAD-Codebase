@@ -12,8 +12,8 @@ public class OpConStandardState extends State{
 
 
 	Joystick controller;
-	double right;
-	double left;
+	double horizontal;
+	double forward;
 	DualMGDrivetrain driveThing;
 
 	public OpConStandardState(RobotBase robot) {
@@ -41,10 +41,10 @@ public class OpConStandardState extends State{
 	@Override
 	protected void update() {
 		// TODO Auto-generated method stub
-		left = -controller.getRawAxis(1);
-		right = controller.getRawAxis(4);
-		left = Input.powInputFixed(left, 2);
-		right = Input.powInputFixed(right, 2);
-		driveThing.updateArcade(left, right);
+		forward = -controller.getRawAxis(1);
+		horizontal = controller.getRawAxis(4);
+		forward = Input.powInputFixed(forward, 2);
+		horizontal = Input.powInputFixed(horizontal, 2);
+		driveThing.updateArcade(forward, horizontal);
 	}
 }
