@@ -2,6 +2,8 @@ package org.usfirst.frc.team5940.motorcontrol;
 
 import java.lang.reflect.Array;
 
+import other.GeneralMethods;
+
 public class DualMGDrivetrain {
 	
 	public final MotorGroup left;
@@ -111,8 +113,13 @@ public class DualMGDrivetrain {
 	 * This updates the tank
 	 * @param leftSpeed
 	 * @param rightSpeed
+	 * @param scaleFactor Scales the output by this number, use 1 for default
 	 */
-	public void updateTank(double leftSpeed, double rightSpeed) {
+	public void updateTank(double leftSpeed, double rightSpeed, double scaleFactor) {
+		
+		leftSpeed *= GeneralMethods.boundToUnitVector(scaleFactor);
+		rightSpeed *= GeneralMethods.boundToUnitVector(scaleFactor);
+		
 		left.setValue((float) leftSpeed);
 		right.setValue((float) rightSpeed);
 	}
@@ -121,8 +128,11 @@ public class DualMGDrivetrain {
 	 * THis arcade steers
 	 * @param forwardInput amount forward
 	 * @param horiszontalInput amount horizontal
+	 * @param scaleFactor Scales the output by this number, use 1 for default
 	*/
-	public void updateArcade(double forwardInput, double horizontalInput) {
+	public void updateArcade(double forwardInput, double horizontalInput, double scaleFactor) {
+		
+		
 		double leftOut = forwardInput;
 		double rightOut = forwardInput;
 		
@@ -130,18 +140,23 @@ public class DualMGDrivetrain {
 		rightOut -= horizontalInput;
 		
 		float leftAbsoluteValue = (float) Math.abs(leftOut);
-    		float rightAbsoluteValue = (float) Math.abs(rightOut);
-    		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
-    			if (rightAbsoluteValue > leftAbsoluteValue) {
-    				leftOut /= rightAbsoluteValue;
-    				rightOut /= rightAbsoluteValue;
-    			}
-    			else {
-    				leftOut /= leftAbsoluteValue;
-    				rightOut /= leftAbsoluteValue;
-    			}
-    		}
-    		left.setValue((float) leftOut);
-    		right.setValue((float) rightOut);
+		float rightAbsoluteValue = (float) Math.abs(rightOut);
+		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
+			if (rightAbsoluteValue > leftAbsoluteValue) {
+				leftOut /= rightAbsoluteValue;
+				rightOut /= rightAbsoluteValue;
+			}
+			else {
+				leftOut /= leftAbsoluteValue;
+				rightOut /= leftAbsoluteValue;
+			}
+		}
+		
+		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+		
+		left.setValue((float) leftOut);
+		right.setValue((float) rightOut);
+		//TODO add scaling
 	}
 }

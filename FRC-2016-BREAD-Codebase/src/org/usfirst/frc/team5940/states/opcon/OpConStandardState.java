@@ -8,7 +8,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Victor;
-import other.Input;
+import other.GeneralMethods;
 
 public class OpConStandardState extends State{
 
@@ -48,8 +48,8 @@ public class OpConStandardState extends State{
 		// TODO Auto-generated method stub
 		forward = -controller.getRawAxis(1);
 		horizontal = controller.getRawAxis(4);
-		forward = Input.powInputFixed(forward, 2);
-		horizontal = Input.powInputFixed(horizontal, 2);
-		driveThing.updateArcade(forward, horizontal);
+		forward = GeneralMethods.powInputFixed(forward, 2);
+		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
+		driveThing.updateArcade(forward, horizontal, 1);
 	}
 }
