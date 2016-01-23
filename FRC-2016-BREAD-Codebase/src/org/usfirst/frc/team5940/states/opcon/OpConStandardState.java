@@ -64,7 +64,7 @@ public class OpConStandardState extends State{
 		forward = -controller.getRawAxis(1);
 		horizontal = controller.getRawAxis(4);
 		forward = GeneralMethods.powInputFixed(forward, 2);
-		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
-		driveThing.updateArcade(forward, horizontal, scaleFactor);
+		horizontal = GeneralMethods.powInputFixed(horizontal, scaleFactor);
+		driveThing.updateArcade(forward, horizontal, 1);
 	}
 }
