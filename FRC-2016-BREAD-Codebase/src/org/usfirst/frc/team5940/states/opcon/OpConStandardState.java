@@ -11,7 +11,6 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-import com.kauailabs.navx.frc.AHRS;
 import other.GeneralMethods;
 
 public class OpConStandardState extends State{
@@ -23,7 +22,7 @@ public class OpConStandardState extends State{
 	DualMGDrivetrain driveThing;
 	// for testing the navx when it is setup
 //	AHRS navx;
-	int scaleFactor;
+	float scaleFactor;
 
 	public OpConStandardState(RobotBase robot) {
 		super(robot);
@@ -56,18 +55,18 @@ public class OpConStandardState extends State{
 	@Override
 	protected void update() {
 		// TODO Auto-generated method stub
-		if (controller.getRawButton(9)) {
-			scaleFactor = 10;
+		if (controller.getRawButton(5)) {
+			scaleFactor = 3f;
 		}
 		else {
-			scaleFactor = 3;
+			scaleFactor = 1f;
 		}
 		//For testing the navx when it is setup
 //		SmartDashboard.putNumber("Angle", navx.getAngle());
 		forward = -controller.getRawAxis(1);
 		horizontal = controller.getRawAxis(4);
 		forward = GeneralMethods.powInputFixed(forward, 2);
-		horizontal = GeneralMethods.powInputFixed(horizontal, scaleFactor);
-		driveThing.updateArcade(forward, horizontal, 1);
+		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
+		driveThing.updateArcade(forward, horizontal/scaleFactor, 1);
 	}
 }
