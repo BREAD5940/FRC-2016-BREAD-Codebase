@@ -21,7 +21,8 @@ public class OpConStandardState extends State{
 	double horizontal;
 	double forward;
 	DualMGDrivetrain driveThing;
-	AHRS navx;
+	// for testing the navx when it is setup
+//	AHRS navx;
 	int scaleFactor;
 
 	public OpConStandardState(RobotBase robot) {
@@ -44,7 +45,8 @@ public class OpConStandardState extends State{
 		Victor r2 = new Victor(3);
 		Victor l3 = new Victor(0);
 		Victor l4 = new Victor(2);
-        navx = new AHRS(SPI.Port.kMXP); 
+		// for testing the navx when it is setup
+//        navx = new AHRS(SPI.Port.kMXP); 
         scaleFactor = 3;
 		
 		//TODO incorrect infersions here and below...
@@ -60,7 +62,8 @@ public class OpConStandardState extends State{
 		else {
 			scaleFactor = 3;
 		}
-		SmartDashboard.putNumber("Angle", navx.getAngle());
+		//For testing the navx when it is setup
+//		SmartDashboard.putNumber("Angle", navx.getAngle());
 		forward = -controller.getRawAxis(1);
 		horizontal = controller.getRawAxis(4);
 		forward = GeneralMethods.powInputFixed(forward, 2);
