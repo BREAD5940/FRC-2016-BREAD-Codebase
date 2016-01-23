@@ -56,7 +56,7 @@ public class OpConStandardState extends State{
 	@Override
 	protected void update() {
 		// TODO Auto-generated method stub
-		if (controller.getRawButton(3)) {
+		if (controller.getRawButton(9)) {
 			scaleFactor = 10;
 		}
 		else {
