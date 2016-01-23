@@ -9,6 +9,8 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+
 import com.kauailabs.navx.frc.AHRS;
 import other.GeneralMethods;
 
@@ -50,6 +52,7 @@ public class OpConStandardState extends State{
 	@Override
 	protected void update() {
 		// TODO Auto-generated method stub
+		SmartDashboard.putNumber("Angle", navx.getAngle());
 		forward = -controller.getRawAxis(1);
 		horizontal = controller.getRawAxis(4);
 		forward = GeneralMethods.powInputFixed(forward, 2);
