@@ -4,6 +4,7 @@ package org.usfirst.frc.team5940.management;
 
 import org.usfirst.frc.team5940.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.auto.AutoStandardState;
+import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;
 
@@ -19,6 +20,7 @@ public class Robot extends SampleRobot {
 	@Override
 	public void robotInit() {
 		this.camera = new Thread(new CameraServerInit(this));
+		this.camera.start();
 	}
 	
 	
@@ -36,7 +38,7 @@ public class Robot extends SampleRobot {
 		if (state != null) {
 			state.interrupt();
 		}
-		state = new Thread(new CameraServerInit(this));
+		state = new Thread(new OpConStandardState(this));
 		state.start();
 	}
 	

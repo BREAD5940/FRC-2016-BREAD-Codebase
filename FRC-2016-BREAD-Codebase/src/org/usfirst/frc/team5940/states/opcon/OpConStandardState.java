@@ -31,10 +31,13 @@ public class OpConStandardState extends State{
 		controller = new Joystick (0);
 		//driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new CANTalonDrive(3,4));
 		// TODO make the variables not equal to null
+		
+		
+		//WIRING DIFFERENT FOR DIFFERENT ROBOTS!!!
 		Victor r1 = new Victor(1);
-		Victor r2 = new Victor(2);
-		Victor l3 = new Victor(3);
-		Victor l4 = new Victor(4);
+		Victor r2 = new Victor(3);
+		Victor l3 = new Victor(0);
+		Victor l4 = new Victor(2);
 		
 		//TODO incorrect infersions here and below...
 		driveThing =  new DualMGDrivetrain(new VictorSimpleGroup(new Victor[]{l3, l4}, false), new VictorSimpleGroup(new Victor[]{r1, r2}, true));

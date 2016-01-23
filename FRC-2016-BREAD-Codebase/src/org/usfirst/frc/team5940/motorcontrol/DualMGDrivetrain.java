@@ -126,8 +126,8 @@ public class DualMGDrivetrain {
 		double leftOut = forwardInput;
 		double rightOut = forwardInput;
 		
-		leftOut -= horizontalInput;
-		rightOut += horizontalInput;
+		leftOut += horizontalInput;
+		rightOut -= horizontalInput;
 		
 		float leftAbsoluteValue = (float) Math.abs(leftOut);
     		float rightAbsoluteValue = (float) Math.abs(rightOut);
