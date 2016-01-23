@@ -7,7 +7,9 @@ import org.usfirst.frc.team5940.states.State;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Victor;
+import com.kauailabs.navx.frc.AHRS;
 import other.GeneralMethods;
 
 public class OpConStandardState extends State{
@@ -17,6 +19,7 @@ public class OpConStandardState extends State{
 	double horizontal;
 	double forward;
 	DualMGDrivetrain driveThing;
+	AHRS navx;
 
 	public OpConStandardState(RobotBase robot) {
 		super(robot);
@@ -38,6 +41,7 @@ public class OpConStandardState extends State{
 		Victor r2 = new Victor(3);
 		Victor l3 = new Victor(0);
 		Victor l4 = new Victor(2);
+        navx = new AHRS(SPI.Port.kMXP); 
 		
 		//TODO incorrect infersions here and below...
 		driveThing =  new DualMGDrivetrain(new VictorSimpleGroup(new Victor[]{l3, l4}, false), new VictorSimpleGroup(new Victor[]{r1, r2}, true));
