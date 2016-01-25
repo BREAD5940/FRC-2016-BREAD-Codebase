@@ -133,7 +133,7 @@ public class DualMGDrivetrain {
 	public void updateArcade(double forwardInput, double horizontalInput, double scaleFactor) {
 		
 		//This is the stuff I added
-		if (forwardInput == 0) {
+		if (forwardInput > -0.05 & forwardInput < 0.05) {
 			horizontalInput = horizontalInput/5;
 		}
 		//It is up to here
