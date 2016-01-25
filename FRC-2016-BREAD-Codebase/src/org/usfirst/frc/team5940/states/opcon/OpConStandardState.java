@@ -19,6 +19,7 @@ public class OpConStandardState extends State{
 	Joystick controller;
 	double horizontal;
 	double forward;
+	double maxValue;
 	DualMGDrivetrain driveThing;
 	// for testing the navx when it is setup
 //	AHRS navx;
@@ -65,8 +66,9 @@ public class OpConStandardState extends State{
 //		SmartDashboard.putNumber("Angle", navx.getAngle());
 		forward = -controller.getRawAxis(1);
 		horizontal = controller.getRawAxis(4);
+		maxValue = controller.getRawAxis(3);
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
-		driveThing.updateArcade(forward, horizontal/scaleFactor, 1);
+		driveThing.updateStupidDrive(forward, horizontal/scaleFactor, 1, maxValue);
 	}
 }
