@@ -1,6 +1,5 @@
 package org.usfirst.frc.team5940.motorcontrol;
 
-import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Victor;
 
 public class VictorSimpleGroup implements MotorGroup{
@@ -12,11 +11,11 @@ public class VictorSimpleGroup implements MotorGroup{
     boolean inverted = false;
     
 	public VictorSimpleGroup(Victor[] motor, boolean inverted) {
-		//cT1 = new CANTalon(m1);
-		//cT2 = new CANTalon(m2);
-		//cT3 = new CANTalon(m3);
-		//cT4 = new CANTalon(m4);
-		//TODO Set method of talons
+		//cT1 = new Victor(m1);
+		//cT2 = new Victor(m2);
+		//cT3 = new Victor(m3);
+		//cT4 = new Victor(m4);
+		//TODO Set method of victors
 		this.motors = motor;		
 		this.inverted = inverted;
 		
@@ -38,7 +37,7 @@ public class VictorSimpleGroup implements MotorGroup{
     	//cT2.set(motorsOut);
     	//cT3.set(motorsOut);
     	//cT4.set(motorsOut);
-		//TODO set talon values
+		//TODO set victor values
 		for (int i = 0; i < motors.length; i++){
 			motors[i].set(this.motorsOut);
 			
@@ -83,7 +82,7 @@ public class VictorSimpleGroup implements MotorGroup{
 		//cT2.setSafetyEnabled(!enabled);
 		//cT3.setSafetyEnabled(!enabled);
 		//cT4.setSafetyEnabled(!enabled);
-		//TODO Set talons enabled
+		//TODO Set victors enabled
 		for (int i = 0; i < motors.length; i++){
 			motors[i].setSafetyEnabled(!enabled);
 			
