@@ -34,6 +34,7 @@ public class OpConStandardState extends State{
 	
 	@Override
 	protected void init() {
+		SmartDashboard.putBoolean("New Code", false);
 		// TODO Auto-generated method stub
 		controller = new Joystick (0);
 		//driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new CANTalonDrive(3,4));
@@ -56,12 +57,7 @@ public class OpConStandardState extends State{
 	@Override
 	protected void update() {
 		// TODO Auto-generated method stub
-		if (controller.getRawButton(5)) {
-			scaleFactor = 3f;
-		}
-		else {
-			scaleFactor = 1f;
-		}
+		
 		//For testing the navx when it is setup
 //		SmartDashboard.putNumber("Angle", navx.getAngle());
 		forward = -controller.getRawAxis(1);
@@ -69,6 +65,6 @@ public class OpConStandardState extends State{
 		maxValue = controller.getRawAxis(3);
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
-		driveThing.updateStupidDrive(forward, horizontal/scaleFactor, 1, maxValue);
+		driveThing.updateStupidDrive(forward, horizontal, 1, maxValue);
 	}
 }
