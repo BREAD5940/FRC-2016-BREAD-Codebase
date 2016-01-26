@@ -278,23 +278,37 @@ public class DualMGDrivetrain {
 		Array.setFloat(motorSpeeds, 1, leftOut);
 		return motorSpeeds;
 	}
-	
-	public void updateMemeDrive(double forwardInput, double horizontalInput, double scaleFactor, double breakInput) {
-		forwardInput = -forwardInput;
-		float leftOut = (float) forwardInput;
-		float rightOut = (float) forwardInput;
-		SmartDashboard.putNumber("Test Number Thing", forwardInput);
-		leftOut += horizontalInput;
-		rightOut -= horizontalInput;
 
-		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
-		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
-		// hi
-		breakInput = breakInput - breakInput * 0.10;
-		breakInput = 1 - breakInput;
-		leftOut *= breakInput;
-		rightOut *= breakInput;
-		
+	public void updateMemeDrive(double forwardInput, double horizontalInput, double scaleFactor, double breakInput) {
+		float leftOut;
+		float rightOut;
+		if (forwardInput > 0.05) {
+			forwardInput = -forwardInput;
+			leftOut = (float) forwardInput;
+			rightOut = (float) forwardInput;
+			SmartDashboard.putNumber("Test Number Thing", forwardInput);
+			leftOut += horizontalInput;
+			rightOut -= horizontalInput;
+
+			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+			// hi
+			breakInput = breakInput - breakInput * 0.10;
+			breakInput = 1 - breakInput;
+			leftOut *= breakInput;
+			rightOut *= breakInput;
+		} else {
+			forwardInput = -breakInput;
+			leftOut = (float) forwardInput;
+			rightOut = (float) forwardInput;
+			SmartDashboard.putNumber("Test Number Thing", forwardInput);
+			leftOut += horizontalInput;
+			rightOut -= horizontalInput;
+
+			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+		}
+
 		left.setValue((float) leftOut);
 		right.setValue((float) rightOut);
 	}
