@@ -141,7 +141,7 @@ public class DualMGDrivetrain {
 	}
 
 	/**
-	 * THis arcade steers
+	 * This arcade steers or west coast
 	 * 
 	 * @param forwardInput
 	 *            amount forward
@@ -162,6 +162,17 @@ public class DualMGDrivetrain {
 		// TODO add scaling
 	}
 
+	/**
+	 * Calculates the arcade drive but also could be used for west coast drive
+	 * 
+	 * @param forwardInput
+	 *            the power that you want it to go forward
+	 * @param horizontalInput
+	 *            the power you want it to turn
+	 * @param scaleFactor
+	 *            the power the inputs are set to
+	 * @return the speed for the wheels to go
+	 */
 	public static float[] calculateArcade(double forwardInput, double horizontalInput, double scaleFactor) {
 		// This is the stuff I added
 		if (forwardInput > -0.05 & forwardInput < 0.05) {
@@ -196,6 +207,18 @@ public class DualMGDrivetrain {
 		return motorSpeeds;
 	}
 
+	/**
+	 * sets the speed of the wheels to what calculateStupidDrive returns
+	 * 
+	 * @param forwardInput
+	 *            the power that you want it to go forward
+	 * @param horizontalInput
+	 *            the power you want it to turn
+	 * @param scaleFactor
+	 *            the power the inputs are set to
+	 * @param maxValue
+	 *            the maxSpeed the wheels to go
+	 */
 	public void updateStupidDrive(double forwardInput, double horizontalInput, double scaleFactor, double maxValue) {
 		float[] motorSpeeds = calculateStupidDrive(forwardInput, horizontalInput, scaleFactor, maxValue);
 
@@ -207,9 +230,21 @@ public class DualMGDrivetrain {
 		// TODO add scaling
 	}
 
+	/**
+	 * Calculates the math behind stupid drive
+	 * 
+	 * @param forwardInput
+	 *            the power that you want it to go forward
+	 * @param horizontalInput
+	 *            the power you want it to turn
+	 * @param scaleFactor
+	 *            the power the inputs are set to
+	 * @param maxValue
+	 *            the maxSpeed the wheels to go
+	 * @return the speed of the wheels
+	 */
 	public static float[] calculateStupidDrive(double forwardInput, double horizontalInput, double scaleFactor,
 			double maxValue) {
-		// It is up to here
 
 		float leftOut = (float) forwardInput;
 		float rightOut = (float) forwardInput;
@@ -228,10 +263,10 @@ public class DualMGDrivetrain {
 				rightOut /= leftAbsoluteValue;
 			}
 		}
- 
+
 		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
-		//hi
+		// hi
 		maxValue = maxValue - maxValue * 0.15;
 		maxValue = 1 - maxValue;
 		leftOut *= maxValue;
@@ -241,5 +276,33 @@ public class DualMGDrivetrain {
 		Array.setFloat(motorSpeeds, 0, rightOut);
 		Array.setFloat(motorSpeeds, 1, leftOut);
 		return motorSpeeds;
+	}
+	
+	public void updateMemeDrive(double forwardInput, double horizontalInput, double scaleFactor, double breakInput) {
+		float leftOut = (float) forwardInput;
+		float rightOut = (float) forwardInput;
+
+		leftOut += horizontalInput;
+		rightOut -= horizontalInput;
+
+		float leftAbsoluteValue = (float) Math.abs(leftOut);
+		float rightAbsoluteValue = (float) Math.abs(rightOut);
+		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
+			if (rightAbsoluteValue > leftAbsoluteValue) {
+				leftOut /= rightAbsoluteValue;
+				rightOut /= rightAbsoluteValue;
+			} else {
+				leftOut /= leftAbsoluteValue;
+				rightOut /= leftAbsoluteValue;
+			}
+		}
+
+		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+		// hi
+		breakInput = breakInput - breakInput * 0.10;
+		breakInput = 1 - breakInput;
+		leftOut *= breakInput;
+		rightOut *= breakInput;
 	}
 }
