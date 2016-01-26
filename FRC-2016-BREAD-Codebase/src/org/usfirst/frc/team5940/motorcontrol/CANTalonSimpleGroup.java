@@ -10,38 +10,37 @@ public class CANTalonSimpleGroup implements MotorGroup {
     boolean inverted = false;
     
 	public CANTalonSimpleGroup(CANTalon[] talons, boolean inverted) {
-		//cT1 = new CANTalon(m1);
-		//cT2 = new CANTalon(m2);
-		//cT3 = new CANTalon(m3);
-		//cT4 = new CANTalon(m4);
-		//TODO Set method of talons
+		//Set talons
 		this.talons = talons;
+		//Set control mode
 		for (int i = 0; i < talons.length; i++){
 			this.talons[i].setControlMode(0);
 			
 		}
-		
+		//Set inverted
 		this.inverted = inverted;
 		
 		
 	}
 	
 	@Override
+	/**Gets the name
+	 * @return name THe name of the group\
+	*/
 	public String getName() {
-		// TODO Auto-generated method stub
+		//Return name
 		return "CANTalonDrive";
 	}
 
 	@Override
+	/**Sets the value of the motors
+	 * @param motorsOut The value for the motors.
+	*/
 	public void setValue(float motorsOut) {
-		// TODO Auto-generated method stub
+		//Invert if inverted
 		if (inverted){this.motorsOut = motorsOut * -1;}
 		else {this.motorsOut = motorsOut;}
-		//cT1.set(motorsOut);
-    	//cT2.set(motorsOut);
-    	//cT3.set(motorsOut);
-    	//cT4.set(motorsOut);
-		//TODO set talon values
+		//Set talon values
 		for (int i = 0; i < talons.length; i++){
 			talons[i].set(this.motorsOut);
 			
@@ -49,44 +48,46 @@ public class CANTalonSimpleGroup implements MotorGroup {
 	}
 
 	@Override
+	/**Returns the values that have been set
+	 * @return motorsOut the value that has been set
+	*/
 	public float getSetValue() {
-		// TODO Auto-generated method stub
+		//Return the set value
 		return motorsOut;
 	}
-
+	//Next four are not used by this so just return 1 or 0 or do nothing
 	@Override
 	public float getSpeed() {
-		// TODO Auto-generated method stub
+		//Only one gear
 		return 0;
 	}
 
 	@Override
 	public int getGearsAmount() {
-		// TODO Auto-generated method stub
+		//Only one gear
 		return 1;
 	}
 
 	@Override
 	public int getGear() {
-		// TODO Auto-generated method stub
+		//Only one gear
 		return 1;
 	}
 
 	@Override
 	public void setGear(int gear) {
-		// TODO Auto-generated method stub
+		//Only one gear to use can't set
 
 	}
 
 	@Override
+	/**Sets the enabledness
+	 * @param enabled The enabledness
+	*/
 	public void setEnabled(boolean enabled) {
-		// TODO Auto-generated method stub
+		//Sets the enabled prop
 		this.enabled = enabled;
-		//cT1.setSafetyEnabled(!enabled);
-		//cT2.setSafetyEnabled(!enabled);
-		//cT3.setSafetyEnabled(!enabled);
-		//cT4.setSafetyEnabled(!enabled);
-		//TODO Set talons enabled
+		//Set talons enabledness
 		for (int i = 0; i < talons.length; i++){
 			talons[i].setSafetyEnabled(!enabled);
 			
@@ -94,24 +95,34 @@ public class CANTalonSimpleGroup implements MotorGroup {
 	}
 
 	@Override
+	/**Gives the enabledness
+	 * @return enabled The enabledness
+	*/
 	public boolean getEnabled() {
-		// TODO Auto-generated method stub
+		// Returns the enabled prop
 		return enabled;
 	}
 
 	@Override
+	//This motor group has one speed so you can't measure it
 	public boolean canMeasureSpeed() {
-		// TODO Auto-generated method stub
+		//Can't measure speed
 		return false;
 	}
-	
+	/**Sets the invertedness
+	 * @param inverted The invertedness
+	*/
 	public void setInverted(boolean inverted){
+		//Set the invertedness
 		this.inverted = inverted;
+		//Sets the values
 		this.setValue(this.motorsOut);
 	}
-	
+	/**Gets the invertedness
+	 * @return inverted The invertedness
+	*/
 	public boolean getInverted(){
-		
+		//Returns the invertedness
 		return inverted;
 		
 	}
