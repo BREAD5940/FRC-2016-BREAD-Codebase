@@ -287,18 +287,6 @@ public class DualMGDrivetrain {
 		leftOut += horizontalInput;
 		rightOut -= horizontalInput;
 
-		float leftAbsoluteValue = (float) Math.abs(leftOut);
-		float rightAbsoluteValue = (float) Math.abs(rightOut);
-		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
-			if (rightAbsoluteValue > leftAbsoluteValue) {
-				leftOut /= rightAbsoluteValue;
-				rightOut /= rightAbsoluteValue;
-			} else {
-				leftOut /= leftAbsoluteValue;
-				rightOut /= leftAbsoluteValue;
-			}
-		}
-
 		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		// hi
@@ -306,5 +294,8 @@ public class DualMGDrivetrain {
 		breakInput = 1 - breakInput;
 		leftOut *= breakInput;
 		rightOut *= breakInput;
+		
+		left.setValue((float) leftOut);
+		right.setValue((float) rightOut);
 	}
 }

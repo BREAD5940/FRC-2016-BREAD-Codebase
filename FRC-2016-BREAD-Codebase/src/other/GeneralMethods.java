@@ -17,8 +17,8 @@ public class GeneralMethods {
 	}
 	
 	public static double boundToUnitVector(double in) {
-		if(in < -1) in = -1;
-		if(in > 1) in = 1;
+		if (in < -1) in = -1;
+		if (in > 1) in = 1;
 		return in;
 	}
 }
