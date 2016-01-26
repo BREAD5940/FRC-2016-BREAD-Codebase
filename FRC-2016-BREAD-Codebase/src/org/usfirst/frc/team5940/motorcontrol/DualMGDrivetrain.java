@@ -202,7 +202,7 @@ public class DualMGDrivetrain {
 		if (forwardInput > -0.05 & forwardInput < 0.05) {
 			horizontalInput = horizontalInput / 5;
 		}
-		// It is up to here
+		//
 
 		float leftOut = (float) forwardInput;
 		float rightOut = (float) forwardInput;
@@ -226,8 +226,8 @@ public class DualMGDrivetrain {
 		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		
 		if (maxValue > 0.05) {
-			leftOut /= maxValue;
-			rightOut /= maxValue;
+			leftOut *= maxValue;
+			rightOut *= maxValue;
 		}
 		
 		left.setValue((float) leftOut);
