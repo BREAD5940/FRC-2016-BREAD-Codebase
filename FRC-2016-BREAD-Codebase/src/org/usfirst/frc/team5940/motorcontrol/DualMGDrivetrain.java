@@ -232,7 +232,7 @@ public class DualMGDrivetrain {
 		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		
-		maxValue = maxValue - maxValue * 0.1;
+		maxValue = maxValue - maxValue * 0.15;
 		maxValue = 1 - maxValue;
 		leftOut *= maxValue;
 		rightOut *= maxValue;
