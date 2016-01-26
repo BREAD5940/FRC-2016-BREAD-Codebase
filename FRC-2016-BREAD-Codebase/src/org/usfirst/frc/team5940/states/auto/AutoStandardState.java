@@ -7,18 +7,19 @@ import edu.wpi.first.wpilibj.RobotBase;
 public class AutoStandardState extends State{
 
 	public AutoStandardState(RobotBase robot) {
+		//Call the state constructor
 		super(robot);
 	}
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
+		// TODO Make the init
 		
 	}
 
 	@Override
 	protected void update() {
-		// TODO Auto-generated method stub
+		// TODO Make the auto
 		
 	}
 
