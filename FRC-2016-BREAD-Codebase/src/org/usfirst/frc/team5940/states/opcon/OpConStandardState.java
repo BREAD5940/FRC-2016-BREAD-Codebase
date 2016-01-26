@@ -20,38 +20,43 @@ public class OpConStandardState extends State{
 	double horizontal;
 	double forward;
 	double maxValue;
-	DualMGDrivetrain driveThing;
+	DualMGDrivetrain driver;
 	// for testing the navx when it is setup
-//	AHRS navx;
+	//AHRS navx;
 	float scaleFactor;
 
 	public OpConStandardState(RobotBase robot) {
+		//Call the state thing
 		super(robot);
-		// TODO Auto-generated constructor stub
 	}
-
-	DualMGDrivetrain driver;
+	
+	
 	
 	@Override
 	protected void init() {
+		//Notify about new code
 		SmartDashboard.putBoolean("New Code", true);
-		// TODO Auto-generated method stub
+		//Set controller to a joystick
 		controller = new Joystick (0);
-		//driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new CANTalonDrive(3,4));
+		//driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new CANTalonDrive(3,4)); Doesn't Work
+		//Use driver = new DualMGDrivetrain(new CANTalonDrive(new Talon[]{new Talon(1),new Talon(2)},new Talon[]{new Talon(3),new Talon(4)}),false);
 		// TODO make the variables not equal to null
 		
 		
 		//WIRING DIFFERENT FOR DIFFERENT ROBOTS!!!
+		//Set victors
 		Victor r1 = new Victor(1);
 		Victor r2 = new Victor(3);
 		Victor l3 = new Victor(0);
 		Victor l4 = new Victor(2);
 		// for testing the navx when it is setup
-//        navx = new AHRS(SPI.Port.kMXP); 
-        scaleFactor = 3;
+		//navx = new AHRS(SPI.Port.kMXP); 
+		//Set scale factor
+        	scaleFactor = 3;
 		
 		//TODO incorrect infersions here and below...
-		driveThing =  new DualMGDrivetrain(new VictorSimpleGroup(new Victor[]{l3, l4}, false), new VictorSimpleGroup(new Victor[]{r1, r2}, true));
+		//Set the driver
+		driver =  new DualMGDrivetrain(new VictorSimpleGroup(new Victor[]{l3, l4}, false), new VictorSimpleGroup(new Victor[]{r1, r2}, true));
 	}
 
 	@Override
@@ -59,12 +64,14 @@ public class OpConStandardState extends State{
 		// TODO Auto-generated method stub
 		
 		//For testing the navx when it is setup
-//		SmartDashboard.putNumber("Angle", navx.getAngle());
+		//SmartDashboard.putNumber("Angle", navx.getAngle());
+		//Set all of the things
 		forward = -controller.getRawAxis(2);
 		horizontal = controller.getRawAxis(4);
 		maxValue = controller.getRawAxis(3);
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
-		driveThing.updateMemeDrive(forward, horizontal, 1, maxValue);
+		//Update the meme drive of the driver
+		driver.updateMemeDrive(forward, horizontal, 1, maxValue);
 	}
 }
