@@ -289,7 +289,7 @@ public class DualMGDrivetrain {
 			SmartDashboard.putNumber("Test Number Thing", forwardInput);
 			leftOut += horizontalInput;
 			rightOut -= horizontalInput;
-
+			SmartDashboard.putBoolean("small forward input", false);
 			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			// hi
@@ -304,6 +304,7 @@ public class DualMGDrivetrain {
 			SmartDashboard.putNumber("Test Number Thing", forwardInput);
 			leftOut += horizontalInput;
 			rightOut -= horizontalInput;
+			SmartDashboard.putBoolean("small forward input", true);
 
 			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
