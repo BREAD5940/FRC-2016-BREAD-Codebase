@@ -34,7 +34,7 @@ public class OpConStandardState extends State{
 	
 	@Override
 	protected void init() {
-		SmartDashboard.putBoolean("New Code", false);
+		SmartDashboard.putBoolean("New Code", true);
 		// TODO Auto-generated method stub
 		controller = new Joystick (0);
 		//driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new CANTalonDrive(3,4));

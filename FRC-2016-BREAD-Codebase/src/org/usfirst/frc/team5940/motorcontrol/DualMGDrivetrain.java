@@ -2,6 +2,7 @@ package org.usfirst.frc.team5940.motorcontrol;
 
 import java.lang.reflect.Array;
 
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import other.GeneralMethods;
 
 public class DualMGDrivetrain {
@@ -279,9 +280,10 @@ public class DualMGDrivetrain {
 	}
 	
 	public void updateMemeDrive(double forwardInput, double horizontalInput, double scaleFactor, double breakInput) {
+		forwardInput = -forwardInput;
 		float leftOut = (float) forwardInput;
 		float rightOut = (float) forwardInput;
-
+		SmartDashboard.putNumber("Test Number Thing", forwardInput);
 		leftOut += horizontalInput;
 		rightOut -= horizontalInput;
 
