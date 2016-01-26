@@ -16,7 +16,7 @@ public class CameraServerInit extends State {
 	CameraServer usbcamera;
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
+		//Get the instance and set the things and set automatic capture
 
 		usbcamera = CameraServer.getInstance();
 		usbcamera.setQuality(50);
@@ -26,7 +26,7 @@ public class CameraServerInit extends State {
 
 	@Override
 	protected void update() {
-		
+		//Not updating
 	}
 
 }
