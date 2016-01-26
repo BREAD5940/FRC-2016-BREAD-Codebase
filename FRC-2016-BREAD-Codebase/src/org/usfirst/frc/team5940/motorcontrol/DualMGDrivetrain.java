@@ -229,8 +229,49 @@ public class DualMGDrivetrain {
 			leftOut /= maxValue;
 			rightOut /= maxValue;
 		}
+		
 		left.setValue((float) leftOut);
 		right.setValue((float) rightOut);
 		// TODO add scaling
 	}
+	
+	public static float[] calculateStupidDrive(double forwardInput, double horizontalInput, double scaleFactor, double maxValue) {
+		// This is the stuff I added
+		if (forwardInput > -0.05 & forwardInput < 0.05) {
+			horizontalInput = horizontalInput / 5;
+		}
+		// It is up to here
+
+		float leftOut = (float) forwardInput;
+		float rightOut = (float) forwardInput;
+
+		leftOut += horizontalInput;
+		rightOut -= horizontalInput;
+
+		float leftAbsoluteValue = (float) Math.abs(leftOut);
+		float rightAbsoluteValue = (float) Math.abs(rightOut);
+		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
+			if (rightAbsoluteValue > leftAbsoluteValue) {
+				leftOut /= rightAbsoluteValue;
+				rightOut /= rightAbsoluteValue;
+			} else {
+				leftOut /= leftAbsoluteValue;
+				rightOut /= leftAbsoluteValue;
+			}
+		}
+
+		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+		
+		if (maxValue > 0.05) {
+			leftOut /= maxValue;
+			rightOut /= maxValue;
+		}
+		
+		float[] motorSpeeds = new float[2];
+		Array.setFloat(motorSpeeds, 0, rightOut);
+		Array.setFloat(motorSpeeds, 1, leftOut);
+		return motorSpeeds;
+	}
 }
+
