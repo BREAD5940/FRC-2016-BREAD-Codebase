@@ -9,16 +9,18 @@ import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 import edu.wpi.first.wpilibj.SampleRobot;
 
 public class Robot extends SampleRobot {
-	
+	//Set the threads
 	public Thread state;
 	public Thread camera;
 
 	public Robot() {
+		//Call the super constructor
 		super();
 	}
 	
 	@Override
 	public void robotInit() {
+		//Initiate robot
 		this.camera = new Thread(new CameraServerInit(this));
 		this.camera.start();
 	}
@@ -26,18 +28,22 @@ public class Robot extends SampleRobot {
 	
 	@Override
 	public void autonomous() {
+		//Intturupt state if existent
 		if (state != null) {
 			state.interrupt();
 		}
+		//Activate auto
 		state = new Thread(new AutoStandardState(this));
 		state.start();
 	}
 
 	@Override
 	public void operatorControl() {
+		//Intrupt state if existent
 		if (state != null) {
 			state.interrupt();
 		}
+		//Activiate op con
 		state = new Thread(new OpConStandardState(this));
 		state.start();
 	}
@@ -47,6 +53,7 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void test() {
-		
+		//Test robot
+		//TODO Make this do something
 	}
 }
