@@ -283,7 +283,6 @@ public class DualMGDrivetrain {
 		float leftOut;
 		float rightOut;
 		if (forwardInput > 0.05) {
-			forwardInput = -forwardInput;
 			leftOut = (float) forwardInput;
 			rightOut = (float) forwardInput;
 			SmartDashboard.putNumber("Test Number Thing", forwardInput);

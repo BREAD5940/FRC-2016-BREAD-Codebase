@@ -66,9 +66,10 @@ public class OpConStandardState extends State{
 		//For testing the navx when it is setup
 		//SmartDashboard.putNumber("Angle", navx.getAngle());
 		//Set all of the things
-		forward = -controller.getRawAxis(2);
+		forward = controller.getRawAxis(2);
 		horizontal = controller.getRawAxis(4);
 		maxValue = controller.getRawAxis(3);
+		SmartDashboard.putNumber("Forward Speed", forward);
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
 		//Update the meme drive of the driver
