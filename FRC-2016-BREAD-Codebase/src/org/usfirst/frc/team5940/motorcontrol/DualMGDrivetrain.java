@@ -9,6 +9,7 @@ public class DualMGDrivetrain {
 
 	public final MotorGroup left;
 	public final MotorGroup right;
+	public double previousAngle = 90;
 
 	public DualMGDrivetrain(MotorGroup left, MotorGroup right) {
 		this.left = left;
@@ -345,5 +346,15 @@ public class DualMGDrivetrain {
 		// Set the things
 		left.setValue((float) leftOut);
 		right.setValue((float) rightOut);
+	}
+	
+	/**
+	 * Four seconds to spin at 0.25 power
+	 * @param newAngle
+	 */
+	public void spinToAngle(double newAngle) {
+		left.setValue((float) 0.25);
+		right.setValue((float) 0.25);
+		
 	}
 }

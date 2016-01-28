@@ -73,6 +73,5 @@ public class OpConStandardState extends State{
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
 		//Update the meme drive of the driver
-		driver.updateMemeDrive(forward, horizontal, 1, maxValue);
 	}
 }
