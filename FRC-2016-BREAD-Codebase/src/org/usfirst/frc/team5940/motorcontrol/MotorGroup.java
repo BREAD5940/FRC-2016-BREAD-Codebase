@@ -62,6 +62,10 @@ public interface MotorGroup {
 	 */
 	public boolean getEnabled();
 	
+	/**
+	 * This tells the motors whether or not to be inverted
+	 * @param inverted whether or not 
+	 */
 	public void setInverted(boolean inverted);
 	
 	public boolean getInverted();

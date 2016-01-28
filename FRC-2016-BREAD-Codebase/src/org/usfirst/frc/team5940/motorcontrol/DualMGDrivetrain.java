@@ -44,7 +44,8 @@ public class DualMGDrivetrain {
 	 * yeah by the way I have the total amount of gears currently set to four
 	 * and we might need to change that
 	 * 
-	 * @param gear the gear to change to
+	 * @param gear
+	 *            the gear to change to
 	 */
 	public void setGears(int gear) {
 
@@ -88,7 +89,8 @@ public class DualMGDrivetrain {
 	/**
 	 * Disables both motors or enables them your choice dawg
 	 * 
-	 * @param enabled the enabledness to set to the motors
+	 * @param enabled
+	 *            the enabledness to set to the motors
 	 */
 	public void setEnabled(Boolean enabled) {
 		left.setEnabled(enabled);
@@ -98,8 +100,10 @@ public class DualMGDrivetrain {
 	/**
 	 * Sets the value of the two MotorGroups
 	 * 
-	 * @param leftValue the value to set to the left motorGroup
-	 * @param rightValue the value to set to the right motorGroup
+	 * @param leftValue
+	 *            the value to set to the left motorGroup
+	 * @param rightValue
+	 *            the value to set to the right motorGroup
 	 */
 	public void setValues(float leftValue, float rightValue) {
 		left.setValue(leftValue);
@@ -110,7 +114,8 @@ public class DualMGDrivetrain {
 	 * This shows the value of the two motors. It might not work fifty fifty
 	 * chance.
 	 * 
-	 * @return it is an array with the first value being the left motorGroup value and the second value being the right motorGroup value
+	 * @return it is an array with the first value being the left motorGroup
+	 *         value and the second value being the right motorGroup value
 	 */
 	public Array getSetValue() {
 		Array speeds = null;
@@ -123,9 +128,12 @@ public class DualMGDrivetrain {
 	/**
 	 * This updates the tank
 	 * 
-	 * @param leftSpeed the speed for the right motor
-	 * @param rightSpeed the speed for the right motor
-	 * @param scaleFactor Scales the output by this number, use 1 for default
+	 * @param leftSpeed
+	 *            the speed for the right motor
+	 * @param rightSpeed
+	 *            the speed for the right motor
+	 * @param scaleFactor
+	 *            Scales the output by this number, use 1 for default
 	 */
 	public void updateTank(double leftSpeed, double rightSpeed, double scaleFactor) {
 
@@ -139,9 +147,12 @@ public class DualMGDrivetrain {
 	/**
 	 * This arcade steers or west coast
 	 * 
-	 * @param forwardInput amount forward
-	 * @param horiszontalInput amount horizontal
-	 * @param scaleFactor Scales the output by this number, use 1 for default
+	 * @param forwardInput
+	 *            amount forward
+	 * @param horiszontalInput
+	 *            amount horizontal
+	 * @param scaleFactor
+	 *            Scales the output by this number, use 1 for default
 	 */
 	public void updateArcade(double forwardInput, double horizontalInput, double scaleFactor) {
 
@@ -158,9 +169,12 @@ public class DualMGDrivetrain {
 	/**
 	 * Calculates the arcade drive but also could be used for west coast drive
 	 * 
-	 * @param forwardInput the power that you want it to go forward
-	 * @param horizontalInput the power you want it to turn
-	 * @param scaleFactor the power the inputs are set to
+	 * @param forwardInput
+	 *            the power that you want it to go forward
+	 * @param horizontalInput
+	 *            the power you want it to turn
+	 * @param scaleFactor
+	 *            the power the inputs are set to
 	 * @return the speed for the wheels to go
 	 */
 	public static float[] calculateArcade(double forwardInput, double horizontalInput, double scaleFactor) {
@@ -169,19 +183,19 @@ public class DualMGDrivetrain {
 			horizontalInput = horizontalInput / 5;
 		}
 		// It is up to here
-		//Set floats
+		// Set floats
 
 		float leftOut = (float) forwardInput;
 		float rightOut = (float) forwardInput;
-		
-		//Change the outputs
+
+		// Change the outputs
 		leftOut += horizontalInput;
 		rightOut -= horizontalInput;
 
-		//Set the absolute values
+		// Set the absolute values
 		float leftAbsoluteValue = (float) Math.abs(leftOut);
 		float rightAbsoluteValue = (float) Math.abs(rightOut);
-		//Change the things
+		// Change the things
 		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
 			if (rightAbsoluteValue > leftAbsoluteValue) {
 				leftOut /= rightAbsoluteValue;
@@ -192,11 +206,11 @@ public class DualMGDrivetrain {
 			}
 		}
 
-		//Multipley the things by the scaleFactor
+		// Multipley the things by the scaleFactor
 		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 
-		//return the things
+		// return the things
 		float[] motorSpeeds = new float[2];
 		Array.setFloat(motorSpeeds, 0, rightOut);
 		Array.setFloat(motorSpeeds, 1, leftOut);
@@ -206,19 +220,23 @@ public class DualMGDrivetrain {
 	/**
 	 * sets the speed of the wheels to what calculateStupidDrive returns
 	 * 
-	 * @param forwardInput the power that you want it to go forward
-	 * @param horizontalInput the power you want it to turn
-	 * @param scaleFactor the power the inputs are set to
-	 * @param maxValue the maxSpeed the wheels to go
+	 * @param forwardInput
+	 *            the power that you want it to go forward
+	 * @param horizontalInput
+	 *            the power you want it to turn
+	 * @param scaleFactor
+	 *            the power the inputs are set to
+	 * @param maxValue
+	 *            the maxSpeed the wheels to go
 	 */
 	public void updateStupidDrive(double forwardInput, double horizontalInput, double scaleFactor, double maxValue) {
-		//Get the things from the thing
+		// Get the things from the thing
 		float[] motorSpeeds = calculateStupidDrive(forwardInput, horizontalInput, scaleFactor, maxValue);
-		//Get the things from the array
+		// Get the things from the array
 		float rightOut = Array.getFloat(motorSpeeds, 0);
 		float leftOut = Array.getFloat(motorSpeeds, 1);
-		
-		//Set the values
+
+		// Set the values
 		left.setValue((float) leftOut);
 		right.setValue((float) rightOut);
 		// TODO add scaling
@@ -227,28 +245,32 @@ public class DualMGDrivetrain {
 	/**
 	 * Calculates the math behind stupid drive
 	 * 
-	 * @param forwardInput the power that you want it to go forward
-	 * @param horizontalInput  the power you want it to turn
-	 * @param scaleFactor the power the inputs are set to
-	 * @param maxValue the maxSpeed the wheels to go
+	 * @param forwardInput
+	 *            the power that you want it to go forward
+	 * @param horizontalInput
+	 *            the power you want it to turn
+	 * @param scaleFactor
+	 *            the power the inputs are set to
+	 * @param maxValue
+	 *            the maxSpeed the wheels to go
 	 * @return speed the speed of the wheels
 	 */
 	public static float[] calculateStupidDrive(double forwardInput, double horizontalInput, double scaleFactor,
 			double maxValue) {
-				
-		//Set the things
+
+		// Set the things
 		float leftOut = (float) forwardInput;
 		float rightOut = (float) forwardInput;
 
-		//Change the things by the input
+		// Change the things by the input
 		leftOut += horizontalInput;
 		rightOut -= horizontalInput;
 
-		//Set the absolute values
+		// Set the absolute values
 		float leftAbsoluteValue = (float) Math.abs(leftOut);
 		float rightAbsoluteValue = (float) Math.abs(rightOut);
-		
-		//Set the things
+
+		// Set the things
 		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
 			if (rightAbsoluteValue > leftAbsoluteValue) {
 				leftOut /= rightAbsoluteValue;
@@ -259,31 +281,41 @@ public class DualMGDrivetrain {
 			}
 		}
 
-		//Scale
+		// Scale
 		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
-		//Do max value stuff
+		// Do max value stuff
 		maxValue = maxValue - maxValue * 0.15;
 		maxValue = 1 - maxValue;
 		leftOut *= maxValue;
 		rightOut *= maxValue;
 
-		//Return the motorspeeds
+		// Return the motorspeeds
 		float[] motorSpeeds = new float[2];
 		Array.setFloat(motorSpeeds, 0, rightOut);
 		Array.setFloat(motorSpeeds, 1, leftOut);
 		return motorSpeeds;
 	}
-	/**Updates the drive that cyrus wanted
-	 * @param forwardInput the input for forward
-	 * @param horizonatalInput the input horizontal
-	 * @param scaleFactor the factor to scale by
-	 * @param breakInput the input to break
-	*/
+
+	/**
+	 * This is arcade drive but the inputs are divided by breakinput. And if
+	 * breakinput is the only input it goes backwards. This is meant for when
+	 * the forward input can't be negative, like for triggers.
+	 * 
+	 * @param forwardInput
+	 *            The forward power
+	 * @param horizontalInput
+	 *            The horizontal power
+	 * @param scaleFactor
+	 *            the scalefactor
+	 * @param breakInput
+	 *            the reverse power or amount the other inputs will be divided
+	 *            by
+	 */
 	public void updateMemeDrive(double forwardInput, double horizontalInput, double scaleFactor, double breakInput) {
 		float leftOut;
 		float rightOut;
-		//Set things
+		// Set things
 		if (forwardInput > 0.05) {
 			leftOut = (float) forwardInput;
 			rightOut = (float) forwardInput;
@@ -310,7 +342,7 @@ public class DualMGDrivetrain {
 			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		}
-		//Set the things
+		// Set the things
 		left.setValue((float) leftOut);
 		right.setValue((float) rightOut);
 	}

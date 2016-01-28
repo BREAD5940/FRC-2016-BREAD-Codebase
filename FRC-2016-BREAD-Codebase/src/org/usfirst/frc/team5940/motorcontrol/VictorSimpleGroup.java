@@ -22,12 +22,18 @@ public class VictorSimpleGroup implements MotorGroup{
 		
 	}
 	
+	/**
+	 * This returns VictorDrive
+	 */
 	@Override
 	public String getName() {
 		// TODO Auto-generated method stub
 		return "VictorDrive";
 	}
-
+	
+	/**
+	 * This inputs a value into the moto
+	 */
 	@Override
 	public void setValue(float motorsOut) {
 		// TODO Auto-generated method stub
@@ -44,36 +50,51 @@ public class VictorSimpleGroup implements MotorGroup{
 		}
 	}
 
+	/**
+	 * This returns the value inputed into the motor
+	 */
 	@Override
 	public float getSetValue() {
 		// TODO Auto-generated method stub
 		return motorsOut;
 	}
 
+	/**
+	 * This will return the current speed of the motorgroup but not yet
+	 */
 	@Override
 	public float getSpeed() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
+	/**
+	 * This will return the total amount of gears on the robot but not yet
+	 */
 	@Override
 	public int getGearsAmount() {
 		// TODO Auto-generated method stub
 		return 1;
 	}
 
+	/**
+	 * This returns the gear the robot is in
+	 */
 	@Override
 	public int getGear() {
 		// TODO Auto-generated method stub
 		return 1;
 	}
 
+	/**
+	 * This sets the robot to a gear
+	 */
 	@Override
 	public void setGear(int gear) {
 		// TODO Auto-generated method stub
 
 	}
-
+	
 	@Override
 	public void setEnabled(boolean enabled) {
 		// TODO Auto-generated method stub
@@ -101,15 +122,19 @@ public class VictorSimpleGroup implements MotorGroup{
 		return false;
 	}
 	
+	/**
+	 * This inverts the motors
+	 */
 	public void setInverted(boolean inverted){
 		this.inverted = inverted;
 		this.setValue(this.motorsOut);
 	}
 	
+	/**
+	 * This returns if the motors are inverted
+	 */
 	public boolean getInverted(){
-		
 		return inverted;
-		
 	}
 
 }
