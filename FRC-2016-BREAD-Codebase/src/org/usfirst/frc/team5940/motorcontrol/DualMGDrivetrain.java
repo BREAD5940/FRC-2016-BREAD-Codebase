@@ -2,6 +2,7 @@ package org.usfirst.frc.team5940.motorcontrol;
 
 import java.lang.reflect.Array;
 
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import other.GeneralMethods;
 
@@ -353,8 +354,12 @@ public class DualMGDrivetrain {
 	 * @param newAngle
 	 */
 	public void spinToAngle(double newAngle) {
+		double turningTime;
 		left.setValue((float) 0.25);
 		right.setValue((float) 0.25);
-		
+		turningTime = (previousAngle - newAngle)/90;
+		Timer.delay(turningTime);
+		left.setValue(0);
+		right.setValue(0);
 	}
 }

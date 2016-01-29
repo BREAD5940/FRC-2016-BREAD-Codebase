@@ -72,6 +72,7 @@ public class OpConStandardState extends State{
 		SmartDashboard.putNumber("Forward Speed", forward);
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
+		driver.spinToAngle(controller.getDirectionDegrees());
 		//Update the meme drive of the driver
 	}
 }
