@@ -1,7 +1,6 @@
 package org.usfirst.frc.team5940.camera;
 
 import org.usfirst.frc.team5940.states.State;
-
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.RobotBase;
 

@@ -142,6 +142,7 @@ public class DualMGDrivetrain {
     	}
     	rightOut = -rightOut;
     	
+    	
     	left.setValue(leftOut);
     	right.setValue(rightOut);
 	}
