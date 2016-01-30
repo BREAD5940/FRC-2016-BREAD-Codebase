@@ -9,6 +9,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -35,7 +36,7 @@ public class OpConStandardState extends State {
 		// Notify about new code
 		SmartDashboard.putBoolean("New Code", true);
 		// Set controller to a joystick
-		controller = new Joystick(0);
+		controller = new Joystick(1);
 		// driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new
 		// CANTalonDrive(3,4)); Doesn't Work
 		// Use driver = new DualMGDrivetrain(new CANTalonDrive(new Talon[]{new
@@ -67,14 +68,14 @@ public class OpConStandardState extends State {
 		// For testing the navx when it is setup
 		// SmartDashboard.putNumber("Angle", navx.getAngle());
 		// Set all of the things
-		forward = controller.getRawAxis(2);
-		horizontal = controller.getRawAxis(4);
+		forward = controller.getRawAxis(1);
+		horizontal = controller.getRawAxis(2);
 		maxValue = controller.getRawAxis(3);
-		SmartDashboard.putNumber("Forward Speed", forward);
+		SmartDashboard.putNumber("Direction", controller.getDirectionDegrees());
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
-		if (controller.getRawButton(3)) {
-			driver.spinToAngle(controller.getDirectionDegrees());
+		if (controller.getRawButton(3) && driver.turning == false) {
+			driver.spinToAngle(controller.getDirectionDegrees(), true);
 		}
 		// Update the meme drive of the driver
 	}
