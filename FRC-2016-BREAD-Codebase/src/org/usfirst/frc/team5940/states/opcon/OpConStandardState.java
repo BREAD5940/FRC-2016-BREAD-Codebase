@@ -2,10 +2,12 @@ package org.usfirst.frc.team5940.states.opcon;
 
 import org.usfirst.frc.team5940.motorcontrol.CANTalonSimpleGroup;
 import org.usfirst.frc.team5940.motorcontrol.DualMGDrivetrain;
+import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.VictorSimpleGroup;
 import org.usfirst.frc.team5940.states.State;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.SPI;
@@ -57,8 +59,8 @@ public class OpConStandardState extends State {
 
 		// TODO incorrect infersions here and below...
 		// Set the driver
-		driver = new DualMGDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
-				new VictorSimpleGroup(new Victor[] { r1, r2 }, true));
+		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
+				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
 	}
 
 	@Override
@@ -77,6 +79,5 @@ public class OpConStandardState extends State {
 		if (controller.getRawButton(3) && driver.turning == false) {
 			driver.spinToAngle(controller.getDirectionDegrees(), true);
 		}
-		// Update the meme drive of the driver
 	}
 }

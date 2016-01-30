@@ -77,7 +77,7 @@ public class CANTalonSimpleGroup implements MotorGroup {
 	@Override
 	public void setGear(int gear) {
 		//Only one gear to use can't set
-
+		
 	}
 
 	@Override
