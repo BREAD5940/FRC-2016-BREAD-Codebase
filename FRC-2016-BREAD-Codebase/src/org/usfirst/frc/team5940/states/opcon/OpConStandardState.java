@@ -57,7 +57,7 @@ public class OpConStandardState extends State {
 		// Set scale factor
 		scaleFactor = 3;
 
-		// TODO incorrect infersions here and below...
+		// TODO incorrect inversions here and below...
 		// Set the driver
 		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
 				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
@@ -72,7 +72,7 @@ public class OpConStandardState extends State {
 		// Set all of the things
 		forward = controller.getRawAxis(1);
 		horizontal = controller.getRawAxis(2);
-		maxValue = controller.getRawAxis(3);
+		//maxValue = controller.getRawAxis(3);
 		SmartDashboard.putNumber("Direction", controller.getDirectionDegrees());
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);

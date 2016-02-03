@@ -65,7 +65,7 @@ public class CANTalonSimpleGroup implements MotorGroup {
 	@Override
 	public int getGearsAmount() {
 		//Only one gear
-		return 1;
+		return 2;
 	}
 
 	@Override
