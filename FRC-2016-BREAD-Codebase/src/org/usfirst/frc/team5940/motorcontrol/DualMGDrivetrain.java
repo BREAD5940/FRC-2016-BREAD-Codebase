@@ -11,6 +11,10 @@ public class DualMGDrivetrain {
 	public final MotorGroup left;
 	public final MotorGroup right;
 	public double previousAngle = 90;
+	public float leftSpeedBonus = 0;
+	public float rightSpeedBonus = 0;
+	public float leftSpeedPenalty = 0;
+	public float rightSpeedPenalty = 0;
 
 	public DualMGDrivetrain(MotorGroup left, MotorGroup right) {
 		this.left = left;
@@ -348,18 +352,37 @@ public class DualMGDrivetrain {
 		left.setValue((float) leftOut);
 		right.setValue((float) rightOut);
 	}
-	
+
 	/**
 	 * Four seconds to spin at 0.25 power
+	 * 
 	 * @param newAngle
 	 */
 	public void spinToAngle(double newAngle) {
 		double turningTime;
 		left.setValue((float) 0.25);
 		right.setValue((float) 0.25);
-		turningTime = (previousAngle - newAngle)/90;
+		turningTime = (previousAngle - newAngle) / 90;
 		Timer.delay(turningTime);
 		left.setValue(0);
 		right.setValue(0);
+	}
+
+	public void moveStraight(float speed, float leftRate, float rightRate) {
+		float leftSpeed = speed;
+		float rightSpeed = speed;
+		if (rightRate > leftRate) {
+			leftSpeedBonus += 0.01;
+		}
+		else if (leftRate > rightRate) {
+			rightSpeedBonus += 0.01;
+		}
+		leftSpeed += leftSpeedBonus;
+		rightSpeed += rightSpeedBonus;
+		float[] speeds = GeneralMethods.lowerToNumber(leftSpeed, rightSpeed, 1);
+		leftSpeed = Array.getFloat(speeds, 0);
+		rightSpeed = Array.getFloat(speeds, 1);
+		left.setValue(speed);
+		right.setValue(speed);
 	}
 }

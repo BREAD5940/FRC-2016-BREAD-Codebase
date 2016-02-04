@@ -1,5 +1,7 @@
 package other;
 
+import java.lang.reflect.Array;
+
 public class GeneralMethods {
 	/**Puts something to a power while saving the negative
 	 * @param input The input
@@ -30,5 +32,20 @@ public class GeneralMethods {
 		if (in > 1) in = 1;
 		//Returns result
 		return in;
+	}
+	
+	public static float[] lowerToNumber(float firstNumber, float secondNumber, float maxNumber) {
+		float[] numbers = new float[2];
+		if (firstNumber > 1 && firstNumber >= secondNumber) {
+			firstNumber /= firstNumber;
+			secondNumber /= firstNumber;
+		}
+		else if (secondNumber > 1) {
+			firstNumber /= secondNumber;
+			secondNumber /= secondNumber;
+		}
+		Array.setFloat(numbers, 0, firstNumber);
+		Array.setFloat(numbers, 1, secondNumber);
+		return numbers;
 	}
 }
