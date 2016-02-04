@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5940.states.opcon;
 
 import org.usfirst.frc.team5940.motorcontrol.CANTalonSimpleGroup;
+
 import org.usfirst.frc.team5940.motorcontrol.DualMGDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.VictorSimpleGroup;
@@ -11,10 +12,11 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.SPI;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Victor;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
-
 import other.GeneralMethods;
+
 
 public class OpConStandardState extends State {
 
@@ -37,7 +39,7 @@ public class OpConStandardState extends State {
 		// Notify about new code
 		SmartDashboard.putBoolean("New Code", true);
 		// Set controller to a joystick
-		controller = new Joystick(0);
+		controller = new Joystick(1);
 		// driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new
 		// CANTalonDrive(3,4)); Doesn't Work
 		// Use driver = new DualMGDrivetrain(new CANTalonDrive(new Talon[]{new
@@ -56,7 +58,7 @@ public class OpConStandardState extends State {
 		// Set scale factor
 		scaleFactor = 3;
 
-		// TODO incorrect infersions here and below...
+		// TODO incorrect inversions here and below...
 		// Set the driver
 		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
 				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
@@ -69,13 +71,16 @@ public class OpConStandardState extends State {
 		// For testing the navx when it is setup
 		// SmartDashboard.putNumber("Angle", navx.getAngle());
 		// Set all of the things
-		forward = controller.getRawAxis(2);
-		horizontal = controller.getRawAxis(4);
-		maxValue = controller.getRawAxis(3);
-		SmartDashboard.putNumber("Forward Speed", forward);
+		forward = controller.getRawAxis(1);
+		horizontal = controller.getRawAxis(2);
+		//maxValue = controller.getRawAxis(3);
+		SmartDashboard.putNumber("Direction", controller.getDirectionDegrees());
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
 		driver.updateArcade(forward, horizontal, 1);
 		// Update the meme drive of the driver
+		if (controller.getRawButton(3) && driver.turning == false) {
+			driver.spinToAngle(controller.getDirectionDegrees(), true);
+		}
 	}
 }

@@ -12,7 +12,7 @@ public class CameraServerInit extends State {
 		
 		
 	}
-	//TODO check if losing refence to this stops server.
+	//TODO check if losing reference to this stops server.
 	CameraServer usbcamera;
 	@Override
 	protected void init() {

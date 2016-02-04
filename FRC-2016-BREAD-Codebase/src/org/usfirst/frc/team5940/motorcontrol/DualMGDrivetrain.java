@@ -10,11 +10,12 @@ public class DualMGDrivetrain {
 
 	public final MotorGroup left;
 	public final MotorGroup right;
-	public double previousAngle = 90;
 	public float leftSpeedBonus = 0;
 	public float rightSpeedBonus = 0;
 	public float leftSpeedPenalty = 0;
 	public float rightSpeedPenalty = 0;
+	public double previousAngle = 0;
+	public boolean turning = false;
 
 	public DualMGDrivetrain(MotorGroup left, MotorGroup right) {
 		this.left = left;
@@ -357,15 +358,61 @@ public class DualMGDrivetrain {
 	 * Four seconds to spin at 0.25 power
 	 * 
 	 * @param newAngle
+	 * @return
 	 */
-	public void spinToAngle(double newAngle) {
+	public void spinToAngle(double newAngle, boolean relativePositioning) {
+		turning = true;
+		if (relativePositioning) {
+			previousAngle = 0;
+		}
+		boolean negativeTime = false;
+		SmartDashboard.putBoolean("Turning", turning);
 		double turningTime;
-		left.setValue((float) 0.25);
+		SmartDashboard.putNumber("New Angle", newAngle);
+		SmartDashboard.putNumber("Past Angle", previousAngle);
+		left.setValue((float) -0.25);
 		right.setValue((float) 0.25);
 		turningTime = (previousAngle - newAngle) / 90;
+		if (turningTime < 0) {
+			negativeTime = true;
+			turningTime = -turningTime;
+			left.setValue((float) 0.25);
+			right.setValue((float) -0.25);
+		}
+		// if (turningTime > 0.5) {
+		// turningTime = turningTime - 0.45;
+		// } else if (turningTime < -0.5) {
+		// turningTime = turningTime + 0.45;
+		// }
+		previousAngle = newAngle;
+		SmartDashboard.putNumber("Time", turningTime);
 		Timer.delay(turningTime);
+		if (negativeTime) {
+			left.setValue((float) -0.25);
+			right.setValue((float) 0.25);
+		} else {
+			left.setValue((float) 0.25);
+			right.setValue((float) -0.25);
+		}
+		Timer.delay(0.1);
 		left.setValue(0);
 		right.setValue(0);
+		turning = false;
+	}
+
+	public void disableMotors() {
+		left.setValue(0);
+		right.setValue(0);
+	}
+
+	public void turn(boolean rightTurn) {
+		if (rightTurn) {
+			left.setValue((float) 0.25);
+			right.setValue((float) -0.25);
+		} else {
+			left.setValue((float) -0.25);
+			right.setValue((float) 0.25);
+		}
 	}
 
 	public void moveStraight(float speed, float leftRate, float rightRate) {
