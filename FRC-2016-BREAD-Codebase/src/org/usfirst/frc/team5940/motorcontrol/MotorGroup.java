@@ -10,6 +10,7 @@ public interface MotorGroup {
 	
 	/**
 	 * Sets the value of output for the motors. -1 should represent full speed backwards, 0 should represent completely stopped, 1 should represent full speed forward. Any non linearity or other control systems (voltage based, PID, PWM, etc...) are up to the implementation, as long as they follow those guidelines.
+	 * TODO: Rename this method!  Perhaps setOutput() ?
 	 * @param value A float between -1 an 1.
 	 */
 	public void setValue(float value);
