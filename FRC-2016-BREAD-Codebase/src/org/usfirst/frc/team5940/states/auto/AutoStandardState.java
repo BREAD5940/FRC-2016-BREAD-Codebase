@@ -33,23 +33,27 @@ public class AutoStandardState extends State {
 		Victor l4 = new Victor(2);
 		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
 				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
+		// while (leftEncoder.getDistance() < 400) {
+		// driver.moveStraight((float) 0.75, (float) leftEncoder.getRate(),
+		// (float) rightEncoder.getRate());
+		// }
+		// leftEncoder.reset();
+		// rightEncoder.reset();
+		// while (leftEncoder.getDistance() < 400) {
+		// driver.moveStraight((float) -0.75, (float) leftEncoder.getRate(),
+		// (float) rightEncoder.getRate());
+		// }
+		leftEncoder.setDistancePerPulse(1);
+		while (leftEncoder.getDistance() < 400) {
+			driver.updateArcade(0.25, 0, 1);
+			SmartDashboard.putNumber("Distance", leftEncoder.getDistance());
+		}
+		driver.updateArcade(0, 0, 1);
 	}
 
 	@Override
 	protected void update() {
 		// TODO Make the auto
-//		while (leftEncoder.getDistance() < 400) {
-//			driver.moveStraight((float) 0.75, (float) leftEncoder.getRate(), (float) rightEncoder.getRate());
-//		}
-//		leftEncoder.reset();
-//		rightEncoder.reset();
-//		while (leftEncoder.getDistance() < 400) {
-//			driver.moveStraight((float) -0.75, (float) leftEncoder.getRate(), (float) rightEncoder.getRate());
-//		}
-		leftEncoder.setDistancePerPulse(1);
-		while (leftEncoder.getDistance() < 400) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance", leftEncoder.getDistance());
-		}
+
 	}
 }
