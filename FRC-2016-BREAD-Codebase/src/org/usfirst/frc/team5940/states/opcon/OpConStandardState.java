@@ -24,6 +24,8 @@ public class OpConStandardState extends State {
 	double horizontal;
 	double forward;
 	double maxValue;
+	boolean shiftDown;
+	boolean shiftUp;
 	DualMGDrivetrain driver;
 	// for testing the navx when it is setup
 	// AHRS navx;
@@ -56,7 +58,7 @@ public class OpConStandardState extends State {
 		// for testing the navx when it is setup
 		// navx = new AHRS(SPI.Port.kMXP);
 		// Set scale factor
-		scaleFactor = 3;
+		scaleFactor = 1;
 
 		// TODO incorrect inversions here and below...
 		// Set the driver
@@ -74,13 +76,21 @@ public class OpConStandardState extends State {
 		forward = controller.getRawAxis(1);
 		horizontal = controller.getRawAxis(2);
 		//maxValue = controller.getRawAxis(3);
-		SmartDashboard.putNumber("Direction", controller.getDirectionDegrees());
+		SmartDashboard.putNumber("Forward Input", forward);
 		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
-		driver.updateArcade(forward, horizontal, 1);
-		// Update the meme drive of the driver
-		if (controller.getRawButton(3) && driver.turning == false) {
-			driver.spinToAngle(controller.getDirectionDegrees(), true);
+//		if (controller.getRawButton(3) && driver.turning == false) {
+//			driver.spinToAngle(controller.getDirectionDegrees(), true);
+//		}
+		driver.updateArcade(forward, horizontal, scaleFactor);
+		shiftDown = controller.getRawButton(3);
+		shiftUp = controller.getRawButton(4);
+		
+		if (shiftUp) {
+			driver.setGears(2);
+		}
+		else if (shiftDown) {
+			driver.setGears(1);
 		}
 	}
 }
