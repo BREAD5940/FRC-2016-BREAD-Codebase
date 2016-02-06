@@ -9,15 +9,16 @@ import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AutoStandardState extends State{
-	
+public class AutoStandardState extends State {
+
 	DualMGDrivetrain driver;
 	Encoder leftEncoder;
 	Encoder rightEncoder;
-	
+
 	public AutoStandardState(RobotBase robot) {
-		//Call the state constructor
+		// Call the state constructor
 		super(robot);
 	}
 
@@ -37,13 +38,18 @@ public class AutoStandardState extends State{
 	@Override
 	protected void update() {
 		// TODO Make the auto
+//		while (leftEncoder.getDistance() < 400) {
+//			driver.moveStraight((float) 0.75, (float) leftEncoder.getRate(), (float) rightEncoder.getRate());
+//		}
+//		leftEncoder.reset();
+//		rightEncoder.reset();
+//		while (leftEncoder.getDistance() < 400) {
+//			driver.moveStraight((float) -0.75, (float) leftEncoder.getRate(), (float) rightEncoder.getRate());
+//		}
+		leftEncoder.setDistancePerPulse(1);
 		while (leftEncoder.getDistance() < 400) {
-			driver.moveStraight((float) 0.75, (float) leftEncoder.getRate(), (float) rightEncoder.getRate());
+			driver.updateArcade(0.5, 0, 1);
+			SmartDashboard.putNumber("Distance", leftEncoder.getDistance());
 		}
-		leftEncoder.reset();
-		rightEncoder.reset();
-		while (leftEncoder.getDistance() < 400) {
-			driver.moveStraight((float) -0.75, (float) leftEncoder.getRate(), (float) rightEncoder.getRate());
-		}
-		}
+	}
 }
