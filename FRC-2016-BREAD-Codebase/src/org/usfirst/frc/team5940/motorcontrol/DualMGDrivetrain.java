@@ -186,7 +186,7 @@ public class DualMGDrivetrain {
 	 */
 	public static float[] calculateArcade(double forwardInput, double horizontalInput, double scaleFactor) {
 		// This is the stuff I added
-		if (forwardInput > -0.05 & forwardInput < 0.05) {
+		if (forwardInput > -0.05 || forwardInput < 0.05) {
 			horizontalInput = horizontalInput / 5;
 		}
 		// It is up to here
