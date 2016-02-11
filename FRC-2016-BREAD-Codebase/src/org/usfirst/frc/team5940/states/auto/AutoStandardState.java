@@ -31,6 +31,9 @@ public class AutoStandardState extends State {
 		Victor r2 = new Victor(3);
 		Victor l3 = new Victor(0);
 		Victor l4 = new Victor(2);
+		int auto_program = 1;
+		int auto_distance_of_1 = 400;
+		
 		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
 				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
 		// while (leftEncoder.getDistance() < 400) {
@@ -43,17 +46,36 @@ public class AutoStandardState extends State {
 		// driver.moveStraight((float) -0.75, (float) leftEncoder.getRate(),
 		// (float) rightEncoder.getRate());
 		// }
+		
+		//back-and-forth auto program
+		if (auto_program == 1){
 		leftEncoder.setDistancePerPulse(1);
-		while (leftEncoder.getDistance() < 400) {
-			driver.updateArcade(0.25, 0, 1);
-			SmartDashboard.putNumber("Distance", leftEncoder.getDistance());
+		rightEncoder.setDistancePerPulse(1);
+		while (leftEncoder.getDistance() < auto_distance_of_1 && rightEncoder.getDistance() < auto_distance_of_1) {
+			driver.updateArcade(0.5, 0.5, 1);
+			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
+			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
+			
 		}
 		driver.updateArcade(0, 0, 1);
+		leftEncoder.reset();
+		rightEncoder.reset();
+		while (leftEncoder.getDistance() < auto_distance_of_1 && rightEncoder.getDistance() < auto_distance_of_1) {
+			driver.updateArcade(-0.5, -0.5, 1);
+			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
+			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
+			
+		}
+		driver.updateArcade(0, 0, 1);
+		leftEncoder.reset();
+		rightEncoder.reset();
+
+		}
 	}
 
 	@Override
 	protected void update() {
-		// TODO Make the auto
+		// TODO Make the auto Note: now that I'm looking at it, this should be in INIT()
 
 	}
 }
