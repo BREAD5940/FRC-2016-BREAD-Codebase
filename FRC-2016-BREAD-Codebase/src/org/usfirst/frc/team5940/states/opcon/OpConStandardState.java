@@ -83,6 +83,42 @@ public class OpConStandardState extends State {
 //			driver.spinToAngle(controller.getDirectionDegrees(), true);
 //		}
 		driver.updateArcade(forward, horizontal, scaleFactor);
+		
+		if (controller.getRawButton(2)){
+//    		double victor_thing1 = victor1.get();
+//    		double victor_thing2 = victor2.get();
+//    		double victor_thing3 = victor3.get();
+//    		double victor_thing4 = victor4.get();
+//    		victor_thing1 = victor_thing1 * -1;
+//    		victor_thing2 = victor_thing2 * -1;
+//    		victor_thing3 = victor_thing3 * -1;
+//    		victor_thing4 = victor_thing4 * -1;
+//    		victor1.set(victor_thing1);
+//    		victor2.set(victor_thing2);
+//    		victor3.set(victor_thing3);
+//    		victor4.set(victor_thing4);
+//    		try {
+//				Thread.sleep(200);
+//			} catch (InterruptedException e) {
+//				// TODO Auto-generated catch block
+//				e.printStackTrace();
+//			}
+//    		victor1.set(0);
+//    		victor2.set(0);
+//    		victor3.set(0);
+//    		victor4.set(0);
+    		
+    		float[] vals = driver.getSetValue();
+    		vals[0] = vals[0]*-1;
+    		vals[1] = vals[1]*-1;
+    		driver.setValues(vals[0], vals[1]);
+    		try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) { e.printStackTrace(); }
+    		driver.setValues(0, 0);
+    		while(controller.getRawButton(2));
+    	}
+		
 		shiftDown = controller.getRawButton(3);
 		shiftUp = controller.getRawButton(4);
 		

@@ -10,10 +10,6 @@ public class DualMGDrivetrain {
 
 	public final MotorGroup left;
 	public final MotorGroup right;
-	public float leftSpeedBonus = 0;
-	public float rightSpeedBonus = 0;
-	public float leftSpeedPenalty = 0;
-	public float rightSpeedPenalty = 0;
 	public double previousAngle = 0;
 	public boolean turning = false;
 
@@ -124,10 +120,14 @@ public class DualMGDrivetrain {
 	 * @return it is an array with the first value being the left motorGroup
 	 *         value and the second value being the right motorGroup value
 	 */
-	public Array getSetValue() {
-		Array speeds = null;
-		Array.setFloat(speeds, 0, left.getSetValue());
-		Array.setFloat(speeds, 1, right.getSetValue());
+	public float[] getSetValue() {
+		float[] speeds = new float[2];
+		
+//		Array.setFloat(speeds, 0, left.getSetValue());
+//		Array.setFloat(speeds, 1, right.getSetValue());
+		
+		speeds[0] = left.getSetValue();
+		speeds[1] = right.getSetValue();
 
 		return speeds;
 	}
@@ -324,43 +324,32 @@ public class DualMGDrivetrain {
 		float rightOut;
 		// Set things
 		if (forwardInput > 0.05) {
-			//Set the outs
 			leftOut = (float) forwardInput;
 			rightOut = (float) forwardInput;
-			//Update dashboard
 			SmartDashboard.putNumber("Test Number Thing", forwardInput);
-			//Change inputs
 			leftOut += horizontalInput;
 			rightOut -= horizontalInput;
-			//Update dashboard again
 			SmartDashboard.putBoolean("small forward input", false);
-			//Scale and bind the scale factor
 			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
-			//Scale break input
+			// hi
 			breakInput = breakInput - breakInput * 0.10;
 			breakInput = 1 - breakInput;
-			//Update outs
 			leftOut *= breakInput;
 			rightOut *= breakInput;
 		} else {
-			//Set forwared input
 			forwardInput = -breakInput;
-			//Set outs
 			leftOut = (float) forwardInput;
 			rightOut = (float) forwardInput;
-			//Update dashboard
 			SmartDashboard.putNumber("Test Number Thing", forwardInput);
-			//Update outs
 			leftOut += horizontalInput;
 			rightOut -= horizontalInput;
-			//Update dashboard
 			SmartDashboard.putBoolean("small forward input", true);
-			//Update outs
+
 			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		}
-		// Set the values
+		// Set the things
 		left.setValue((float) leftOut);
 		right.setValue((float) rightOut);
 	}
@@ -369,31 +358,22 @@ public class DualMGDrivetrain {
 	 * Four seconds to spin at 0.25 power
 	 * 
 	 * @param newAngle
+	 * @return
 	 */
 	public void spinToAngle(double newAngle, boolean relativePositioning) {
-		//Set turing
 		turning = true;
-		//Check relative positioning if should use previous angle
 		if (relativePositioning) {
 			previousAngle = 0;
 		}
-		//Set negative time
 		boolean negativeTime = false;
-		//Update dashboard
 		SmartDashboard.putBoolean("Turning", turning);
-		//Set turning time
 		double turningTime;
-		//Update dashboard
 		SmartDashboard.putNumber("New Angle", newAngle);
 		SmartDashboard.putNumber("Past Angle", previousAngle);
-		//Set values
 		left.setValue((float) -0.25);
 		right.setValue((float) 0.25);
-		//Set turning time
 		turningTime = (previousAngle - newAngle) / 90;
-		//Check turning time
 		if (turningTime < 0) {
-			//Set negative time turning time and the values
 			negativeTime = true;
 			turningTime = -turningTime;
 			left.setValue((float) 0.25);
@@ -404,38 +384,28 @@ public class DualMGDrivetrain {
 		// } else if (turningTime < -0.5) {
 		// turningTime = turningTime + 0.45;
 		// }
-		//Set previous angle
 		previousAngle = newAngle;
-		//Update dashboard
 		SmartDashboard.putNumber("Time", turningTime);
-		//Delay
 		Timer.delay(turningTime);
-		//CHeck negative time
 		if (negativeTime) {
-			//Set values
 			left.setValue((float) -0.25);
 			right.setValue((float) 0.25);
 		} else {
 			left.setValue((float) 0.25);
 			right.setValue((float) -0.25);
 		}
-		//Dealy
 		Timer.delay(0.1);
-		//Set value
 		left.setValue(0);
 		right.setValue(0);
-		//Set turning
 		turning = false;
 	}
 
 	public void disableMotors() {
-		//Set values to zero
 		left.setValue(0);
 		right.setValue(0);
 	}
 
 	public void turn(boolean rightTurn) {
-		//Turn right or left
 		if (rightTurn) {
 			left.setValue((float) 0.25);
 			right.setValue((float) -0.25);
@@ -443,27 +413,5 @@ public class DualMGDrivetrain {
 			left.setValue((float) -0.25);
 			right.setValue((float) 0.25);
 		}
-	}
-
-	public void moveStraight(float speed, float leftRate, float rightRate) {
-		//Set speeds
-		float leftSpeed = speed;
-		float rightSpeed = speed;
-		//Check rates and adjust
-		if (rightRate > leftRate) {
-			leftSpeedBonus += 0.01;
-		}
-		else if (leftRate > rightRate) {
-			rightSpeedBonus += 0.01;
-		}
-		//Change speeds
-		leftSpeed += leftSpeedBonus;
-		rightSpeed += rightSpeedBonus;
-		float[] speeds = GeneralMethods.lowerToNumber(leftSpeed, rightSpeed, 1);
-		//Set the things
-		leftSpeed = Array.getFloat(speeds, 0);
-		rightSpeed = Array.getFloat(speeds, 1);
-		left.setValue(speed);
-		right.setValue(speed);
 	}
 }
