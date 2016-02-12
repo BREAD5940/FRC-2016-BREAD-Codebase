@@ -75,13 +75,7 @@ public class AutoStandardState extends State {
 			rightEncoder.reset();
 
 		}
-		else if (auto_program == 2) {
-			while (sensor.getRangeInches() < 20) {
-				driver.updateArcade(0.5, 0, 1);
-				SmartDashboard.putNumber("Distance From Objects", sensor.getRangeInches());
-			}
-			driver.updateArcade(0, 0, 0);
-		}
+		
 	}
 
 	@Override
