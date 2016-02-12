@@ -38,15 +38,15 @@ public class AutoStandardState extends State {
 		Ultrasonic sensor = new Ultrasonic(1, 2);
 
 		int auto_program = 1;
-		int auto_distance_of_1 = 400;
+		int auto_distance_of_1 = 400; // TODO Let's 
 
 		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
 				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
 
-		MotorGroup shooter = new CANTalonSimpleGroup(new CANTalon[] { new CANTalon(0) }, false);// TODO
-																								// Correct
-																								// CAN
-																								// port
+		MotorGroup shooter = new CANTalonSimpleGroup(new CANTalon[] { new CANTalon(0) }, false);// TODO Correct CAN port
+		
+		
+																								
 
 		// driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new
 		// Victor[] { l3, l4 }, false),
@@ -98,6 +98,7 @@ public class AutoStandardState extends State {
 			driver.updateArcade(0, 0, 0);
 		}
 		
+		// Putting ball in courtyard if you alreadly have the ball and going through 
 		if (auto_program == 3) {
 			while (leftEncoder.getDistance() < auto_distance_of_1 && rightEncoder.getDistance() < auto_distance_of_1) {
 				driver.updateArcade(0.5, 0, 1);
@@ -109,8 +110,14 @@ public class AutoStandardState extends State {
 			leftEncoder.reset();
 			rightEncoder.reset();
 
-			
-			
+			shooter.setValue((float) 0.1);
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			shooter.setValue(0);
 			
 			while (leftEncoder.getDistance() < auto_distance_of_1 && rightEncoder.getDistance() < auto_distance_of_1) {
 				driver.updateArcade(-0.5, 0, 1);
@@ -131,4 +138,3 @@ public class AutoStandardState extends State {
 
 	}
 }
-
