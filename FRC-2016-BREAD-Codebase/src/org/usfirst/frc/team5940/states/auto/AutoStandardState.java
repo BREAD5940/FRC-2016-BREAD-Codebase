@@ -213,6 +213,7 @@ public class AutoStandardState extends State {
 		// Both need to be greater than 10 inches
 		// Both need to be less than 35 inches
 		// Both need to be within 20 inches of each other
+		// TODO get correct distances
 		if (leftUltrasonic.getRangeInches() < 6 || leftUltrasonic.getRangeInches() > 35
 				|| rightUltrasonic.getRangeInches() - leftUltrasonic.getRangeInches() > 20) {
 			// turn right
@@ -231,7 +232,7 @@ public class AutoStandardState extends State {
 		driver.updateArcade(0, 0, 1);
 		leftEncoder.reset();
 		rightEncoder.reset();
-		shooter.setValue((float) 1);
+		shooter.setValue((float) 0.5);
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
