@@ -80,10 +80,10 @@ public class AutoStandardState extends State {
 
 	public void ultrasonicHomeIn() {
 		while (leftUltrasonic.getRangeInches() > 20) {
-			driver.updateArcade(0.5, 0, 1);
+//			driver.updateArcade(0.5, 0, 1);
 			SmartDashboard.putNumber("Distance From Objects", leftUltrasonic.getRangeInches());
 		}
-		driver.updateArcade(0, 0, 0);
+//		driver.updateArcade(0, 0, 0);
 	}
 
 	// Putting ball in courtyard if you already have the ball and going
@@ -270,6 +270,6 @@ public class AutoStandardState extends State {
 	@Override
 	protected void update() {
 		// TODO Make the auto Note: This should be in INIT()
-
+		
 	}
 }
