@@ -5,9 +5,11 @@ import org.usfirst.frc.team5940.motorcontrol.CANTalonSimpleGroup;
 import org.usfirst.frc.team5940.motorcontrol.DualMGDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.VictorSimpleGroup;
+//import org.usfirst.frc.team5940.motorcontrol.digtalinput;
 import org.usfirst.frc.team5940.states.State;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -15,6 +17,7 @@ import edu.wpi.first.wpilibj.SPI;
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.buttons.Button;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import other.GeneralMethods;
 
@@ -28,6 +31,8 @@ public class OpConStandardState extends State {
 	boolean shiftDown;
 	boolean shiftUp;
 	DualMGDrivetrain driver;
+    boolean buttonHeld;
+	DigitalInput limitswitch = new DigitalInput(0);
 	// for testing the navx when it is setup
 	// AHRS navx;
 	float scaleFactor;
@@ -84,6 +89,7 @@ public class OpConStandardState extends State {
 //			driver.spinToAngle(controller.getDirectionDegrees(), true);
 //		}
 		driver.updateArcade(forward, horizontal, scaleFactor);
+		limitswitchheld();
 		
 		if (controller.getRawButton(2)){
 //    		double victor_thing1 = victor1.get();
@@ -129,5 +135,9 @@ public class OpConStandardState extends State {
 		else if (shiftDown) {
 			driver.setGears(1);
 		}
+	}	
+	public void limitswitchheld(){
+		buttonHeld = limitswitch.get();
+		SmartDashboard.putBoolean("ballHeld?", buttonHeld);
 	}
 }
