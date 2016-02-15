@@ -7,12 +7,15 @@ import org.usfirst.frc.team5940.motorcontrol.MotorGroup;
 import org.usfirst.frc.team5940.motorcontrol.VictorSimpleGroup;
 import org.usfirst.frc.team5940.states.State;
 
+import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.Victor;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.buttons.Trigger;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoStandardState extends State {
@@ -24,9 +27,8 @@ public class AutoStandardState extends State {
 	Victor r2 = new Victor(3);
 	Victor l3 = new Victor(0);
 	Victor l4 = new Victor(2);
-	Ultrasonic leftUltrasonic = new Ultrasonic(1, 2);
-	Ultrasonic rightUltrasonic = new Ultrasonic(3, 4);
-
+	Ultrasonic leftUltrasonic = new Ultrasonic(4, 5);
+	Ultrasonic rightUltrasonic = new Ultrasonic(6, 7);
 	int auto_program = 1;
 	int auto_distance_of_1 = 400; // TODO Get the right value
 	int auto_distance_of_3 = 400; // TODO Get the right value
@@ -40,6 +42,7 @@ public class AutoStandardState extends State {
 	int auto_distance_of_5 = 400;
 	int auto_distance_of_6 = 500;
 	int distanceToBackOfHole;
+	AnalogInput potato = new AnalogInput(0);
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
 
@@ -173,7 +176,6 @@ public class AutoStandardState extends State {
 		driver.updateArcade(0, 0, 1);
 		leftEncoder.reset();
 		rightEncoder.reset();
-
 	}
 
 	public void moveForward() {
@@ -245,8 +247,8 @@ public class AutoStandardState extends State {
 	@Override
 	protected void init() {
 		// TODO Make the init
-		ultrasonicHomeIn();
-
+		potato.setOversampleBits(4);
+		potato.setAverageBits(2);
 		// driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new
 		// Victor[] { l3, l4 }, false),
 		// new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new
@@ -270,6 +272,8 @@ public class AutoStandardState extends State {
 	@Override
 	protected void update() {
 		// TODO Make the auto Note: This should be in INIT()
-		
+		SmartDashboard.putNumber("Distance From Objects", potato.getVoltage()/0.1024);
+		SmartDashboard.putNumber("Average Value", Math.sqrt(potato.getAverageValue())/6);
+		SmartDashboard.putNumber("Average Voltage", Math.pow(potato.getAverageVoltage(), 2)*100);
 	}
 }
