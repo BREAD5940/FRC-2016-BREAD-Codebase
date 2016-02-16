@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5940.camera;
+package org.usfirst.frc.team5940.states.camera;
 
 import org.usfirst.frc.team5940.states.State;
 
