@@ -247,8 +247,6 @@ public class AutoStandardState extends State {
 	@Override
 	protected void init() {
 		// TODO Make the init
-		potato.setOversampleBits(4);
-		potato.setAverageBits(2);
 		// driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new
 		// Victor[] { l3, l4 }, false),
 		// new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new
@@ -274,6 +272,8 @@ public class AutoStandardState extends State {
 		// TODO Make the auto Note: This should be in INIT()
 		SmartDashboard.putNumber("Distance From Objects", potato.getVoltage()/0.1024);
 		SmartDashboard.putNumber("Average Value", Math.sqrt(potato.getAverageValue())/6);
+		SmartDashboard.putNumber("Voltage Thingy", potato.getVoltage());
+		SmartDashboard.putNumber("Value Thingy", (potato.getValue())/24);
 		SmartDashboard.putNumber("Average Voltage", Math.pow(potato.getAverageVoltage(), 2)*100);
 	}
 }

@@ -32,7 +32,7 @@ public class OpConStandardState extends State {
 	boolean shiftUp;
 	DualMGDrivetrain driver;
     boolean buttonHeld;
-	DigitalInput limitswitch = new DigitalInput(0);
+	DigitalInput limitswitch = new DigitalInput(9);
 	// for testing the navx when it is setup
 	// AHRS navx;
 	float scaleFactor;
