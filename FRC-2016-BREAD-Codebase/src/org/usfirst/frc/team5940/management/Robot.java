@@ -2,8 +2,8 @@
 package org.usfirst.frc.team5940.management;
 
 
-import org.usfirst.frc.team5940.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.auto.AutoStandardState;
+import org.usfirst.frc.team5940.states.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;

@@ -1,6 +1,8 @@
 package org.usfirst.frc.team5940.motorcontrol;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.buttons.Button;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CANTalonSimpleGroup implements MotorGroup {
 	
@@ -8,6 +10,8 @@ public class CANTalonSimpleGroup implements MotorGroup {
     float motorsOut = 0;
     boolean enabled = true;
     boolean inverted = false;
+    
+
     
 	public CANTalonSimpleGroup(CANTalon[] talons, boolean inverted) {
 		//Set talons
@@ -127,5 +131,5 @@ public class CANTalonSimpleGroup implements MotorGroup {
 		return inverted;
 		
 	}
-
+	
 }
