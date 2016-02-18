@@ -1,8 +1,6 @@
 package org.usfirst.frc.team5940.motorcontrol;
 
 import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.buttons.Button;
-import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CANTalonSimpleGroup implements MotorGroup {
 	
@@ -11,13 +9,11 @@ public class CANTalonSimpleGroup implements MotorGroup {
     boolean enabled = true;
     boolean inverted = false;
     
-
-    
-	public CANTalonSimpleGroup(CANTalon[] talons, boolean inverted) {
+	public CANTalonSimpleGroup(CANTalon[] canTalons, boolean inverted) {
 		//Set talons
-		this.talons = talons;
+		this.talons = canTalons;
 		//Set control mode
-		for (int i = 0; i < talons.length; i++){
+		for (int i = 0; i < canTalons.length; i++){
 			this.talons[i].setControlMode(0);
 			
 		}
@@ -68,8 +64,7 @@ public class CANTalonSimpleGroup implements MotorGroup {
 
 	@Override
 	public int getGearsAmount() {
-		//Only two gears
-		//????????
+		//Only one gear
 		return 2;
 	}
 
@@ -82,7 +77,7 @@ public class CANTalonSimpleGroup implements MotorGroup {
 	@Override
 	public void setGear(int gear) {
 		//Only one gear to use can't set
-		//So don't do anything
+		
 	}
 
 	@Override
@@ -131,5 +126,5 @@ public class CANTalonSimpleGroup implements MotorGroup {
 		return inverted;
 		
 	}
-	
+
 }
