@@ -51,10 +51,10 @@ public class OpConStandardState extends State {
 
 		// WIRING DIFFERENT FOR DIFFERENT ROBOTS!!!
 		// Set victors
-		Victor r1 = new Victor(1);
-		Victor r2 = new Victor(3);
-		Victor l3 = new Victor(0);
-		Victor l4 = new Victor(2);
+		CANTalon r1 = new CANTalon(1);
+		CANTalon r2 = new CANTalon(3);
+		CANTalon l3 = new CANTalon(0);
+		CANTalon l4 = new CANTalon(2);
 		// for testing the navx when it is setup
 		// navx = new AHRS(SPI.Port.kMXP);
 		// Set scale factor
@@ -62,8 +62,8 @@ public class OpConStandardState extends State {
 
 		// TODO incorrect inversions here and below...
 		// Set the driver
-		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
-				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
+		driver = new DualMGShiftingDrivetrain(new CANTalonSimpleGroup(new CANTalon[] { l3, l4 }, false),
+				new CANTalonSimpleGroup(new CANTalon[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
 	}
 
 	@Override
