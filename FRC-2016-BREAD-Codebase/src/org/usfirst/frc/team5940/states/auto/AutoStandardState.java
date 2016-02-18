@@ -21,10 +21,10 @@ public class AutoStandardState extends State {
 	// DualMGDrivetrain driver;
 	Encoder leftEncoder = new Encoder(2, 3);
 	Encoder rightEncoder = new Encoder(0, 1);
-	Victor r1 = new Victor(1);
-	Victor r2 = new Victor(3);
-	Victor l3 = new Victor(0);
-	Victor l4 = new Victor(2);
+	CANTalon r1 = new CANTalon(1);
+	CANTalon r2 = new CANTalon(3);
+	CANTalon l3 = new CANTalon(0);
+	CANTalon l4 = new CANTalon(2);
 	Ultrasonic leftUltrasonic = new Ultrasonic(4, 5);
 	Ultrasonic rightUltrasonic = new Ultrasonic(6, 7);
 	int auto_program = 1;
@@ -44,8 +44,8 @@ public class AutoStandardState extends State {
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
 
-	DualMGDrivetrain driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
-			new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
+	DualMGDrivetrain driver = new DualMGShiftingDrivetrain(new CANTalonSimpleGroup(new CANTalon[] { l3, l4 }, false),
+			new CANTalonSimpleGroup(new CANTalon[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
 
 	MotorGroup shooter = new CANTalonSimpleGroup(new CANTalon[] { new CANTalon(0) }, false);// TODO
 																							// Correct
