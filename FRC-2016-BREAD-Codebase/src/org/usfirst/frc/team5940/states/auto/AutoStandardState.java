@@ -8,6 +8,7 @@ import org.usfirst.frc.team5940.states.State;
 
 import edu.wpi.first.wpilibj.AnalogInput;
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Encoder;
 import edu.wpi.first.wpilibj.RobotBase;
@@ -48,7 +49,13 @@ public class AutoStandardState extends State {
 
 	MotorGroup shooter = new CANTalonSimpleGroup(new CANTalon[] { new CANTalon(0) }, false);// TODO
 																							// Correct
-																							// CAN
+	DigitalInput autoSwitch1 = new DigitalInput(0);
+	DigitalInput autoSwitch2 = new DigitalInput(1);
+	DigitalInput autoSwitch3 = new DigitalInput(2);
+	DigitalInput autoSwitch4 = new DigitalInput(3);
+	DigitalInput autoSwitch5 = new DigitalInput(4);
+	DigitalInput autoSwitch6 = new DigitalInput(5);
+																						// CAN
 																							// port
 
 	public AutoStandardState(RobotBase robot) {
@@ -109,6 +116,11 @@ public class AutoStandardState extends State {
 	@Override
 	protected void update() {
 		// TODO Make the auto
-
+		SmartDashboard.putBoolean("Input1", autoSwitch1.get());
+		SmartDashboard.putBoolean("Input2", autoSwitch2.get());
+		SmartDashboard.putBoolean("Input3", autoSwitch3.get());
+		SmartDashboard.putBoolean("Input4", autoSwitch4.get());
+		SmartDashboard.putBoolean("Input5", autoSwitch5.get());
+		SmartDashboard.putBoolean("Input6", autoSwitch6.get());
 	}
 }
