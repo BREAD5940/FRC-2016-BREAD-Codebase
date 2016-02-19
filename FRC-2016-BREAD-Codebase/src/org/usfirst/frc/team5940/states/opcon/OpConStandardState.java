@@ -48,7 +48,7 @@ public class OpConStandardState extends State {
 		// Notify about new code
 		SmartDashboard.putBoolean("New Code", true);
 		// Set controller to a joystick
-		controller = new Joystick(1);
+		controller = new Joystick(0);
 		// driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new
 		// CANTalonDrive(3,4)); Doesn't Work
 		// Use driver = new DualMGDrivetrain(new CANTalonDrive(new Talon[]{new
