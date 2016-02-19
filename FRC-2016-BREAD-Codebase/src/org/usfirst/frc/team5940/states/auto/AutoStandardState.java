@@ -4,7 +4,6 @@ import org.usfirst.frc.team5940.motorcontrol.CANTalonSimpleGroup;
 import org.usfirst.frc.team5940.motorcontrol.DualMGDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.MotorGroup;
-import org.usfirst.frc.team5940.motorcontrol.VictorSimpleGroup;
 import org.usfirst.frc.team5940.states.State;
 
 import edu.wpi.first.wpilibj.AnalogInput;
@@ -57,191 +56,6 @@ public class AutoStandardState extends State {
 		super(robot);
 	}
 
-	public void backAndForth() {
-		while (leftEncoder.getDistance() < auto_distance_of_1 && rightEncoder.getDistance() < auto_distance_of_1) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-		while (leftEncoder.getDistance() < auto_distance_of_1 && rightEncoder.getDistance() < auto_distance_of_1) {
-			driver.updateArcade(-0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-
-	}
-
-	public void ultrasonicHomeIn() {
-		while (leftUltrasonic.getRangeInches() > 20) {
-//			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance From Objects", leftUltrasonic.getRangeInches());
-		}
-//		driver.updateArcade(0, 0, 0);
-	}
-
-	// Putting ball in courtyard if you already have the ball and going
-	// through
-
-	public void breachAndPass() {
-		while (leftEncoder.getDistance() < auto_distance_of_3 && rightEncoder.getDistance() < auto_distance_of_3) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-
-		shooter.setValue((float) 0.1);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		shooter.setValue(0);
-
-		while (leftEncoder.getDistance() < auto_distance_of_3 && rightEncoder.getDistance() < auto_distance_of_3) {
-			driver.updateArcade(-0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-	}
-
-	// an auto program that goes forward, to a different defense, and goes
-	// through that defense.
-	public void loopAround() {
-		while (leftEncoder.getDistance() < auto_distance_of_4a && rightEncoder.getDistance() < auto_distance_of_4a) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-
-		while (leftEncoder.getDistance() < auto_distance_of_4b && rightEncoder.getDistance() < auto_distance_of_4b) {
-			driver.updateArcade(0, 0.5, 1); // TODO find the right direction
-											// and value.
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-
-		while (leftEncoder.getDistance() < auto_distance_of_4c && rightEncoder.getDistance() < auto_distance_of_4c) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-
-		while (leftEncoder.getDistance() < auto_distance_of_4b && rightEncoder.getDistance() < auto_distance_of_4b) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-
-		while (leftEncoder.getDistance() < auto_distance_of_4a && rightEncoder.getDistance() < auto_distance_of_4a) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-	}
-
-	public void moveForward() {
-		while (leftEncoder.getDistance() < auto_distance_of_1 && rightEncoder.getDistance() < auto_distance_of_1) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-
-	}
-
-	public void breachAndShoot() {
-		while (leftEncoder.getDistance() < auto_distance_of_3 && rightEncoder.getDistance() < auto_distance_of_3) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-
-		}
-		//driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-
-		while (leftEncoder.getDistance() < auto_distance_of_6 && rightEncoder.getDistance() < auto_distance_of_6) {
-			driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncoder.getDistance());
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncoder.getDistance());
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-
-		driver.spinToAngle(30, true);
-		// Both need to be greater than 10 inches
-		// Both need to be less than 35 inches
-		// Both need to be within 20 inches of each other
-		// TODO get correct distances
-		if (leftUltrasonic.getRangeInches() < 6 || leftUltrasonic.getRangeInches() > 35
-				|| rightUltrasonic.getRangeInches() - leftUltrasonic.getRangeInches() > 20) {
-			// turn right
-			while (leftUltrasonic.getRangeInches() < 6 || leftUltrasonic.getRangeInches() > 35
-					|| rightUltrasonic.getRangeInches() - leftUltrasonic.getRangeInches() > 20) {
-				driver.updateArcade(0, 0.25, 1);
-			}
-		} else if (rightUltrasonic.getRangeInches() < 6 || rightUltrasonic.getRangeInches() > 35
-				|| leftUltrasonic.getRangeInches() - rightUltrasonic.getRangeInches() > 20) {
-			// turn left
-			while (rightUltrasonic.getRangeInches() < 6 || rightUltrasonic.getRangeInches() > 35
-					|| leftUltrasonic.getRangeInches() - rightUltrasonic.getRangeInches() > 20) {
-				driver.updateArcade(0, -0.25, 1);
-			}
-		}
-		driver.updateArcade(0, 0, 1);
-		leftEncoder.reset();
-		rightEncoder.reset();
-		shooter.setValue((float) 0.5);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		shooter.setValue(0);
-	}
-
 	@Override
 	protected void init() {
 		// TODO Make the init
@@ -260,8 +74,6 @@ public class AutoStandardState extends State {
 		// new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new
 		// DoubleSolenoid(0, 1), 1);
 
-		driver = new DualMGShiftingDrivetrain(new CANTalonSimpleGroup(new CANTalon[] { l3, l4 }, false),
-				new CANTalonSimpleGroup(new CANTalon[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
 				// while (leftEncoder.getDistance() < 400) {
 				// driver.moveStraight((float) 0.75, (float)
 				// leftEncoder.getRate(),
@@ -274,6 +86,8 @@ public class AutoStandardState extends State {
 				// leftEncoder.getRate(),
 				// (float) rightEncoder.getRate());
 				// }
+		driver = new DualMGShiftingDrivetrain(new CANTalonSimpleGroup(new CANTalon[] { l3, l4 }, false),
+				new CANTalonSimpleGroup(new CANTalon[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
 		// while (leftEncoder.getDistance() < 400) {
 		// driver.moveStraight((float) 0.75, (float) leftEncoder.getRate(),
 		// (float) rightEncoder.getRate());
@@ -284,18 +98,17 @@ public class AutoStandardState extends State {
 		// driver.moveStraight((float) -0.75, (float) leftEncoder.getRate(),
 		// (float) rightEncoder.getRate());
 		// }
-
-		// back-and-forth auto program
-
+		leftEncoder.setDistancePerPulse(1);
+		while (leftEncoder.getDistance() < 400) {
+			driver.updateArcade(0.25, 0, 1);
+			SmartDashboard.putNumber("Distance", leftEncoder.getDistance());
+		}
+		driver.updateArcade(0, 0, 1);
 	}
 
 	@Override
 	protected void update() {
-		// TODO Make the auto Note: This should be in INIT()
-		SmartDashboard.putNumber("Distance From Objects", potato.getVoltage()/0.1024);
-		SmartDashboard.putNumber("Average Value", Math.sqrt(potato.getAverageValue())/6);
-		SmartDashboard.putNumber("Voltage Thingy", potato.getVoltage());
-		SmartDashboard.putNumber("Value Thingy", (potato.getValue())/24);
-		SmartDashboard.putNumber("Average Voltage", Math.pow(potato.getAverageVoltage(), 2)*100);
+		// TODO Make the auto
+
 	}
 }
