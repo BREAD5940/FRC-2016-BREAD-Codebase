@@ -62,7 +62,7 @@ public class OpConStandardState extends State {
 		initializeCANTaloons();
 		ballControllerCANTaloon = new CANTalon(0);
 		// for testing the navx when it is setup
-		// navx = new AHRS(SPI.Port.kMXP);
+		// navx = new AHRS(SPI.Port.kMXP); 
 		// Set scale factor
 		scaleFactor = 1;
 
@@ -160,7 +160,7 @@ public class OpConStandardState extends State {
 		CANTalon l4 = new CANTalon(4);
 		
 		driver = new DualMGShiftingDrivetrain(new CANTalonSimpleGroup(new CANTalon[] { l3, l4 }, false),
-				new CANTalonSimpleGroup(new CANTalon[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
+				new CANTalonSimpleGroup(new CANTalon[] { r1, r2 }, true), new DoubleSolenoid(6, 0, 1), 1);
 	}
 	
 	public void initializeVictors() {
@@ -170,7 +170,7 @@ public class OpConStandardState extends State {
 		Victor l4 = new Victor(2);
 		
 		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
-				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
+				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(6, 0, 1), 1);
 	}
 }
 
