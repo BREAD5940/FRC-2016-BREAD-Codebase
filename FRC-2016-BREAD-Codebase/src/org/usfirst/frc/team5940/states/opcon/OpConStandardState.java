@@ -37,6 +37,7 @@ public class OpConStandardState extends State {
 	// AHRS navx;
 	float scaleFactor;
 	CANTalon ballControllerCANTaloon;
+	boolean ballHeld;
 
 	public OpConStandardState(RobotBase robot) {
 		// Call the state thing
@@ -72,7 +73,7 @@ public class OpConStandardState extends State {
 	@Override
 	protected void update() {
 		// TODO Auto-generated method stub
-
+		ballHeld = limitSwitchHeld();
 		// For testing the navx when it is setup
 		// SmartDashboard.putNumber("Angle", navx.getAngle());
 		// Set all of the things
@@ -125,10 +126,10 @@ public class OpConStandardState extends State {
 //    	}
 		
 		
-		if (controller.getRawButton(1) && limitSwitchHeld()) {
+		if (controller.getRawButton(1) && ballHeld) {
 			ballControllerCANTaloon.set(0.5);
 		}
-		else if (controller.getRawButton(1) && !limitSwitchHeld()) {
+		else if (controller.getRawButton(1) && !ballHeld) {
 			ballControllerCANTaloon.set(-0.5);
 		}
 		else {
