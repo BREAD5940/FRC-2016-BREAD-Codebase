@@ -32,10 +32,11 @@ public class OpConStandardState extends State {
 	boolean shiftUp;
 	DualMGDrivetrain driver;
     boolean buttonHeld;
-	DigitalInput limitswitch = new DigitalInput(9);
+	DigitalInput limitswitch = new DigitalInput(1);
 	// for testing the navx when it is setup
 	// AHRS navx;
 	float scaleFactor;
+	CANTalon ballControllerCANTaloon;
 
 	public OpConStandardState(RobotBase robot) {
 		// Call the state thing
@@ -57,10 +58,9 @@ public class OpConStandardState extends State {
 
 		// WIRING DIFFERENT FOR DIFFERENT ROBOTS!!!
 		// Set victors
-		Victor r1 = new Victor(1);
-		Victor r2 = new Victor(3);
-		Victor l3 = new Victor(0);
-		Victor l4 = new Victor(2);
+		
+		initializeCANTaloons();
+		ballControllerCANTaloon = new CANTalon(0);
 		// for testing the navx when it is setup
 		// navx = new AHRS(SPI.Port.kMXP);
 		// Set scale factor
@@ -68,8 +68,6 @@ public class OpConStandardState extends State {
 
 		// TODO incorrect inversions here and below...
 		// Set the driver
-		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
-				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
 	}
 
 	@Override
@@ -89,9 +87,8 @@ public class OpConStandardState extends State {
 //			driver.spinToAngle(controller.getDirectionDegrees(), true);
 //		}
 		driver.updateArcade(forward, horizontal, scaleFactor);
-		limitswitchheld();
 		
-		if (controller.getRawButton(2)){
+//		if (controller.getRawButton(2)){
 //    		double victor_thing1 = victor1.get();
 //    		double victor_thing2 = victor2.get();
 //    		double victor_thing3 = victor3.get();
@@ -115,16 +112,29 @@ public class OpConStandardState extends State {
 //    		victor3.set(0);
 //    		victor4.set(0);
     		
-    		float[] vals = driver.getSetValue();
-    		vals[0] = vals[0]*-1;
-    		vals[1] = vals[1]*-1;
-    		driver.setValues(vals[0], vals[1]);
-    		try {
-				Thread.sleep(200);
-			} catch (InterruptedException e) { e.printStackTrace(); }
-    		driver.setValues(0, 0);
-    		while(controller.getRawButton(2));
-    	}
+			
+			// Yo Dawg I commented out this code because I don't know what it does and it was erroring
+//    		float[] vals = driver.getSetValue();
+//    		vals[0] = vals[0]*-1;
+//    		vals[1] = vals[1]*-1;
+//    		driver.setValues(vals[0], vals[1]);
+//    		try {
+//				Thread.sleep(200);
+//			} catch (InterruptedException e) { e.printStackTrace(); }
+//    		driver.setValues(0, 0);
+//    		while(controller.getRawButton(2));
+//    	}
+		
+		
+		if (controller.getRawButton(1) && limitSwitchHeld()) {
+			ballControllerCANTaloon.set(0.5);
+		}
+		else if (controller.getRawButton(1) && !limitSwitchHeld()) {
+			ballControllerCANTaloon.set(-0.5);
+		}
+		else {
+			ballControllerCANTaloon.set(0);
+		}
 		
 		shiftDown = controller.getRawButton(3);
 		shiftUp = controller.getRawButton(4);
@@ -135,10 +145,32 @@ public class OpConStandardState extends State {
 		else if (shiftDown) {
 			driver.setGears(1);
 		}
-	}	
-	public void limitswitchheld(){
+	}
+	
+	public boolean limitSwitchHeld(){
 		buttonHeld = limitswitch.get();
 		SmartDashboard.putBoolean("ballHeld?", buttonHeld);
+		return buttonHeld;
+	}
+	
+	public void initializeCANTaloons() {
+		CANTalon r1 = new CANTalon(1);
+		CANTalon r2 = new CANTalon(2);
+		CANTalon l3 = new CANTalon(3);
+		CANTalon l4 = new CANTalon(4);
+		
+		driver = new DualMGShiftingDrivetrain(new CANTalonSimpleGroup(new CANTalon[] { l3, l4 }, false),
+				new CANTalonSimpleGroup(new CANTalon[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
+	}
+	
+	public void initializeVictors() {
+		Victor r1 = new Victor(1);
+		Victor r2 = new Victor(3);
+		Victor l3 = new Victor(0);
+		Victor l4 = new Victor(2);
+		
+		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false),
+				new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
 	}
 }
 
