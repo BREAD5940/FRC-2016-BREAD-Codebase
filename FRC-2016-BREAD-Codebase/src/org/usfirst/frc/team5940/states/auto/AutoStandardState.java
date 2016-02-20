@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5940.states.auto;
 
+import org.usfirst.frc.team5940.management.Components;
 import org.usfirst.frc.team5940.motorcontrol.DualMGDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSimpleGroup;
@@ -17,11 +18,11 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoStandardState extends State {
 
 	// DualMGDrivetrain driver;
-	Ultrasonic leftUltrasonic;
-	Ultrasonic rightUltrasonic;
+	static Ultrasonic leftUltrasonic;
+	static Ultrasonic rightUltrasonic;
 	int auto_program = 1;
-	int auto_distance_of_1 = 400; // TODO Get the right value
-	int auto_distance_of_3 = 400; // TODO Get the right value
+	static int auto_distance_of_1 = 400; // TODO Get the right value
+	static int auto_distance_of_3 = 400; // TODO Get the right value
 	int auto_distance_of_4a = 400; // TODO Get the right value
 	int auto_distance_of_4b = 100;
 	int auto_distance_of_4c = 800; // TODO Get the right value (Note: It
@@ -50,7 +51,7 @@ public class AutoStandardState extends State {
 		super(robot);
 	}
 
-	public void backAndForth() {
+	public static void  backAndForth() {
 		moveForDistance(auto_distance_of_1, (float) 0.5);
 
 		moveForDistance(auto_distance_of_1, (float) -0.5);
@@ -96,11 +97,11 @@ public class AutoStandardState extends State {
 		moveForDistance(auto_distance_of_4a, (float) 0.5);
 	}
 
-	public void moveForward() {
+	public static void moveForward() {
 		moveForDistance(auto_distance_of_1, (float) 0.5);
 	}
 
-	public void breachAndShoot() {
+	/*public void breachAndShoot() {
 		moveForDistance(auto_distance_of_3, (float) 0.5);
 		
 		moveForDistance(auto_distance_of_6, (float) 0.5);
@@ -135,9 +136,9 @@ public class AutoStandardState extends State {
 			e.printStackTrace();
 		}
 		shooter.setValue(0);
-	}
+	}*/
 	
-	public void moveForDistance(float distance, float speed) {
+	public static void moveForDistance(float distance, float speed) {
 		float leftEncDistance = leftEncoderDistance;
 		float rightEncDistance = rightEncoderDistance;
 		leftEncDistance -= pastDistance;
@@ -210,8 +211,8 @@ public class AutoStandardState extends State {
 
 	@Override
 	protected void update() {
-		CANTalon r2 = new CANTalon(2);
-		CANTalon l3 = new CANTalon(3);
+		CANTalon r2 = Components.rETalon;
+		CANTalon l3 = Components.lETalon;
 		SmartDashboard.putNumber("Right Encoder Position", r2.getEncPosition());
 		SmartDashboard.putNumber("Right Encoder Position", l3.getEncPosition());
 		leftEncoderDistance = l3.getEncPosition();
