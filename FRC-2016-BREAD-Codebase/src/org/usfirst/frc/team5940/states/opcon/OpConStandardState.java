@@ -27,7 +27,7 @@ public class OpConStandardState extends State {
 	int working = 0;
 	float scaleFactor;
 	
-    String driverPerson = "NickH"; 
+    String driverPerson = "Alex"; 
 
 	public OpConStandardState(RobotBase robot) {
 		// Call the state thing
@@ -56,8 +56,8 @@ public class OpConStandardState extends State {
 		if(driverPerson.equals("Marius")) setMarius();
 		
 		
-		shiftDown = controller.getRawButton(1);
-		shiftUp = controller.getRawButton(4);
+		//shiftDown = controller.getRawButton(1);
+		//shiftUp = controller.getRawButton(4);
 		
 		if (shiftUp) {
 			driver.setGears(0);
@@ -100,11 +100,59 @@ public class OpConStandardState extends State {
 	}
 	
 	private void setHung() {
+		forward = (Components.getCorrectedAxis(3) - Components.getCorrectedAxis(2));
+		horizontal = Components.getCorrectedAxis(0);
+		boolean rightBumperOn = controller.getRawButton(5);
+		boolean leftBumperOn = controller.getRawButton(6);
+		if (rightBumperOn){
+		shooterControl = 1; 
+		}
+		if (leftBumperOn){
+		shooterControl = -1; 
+		}
+		if (controller.getRawButton(4)){
+			driver.setValues(0, 0);
+		}
 		
+		if (controller.getRawButton(2)){
+
+    		
+    		float[] vals = driver.getSetValue();
+    		vals[0] = vals[0]*-1;
+    		vals[1] = vals[1]*-1;
+    		driver.setValues(vals[0], vals[1]);
+    		try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) { e.printStackTrace(); }
+    		driver.setValues(0, 0);
+    		while(controller.getRawButton(2));
+    	}
+		shiftDown = (controller.getRawButton(1));
+		shiftUp = (controller.getRawButton(3));
 	}
 	
 	private void setAlex() {
+		forward = Components.getCorrectedAxis(1);
+		horizontal = Components.getCorrectedAxis(4);
+		shooterControl = (Components.getCorrectedAxis(3) - Components.getCorrectedAxis(2)); 
+		if (controller.getRawButton(9)){
+			driver.setValues(0,0);
+		}
 		
+		if (controller.getRawButton(10)){
+			float[] vals = driver.getSetValue();
+    		vals[0] = vals[0]*-1;
+    		vals[1] = vals[1]*-1;
+    		driver.setValues(vals[0], vals[1]);
+    		try {
+				Thread.sleep(200);
+			} catch (InterruptedException e) { e.printStackTrace(); }
+    		driver.setValues(0, 0);
+    		while(controller.getRawButton(10));
+		}
+		
+		shiftDown = controller.getRawButton(5);
+		shiftUp = controller.getRawButton(6);
 	}
 	
 	private void setMarius() {
