@@ -83,6 +83,16 @@ public class Components {
 	}
 	
 	
+	//AUTO SELECTOR SWITCHES
+	//DigitalInputs
+	public static DigitalInput sel0 = new DigitalInput(0);
+	public static DigitalInput sel1 = new DigitalInput(1);
+	public static DigitalInput sel2 = new DigitalInput(2);
+	public static DigitalInput sel3 = new DigitalInput(3);
+	public static DigitalInput sel4 = new DigitalInput(4);
+	public static DigitalInput sel5 = new DigitalInput(5);
+	
+	
 	//CAMERA
 	//TODO it
 }
