@@ -23,8 +23,8 @@ public class Components {
 	
 	//Drive CANTalons
 	public static CANTalon r1 = new CANTalon(1);
-	public static CANTalon r2 = lETalon;
-	public static CANTalon l1= rETalon;
+	public static CANTalon r2 = rETalon;
+	public static CANTalon l1 = lETalon;
 	public static CANTalon l2 = new CANTalon(4);
 	
 	//Drive MotorGroups
@@ -49,18 +49,23 @@ public class Components {
 	public static boolean rollerInvert = true;
 	
 	//Switch
-	DigitalInput ballDetector = new DigitalInput(9);
+	public static DigitalInput ballDetector = new DigitalInput(9);
 	
 	//Roller CANTalon
 	public static CANTalon roller = new CANTalon(0);
 	
 	//Roller MotorGroup
-	public static MotorGroup rollerGroup = new CANTalonSimpleGroup(new CANTalon[]{roller}, true);
+	public static MotorGroup rollerGroup = new CANTalonSimpleGroup(new CANTalon[]{roller}, rollerInvert);
 	
+	//Detector corrector
+	public static boolean getCorrectedDetector() {
+		if(rollerDetectorInvert) return !ballDetector.get();
+		return ballDetector.get();
+	}
 	
 	//CONTROLLERS
 	//Inversions
-	public static boolean[] invertAxes = {};//TODO test, NOT USED IN COMPONENT SETUP, MUST BE USED IN CODE
+	public static boolean[] invertAxes = {false, true, false, false, false, true};//TODO test, NOT USED IN COMPONENT SETUP, MUST BE USED IN CODE
 	
 	//Port
 	public static int controllerPort = 0;

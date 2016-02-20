@@ -126,10 +126,8 @@ public class DualMGDrivetrain {
 	 * @return it is an array with the first value being the left motorGroup
 	 *         value and the second value being the right motorGroup value
 	 */
-	public Array getSetValue() {
-		Array speeds = null;
-		Array.setFloat(speeds, 0, left.getSetValue());
-		Array.setFloat(speeds, 1, right.getSetValue());
+	public float[] getSetValue() {
+		float[] speeds = new float[]{left.getSetValue(), right.getSetValue()};
 
 		return speeds;
 	}

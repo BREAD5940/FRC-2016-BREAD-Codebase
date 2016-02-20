@@ -2,6 +2,7 @@
 package org.usfirst.frc.team5940.management;
 
 
+import org.usfirst.frc.team5940.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.auto.AutoStandardState;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
@@ -16,14 +17,13 @@ public class Robot extends SampleRobot {
 	public Robot() {
 		//Call the super constructor
 		super();
-		SmartDashboard.putNumber("Code Version", 1);
+		SmartDashboard.putString("Codebase Version", "DEB Fixes v1.5");
 	}
 	
 	@Override
 	public void robotInit() {
-		//Initiate robot
-		//this.camera = new Thread(new CameraServerInit(this));
-		//this.camera.start();
+		this.camera = new Thread(new CameraServerInit(this));
+		this.camera.start();
 	}
 	
 	
