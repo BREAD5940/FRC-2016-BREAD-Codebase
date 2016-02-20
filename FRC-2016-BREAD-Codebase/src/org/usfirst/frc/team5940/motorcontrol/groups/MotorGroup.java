@@ -1,4 +1,4 @@
-package org.usfirst.frc.team5940.motorcontrol;
+package org.usfirst.frc.team5940.motorcontrol.groups;
 
 public interface MotorGroup {
 	

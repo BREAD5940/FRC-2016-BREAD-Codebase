@@ -1,5 +1,7 @@
 package org.usfirst.frc.team5940.motorcontrol;
 
+import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
+
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class DualMGShiftingDrivetrain extends DualMGDrivetrain {

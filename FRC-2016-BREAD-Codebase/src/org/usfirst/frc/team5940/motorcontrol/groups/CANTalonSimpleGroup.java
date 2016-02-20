@@ -1,21 +1,20 @@
-package org.usfirst.frc.team5940.motorcontrol;
+package org.usfirst.frc.team5940.motorcontrol.groups;
 
 import edu.wpi.first.wpilibj.CANTalon;
 
-public class CANTalonSpeedyGroup implements MotorGroup {
+public class CANTalonSimpleGroup implements MotorGroup {
 	
     CANTalon[] talons;
-    private float motorsOut = 0;
-    private boolean enabled = true;
-    private boolean inverted = false;
-    private float scaleFactor;
+    float motorsOut = 0;
+    boolean enabled = true;
+    boolean inverted = false;
     
-	public CANTalonSpeedyGroup(CANTalon[] talons,boolean inverted) {
+	public CANTalonSimpleGroup(CANTalon[] canTalons, boolean inverted) {
 		//Set talons
-		this.talons = talons;
+		this.talons = canTalons;
 		//Set control mode
-		for (int i = 0; i < talons.length; i++){
-			this.talons[i].setControlMode(2);
+		for (int i = 0; i < canTalons.length; i++){
+			this.talons[i].setControlMode(0);
 			
 		}
 		//Set inverted
@@ -33,19 +32,17 @@ public class CANTalonSpeedyGroup implements MotorGroup {
 		return "CANTalonDrive";
 	}
 
-	
 	@Override
 	/**Sets the value of the motors
 	 * @param motorsOut The value for the motors.
 	*/
 	public void setValue(float motorsOut) {
 		//Invert if inverted
-		
 		if (inverted){this.motorsOut = motorsOut * -1;}
 		else {this.motorsOut = motorsOut;}
 		//Set talon values
 		for (int i = 0; i < talons.length; i++){
-			talons[i].set(this.motorsOut * scaleFactor);
+			talons[i].set(this.motorsOut);
 			
 		}
 	}
@@ -128,14 +125,6 @@ public class CANTalonSpeedyGroup implements MotorGroup {
 		//Returns the invertedness
 		return inverted;
 		
-	}
-
-	public float getScaleFactor() {
-		return scaleFactor;
-	}
-
-	public void setScaleFactor(float scaleFactor) {
-		this.scaleFactor = scaleFactor;
 	}
 
 }

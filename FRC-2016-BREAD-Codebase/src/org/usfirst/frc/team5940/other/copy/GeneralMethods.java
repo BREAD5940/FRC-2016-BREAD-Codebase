@@ -1,4 +1,4 @@
-package other;
+package org.usfirst.frc.team5940.other.copy;
 
 import java.lang.reflect.Array;
 
