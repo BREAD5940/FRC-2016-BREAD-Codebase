@@ -88,8 +88,6 @@ public class OpConStandardState extends State {
 		CANTalon l3 = new CANTalon(3);
 		CANTalon l4 = new CANTalon(4);
 		
-		r1.get
-		
 		driver = new DualMGShiftingDrivetrain(new CANTalonSimpleGroup(new CANTalon[] { l3, l4 }, true), new CANTalonSimpleGroup(new CANTalon[] { r1, r2 }, false), new DoubleSolenoid(6, 0, 1), 1);
 	}
 	
