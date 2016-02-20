@@ -10,10 +10,6 @@ public class DualMGDrivetrain {
 
 	public final MotorGroup left;
 	public final MotorGroup right;
-	public float leftSpeedBonus = 0;
-	public float rightSpeedBonus = 0;
-	public float leftSpeedPenalty = 0;
-	public float rightSpeedPenalty = 0;
 	public double previousAngle = 0;
 	public boolean turning = false;
 
@@ -57,7 +53,7 @@ public class DualMGDrivetrain {
 	public void setGears(int gear) {
 
 		// This is the total amount of gears in the gear box
-		int totalGears = 4;
+		int totalGears = 2;
 
 		// This is because in order to set the gear you need to subtract one?
 		gear = gear - 1;
@@ -124,10 +120,14 @@ public class DualMGDrivetrain {
 	 * @return it is an array with the first value being the left motorGroup
 	 *         value and the second value being the right motorGroup value
 	 */
-	public Array getSetValue() {
-		Array speeds = null;
-		Array.setFloat(speeds, 0, left.getSetValue());
-		Array.setFloat(speeds, 1, right.getSetValue());
+	public float[] getSetValue() {
+		float[] speeds = new float[2];
+		
+//		Array.setFloat(speeds, 0, left.getSetValue());
+//		Array.setFloat(speeds, 1, right.getSetValue());
+		
+		speeds[0] = left.getSetValue();
+		speeds[1] = right.getSetValue();
 
 		return speeds;
 	}
@@ -149,6 +149,14 @@ public class DualMGDrivetrain {
 
 		left.setValue((float) leftSpeed);
 		right.setValue((float) rightSpeed);
+	}
+	public void updateTank2(double Speed, double scaleFactor) {
+
+		Speed *= GeneralMethods.boundToUnitVector(scaleFactor);
+		//rightSpeed *= GeneralMethods.boundToUnitVector(scaleFactor);
+
+		left.setValue((float) Speed);
+		//right.setValue((float) rightSpeed);
 	}
 
 	/**
@@ -186,7 +194,7 @@ public class DualMGDrivetrain {
 	 */
 	public static float[] calculateArcade(double forwardInput, double horizontalInput, double scaleFactor) {
 		// This is the stuff I added
-		/*if (forwardInput > -0.05 & forwardInput < 0.05) {
+		/*if (forwardInput > -0.05 || forwardInput < 0.05) {
 			horizontalInput = horizontalInput / 5;
 		}*/
 		// It is up to here
@@ -413,23 +421,5 @@ public class DualMGDrivetrain {
 			left.setValue((float) -0.25);
 			right.setValue((float) 0.25);
 		}
-	}
-
-	public void moveStraight(float speed, float leftRate, float rightRate) {
-		float leftSpeed = speed;
-		float rightSpeed = speed;
-		if (rightRate > leftRate) {
-			leftSpeedBonus += 0.01;
-		}
-		else if (leftRate > rightRate) {
-			rightSpeedBonus += 0.01;
-		}
-		leftSpeed += leftSpeedBonus;
-		rightSpeed += rightSpeedBonus;
-		float[] speeds = GeneralMethods.lowerToNumber(leftSpeed, rightSpeed, 1);
-		leftSpeed = Array.getFloat(speeds, 0);
-		rightSpeed = Array.getFloat(speeds, 1);
-		left.setValue(speed);
-		right.setValue(speed);
 	}
 }
