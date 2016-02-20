@@ -1,7 +1,9 @@
 package org.usfirst.frc.team5940.states.opcon;
 
+import org.usfirst.frc.team5940.management.Components;
 import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSimpleGroup;
+import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
 import org.usfirst.frc.team5940.motorcontrol.groups.VictorSimpleGroup;
 import org.usfirst.frc.team5940.other.GeneralMethods;
 import org.usfirst.frc.team5940.states.State;
@@ -16,14 +18,13 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class OpConStandardState extends State {
 
-	Joystick controller;
 	double horizontal;
 	double forward;
 	double maxValue;
 	boolean shiftDown;
 	boolean shiftUp;
-	DualMGShiftingDrivetrain driver;
-	CANTalonSimpleGroup roller = new CANTalonSimpleGroup(new CANTalon[]{new CANTalon(0)}, false);
+	DualMGShiftingDrivetrain driver = Components.drivetrain;
+	MotorGroup roller = Components.rollerGroup;
 	// for testing the navx when it is setup
 	// AHRS navx;
 	float scaleFactor;
@@ -37,7 +38,6 @@ public class OpConStandardState extends State {
 	protected void init() {
 		// Notify about new code
 		// Set controller to a joystick
-		controller = new Joystick(0);
 		// driver = new DualMGDrivetrain(new CANTalonDrive(1,2),new
 		// CANTalonDrive(3,4)); Doesn't Work
 		// Use driver = new DualMGDrivetrain(new CANTalonDrive(new Talon[]{new
@@ -50,29 +50,22 @@ public class OpConStandardState extends State {
 		// for testing the navx when it is setup
 		// navx = new AHRS(SPI.Port.kMXP);
 		
-		initTalon();
 	}
 
 	@Override
 	protected void update() {
-		// TODO Auto-generated method stub
-
-		// For testing the navx when it is setup
-		// SmartDashboard.putNumber("Angle", navx.getAngle());
-		// Set all of the things
-		forward = controller.getRawAxis(3)-controller.getRawAxis(2);
-		horizontal = controller.getRawAxis(4);
-		//maxValue = controller.getRawAxis(3);
+		forward = Components.getCorrectedAxis(3)-Components.getCorrectedAxis(2);
+		horizontal = Components.getCorrectedAxis(4);
 		SmartDashboard.putNumber("Forward Input", forward);
-		forward = -GeneralMethods.powInputFixed(forward, 2);
+		forward = GeneralMethods.powInputFixed(forward, 2);
 		horizontal = GeneralMethods.powInputFixed(horizontal, 2);
-//		if (controller.getRawButton(3) && driver.turning == false) {
-//			driver.spinToAngle(controller.getDirectionDegrees(), true);
-//		}
 		driver.updateArcade(forward, horizontal, 1);
-		roller.setValue((float) -controller.getRawAxis(1));
-		shiftDown = controller.getRawButton(3);
-		shiftUp = controller.getRawButton(4);
+		
+		//Components.lGroup.setValue(0.5f);
+		
+		//SHIFTING
+		shiftDown = Components.controller.getRawButton(3);
+		shiftUp = Components.controller.getRawButton(4);
 		
 		if (shiftUp) {
 			driver.setGears(0);
@@ -80,9 +73,17 @@ public class OpConStandardState extends State {
 		else if (shiftDown) {
 			driver.setGears(1);
 		}
+		
+		//ROLLER
+		float currentVal = roller.getSetValue();
+		float newVal = (float) Components.getCorrectedAxis(1);
+		boolean ballDetect = Components.ballDetector.get();
+		if(Components.rollerDetectorInvert) ballDetect = !ballDetect;
+		if (newVal < 0 && ballDetect) newVal = 0;
+		roller.setValue(newVal);
 	}
 	
-	private void initTalon() {
+	/*private void initTalon() {
 		CANTalon r1 = new CANTalon(1);
 		CANTalon r2 = new CANTalon(2);
 		CANTalon l3 = new CANTalon(3);
@@ -98,5 +99,5 @@ public class OpConStandardState extends State {
 		Victor l4 = new Victor(3);
 		driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new Victor[] { l3, l4 }, false), new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new DoubleSolenoid(6, 0, 1), 1);
 		
-	}
+	}*/
 }
