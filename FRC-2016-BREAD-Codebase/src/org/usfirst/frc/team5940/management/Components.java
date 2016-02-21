@@ -3,6 +3,7 @@ package org.usfirst.frc.team5940.management;
 import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSimpleGroup;
 import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
+import org.usfirst.frc.team5940.other.ConfigurableJoystick;
 
 import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
@@ -71,7 +72,7 @@ public class Components {
 	public static int controllerPort = 0;
 	
 	//Joystick
-	public static Joystick controller = new Joystick(controllerPort);
+	public static Joystick controller = new ConfigurableJoystick(controllerPort, new double[][]{}, new double[]{});
 	
 	//Axis corrector
 	public static double getCorrectedAxis(int axis) {
