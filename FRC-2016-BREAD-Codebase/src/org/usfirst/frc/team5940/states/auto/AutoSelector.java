@@ -11,7 +11,7 @@ public class AutoSelector {
 		if(Components.sel0.get()) return new BreachAndShoot(robot);
 		if(Components.sel1.get()) return new DoubleBreach(robot);
 		if(Components.sel2.get()) return new BreachAndPass(robot);
-		if(Components.sel3.get()) return null;
+		if(Components.sel3.get()) return new ShootFromSpy(robot);
 		if(Components.sel4.get()) return null;
 		if(Components.sel5.get()) return null;
 		return null;
