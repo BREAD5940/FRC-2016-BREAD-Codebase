@@ -18,13 +18,12 @@ public class Robot extends SampleRobot {
 	public Robot() {
 		//Call the super constructor
 		super();
-		SmartDashboard.putString("Codebase Version", "DEB Fixes v1.5");
+		SmartDashboard.putString("Codebase Version", "DEB Fixes v1.8");
 	}
 	
 	@Override
 	public void robotInit() {
-		this.camera = new Thread(new CameraServerInit(this));
-		try{ this.camera.start(); }catch(Exception e) {SmartDashboard.putString("Status", "Camera state failed to start."); }
+		
 	}
 	
 	
@@ -45,6 +44,10 @@ public class Robot extends SampleRobot {
 
 	@Override
 	public void operatorControl() {
+		SmartDashboard.putBoolean("cam", true);
+		this.camera = new Thread(new CameraServerInit(this));
+		this.camera.start();
+		
 		//Intrupt state if existent
 		if (state != null) {
 			state.interrupt();
