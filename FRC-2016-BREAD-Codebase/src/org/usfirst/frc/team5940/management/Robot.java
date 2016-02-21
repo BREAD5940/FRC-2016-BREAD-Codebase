@@ -24,7 +24,7 @@ public class Robot extends SampleRobot {
 	@Override
 	public void robotInit() {
 		this.camera = new Thread(new CameraServerInit(this));
-		this.camera.start();
+		try{ this.camera.start(); }catch(Exception e) {SmartDashboard.putString("Status", "Camera state failed to start."); }
 	}
 	
 	
@@ -36,7 +36,7 @@ public class Robot extends SampleRobot {
 		}
 		//Activate auto
 		state = new Thread(AutoSelector.getSelectedAuto(this));
-		state.start();
+		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "Auto state failed to start."); }
 	}
 
 	@Override
@@ -47,7 +47,7 @@ public class Robot extends SampleRobot {
 		}
 		//Activiate op con
 		state = new Thread(new OpConStandardState(this));
-		state.start();
+		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "OpCon state failed to start."); }
 	}
 	
 	/**
