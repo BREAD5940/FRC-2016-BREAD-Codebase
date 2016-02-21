@@ -426,7 +426,7 @@ public class DualMGDrivetrain {
 		}
 		leftSpeed += leftSpeedBonus;
 		rightSpeed += rightSpeedBonus;
-		float[] speeds = GeneralMethods.lowerToNumber(leftSpeed, rightSpeed, 1);
+		float[] speeds = GeneralMethods.lowerToNumber(leftSpeed, rightSpeed);
 		leftSpeed = Array.getFloat(speeds, 0);
 		rightSpeed = Array.getFloat(speeds, 1);
 		left.setValue(speed);
