@@ -11,11 +11,13 @@ import com.ni.vision.NIVision.ShapeMode;
 import edu.wpi.first.wpilibj.CameraServer;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CameraServerInit extends State {
 
 	int session;
     Image frame;
+    int working = 0;
     
 	public CameraServerInit(RobotBase robot) {
 		super(robot);
@@ -43,11 +45,13 @@ public class CameraServerInit extends State {
         NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 
         while (!Thread.interrupted()) {
+        	SmartDashboard.putNumber("Cam Working", working++);
 
             NIVision.IMAQdxGrab(session, frame, 1);
             
             //NIVision.imaqDrawShapeOnImage(frame, frame, rect, DrawMode.DRAW_VALUE, ShapeMode.SHAPE_RECT, 0.0f);
-            NIVision.imaqDrawLineOnImage(frame, frame, DrawMode.DRAW_VALUE, new Point(50, 50), new Point(100, 100), Float.MAX_VALUE);
+            NIVision.imaqDrawLineOnImage(frame, frame, DrawMode.DRAW_VALUE, new Point(135, 480), new Point(320, 240), Float.MAX_VALUE);
+            NIVision.imaqDrawLineOnImage(frame, frame, DrawMode.DRAW_VALUE, new Point(640-135, 480), new Point(320, 240), Float.MAX_VALUE);
             /*
             NIVision.imaqDrawShapeOnImage(frame, frame, rect,
                     DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);*/
