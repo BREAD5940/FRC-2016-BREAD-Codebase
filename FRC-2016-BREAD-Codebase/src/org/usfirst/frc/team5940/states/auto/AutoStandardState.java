@@ -33,13 +33,13 @@ public class AutoStandardState extends State {
 	int auto_distance_of_5 = 400;
 	int auto_distance_of_6 = 500;
 	int distanceToBackOfHole;
-	float rightEncoderDistance;
-	float leftEncoderDistance;
-	float pastDistance;
+	static float rightEncoderDistance;
+	static float leftEncoderDistance;
+	static float pastDistance;
 	AnalogInput potato = new AnalogInput(0);
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
-	DualMGDrivetrain driver;
+	static DualMGDrivetrain driver;
 
 	MotorGroup shooter;// TODO
 																							// Correct
@@ -171,7 +171,7 @@ public class AutoStandardState extends State {
 		Ultrasonic leftUltrasonic = new Ultrasonic(4, 5);
 		Ultrasonic rightUltrasonic = new Ultrasonic(6, 7);
 		MotorGroup shooter = new CANTalonSimpleGroup(new CANTalon[] { new CANTalon(0) }, false);// TODO
-		if (auto1.get()) {
+		/*if (auto1.get()) {
 			backAndForth();
 		}
 		else if (auto2.get()) {
@@ -189,6 +189,7 @@ public class AutoStandardState extends State {
 		else if (auto6.get()) {
 			ultrasonicHomeIn();
 		}
+		*/
 		// TODO Make the init
 		// driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new
 		// Victor[] { l3, l4 }, false),

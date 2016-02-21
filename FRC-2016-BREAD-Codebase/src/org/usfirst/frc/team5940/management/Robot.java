@@ -36,7 +36,11 @@ public class Robot extends SampleRobot {
 		}
 		//Activate auto
 		state = new Thread(AutoSelector.getSelectedAuto(this));
-		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "Auto state failed to start."); }
+		try{
+			SmartDashboard.putString("Auto State Name", state.getClass().getSimpleName());
+			state.start();
+		}catch(Exception e) {SmartDashboard.putString("Status", "Auto state failed to start."); }
+		
 	}
 
 	@Override
