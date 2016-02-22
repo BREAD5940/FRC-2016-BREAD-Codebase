@@ -18,12 +18,12 @@ public class Robot extends SampleRobot {
 	public Robot() {
 		//Call the super constructor
 		super();
-		SmartDashboard.putString("Codebase Version", "DEB Fixes v1.8");
+		SmartDashboard.putString("Codebase Version", "DEB Fixes v2.0");
 	}
 	
 	@Override
 	public void robotInit() {
-		
+		Components.setupTalons();
 	}
 	
 	
@@ -44,7 +44,8 @@ public class Robot extends SampleRobot {
 
 	@Override
 	public void operatorControl() {
-		SmartDashboard.putBoolean("cam", true);
+		SmartDashboard.putBoolean("cam", false);
+        SmartDashboard.putBoolean("caminitend", false);
 		this.camera = new Thread(new CameraServerInit(this));
 		this.camera.start();
 		

@@ -6,6 +6,7 @@ import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
 import org.usfirst.frc.team5940.other.ConfigurableJoystick;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
@@ -28,9 +29,18 @@ public class Components {
 	public static CANTalon l1 = lETalon;
 	public static CANTalon l2 = new CANTalon(4);
 	
+	public static void setupTalons() {//TODO call
+		r1.changeControlMode(TalonControlMode.Follower);
+		r1.set(2);
+		l2.changeControlMode(TalonControlMode.Follower);
+		l2.set(3);
+	}
+	
 	//Drive MotorGroups
-	public static MotorGroup lGroup = new CANTalonSimpleGroup(new CANTalon[]{l1, l2}, lMotorInvert);
-	public static MotorGroup rGroup = new CANTalonSimpleGroup(new CANTalon[]{r1, r2}, rMotorInvert);
+//	public static MotorGroup lGroup = new CANTalonSimpleGroup(new CANTalon[]{l1, l2}, lMotorInvert);
+//	public static MotorGroup rGroup = new CANTalonSimpleGroup(new CANTalon[]{r1, r2}, rMotorInvert);
+	public static MotorGroup lGroup = new CANTalonSimpleGroup(new CANTalon[]{l1}, lMotorInvert);
+	public static MotorGroup rGroup = new CANTalonSimpleGroup(new CANTalon[]{r2}, rMotorInvert);
 	
 	//Solenoid Config
 	public static int PCMCANPort = 6;
@@ -72,7 +82,7 @@ public class Components {
 	public static int controllerPort = 0;
 	
 	//Joystick
-	public static Joystick controller = new ConfigurableJoystick(controllerPort, new double[][]{{-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, }, new double[]{});
+	public static Joystick controller = new ConfigurableJoystick(controllerPort, new double[][]{{-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, {-0.15, 0.15}, {-0.05, 0.05}, }, /*new double[]{}*/new double[]{2, 2, 2, 2, 2, 2});
 	
 	//Axis corrector
 	public static double getCorrectedAxis(int axis) {

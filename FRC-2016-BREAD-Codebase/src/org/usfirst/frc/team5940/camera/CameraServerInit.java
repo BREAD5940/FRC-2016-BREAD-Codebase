@@ -1,5 +1,6 @@
 package org.usfirst.frc.team5940.camera;
 
+import org.usfirst.frc.team5940.management.Components;
 import org.usfirst.frc.team5940.states.State;
 
 import com.ni.vision.NIVision;
@@ -18,29 +19,40 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class CameraServerInit extends State {
-    int session;
-    Image frame;
-    int working = 0;
-
-	public CameraServerInit(RobotBase robot) {
+	
+	
+	
+	
+	float val = 0;
+	
+	
+	
+	
+	
+	
+	
+	
+	
+    public CameraServerInit(RobotBase robot) {
 		super(robot);
 	}
-
+    
+    int session;
+    Image frame;
+    
 	@Override
 	protected void init() {
-		SmartDashboard.putBoolean("cam", false);
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
 
         // the camera name (ex "cam0") can be found through the roborio web interface
         session = NIVision.IMAQdxOpenCamera("cam0",
                 NIVision.IMAQdxCameraControlMode.CameraControlModeController);
         NIVision.IMAQdxConfigureGrab(session);
-        
+		
 	}
 
 	@Override
 	protected void update() {
-    	SmartDashboard.putNumber("Cameraw2", 42);
 		NIVision.IMAQdxStartAcquisition(session);
 
         /**
@@ -49,18 +61,17 @@ public class CameraServerInit extends State {
          */
         NIVision.Rect rect = new NIVision.Rect(10, 10, 100, 100);
 
-        while (!Thread.interrupted()) {
-        	SmartDashboard.putNumber("Cameraw2", working++);
-        	
-        	
+        while (robot.isOperatorControl() && robot.isEnabled()) {
+
             NIVision.IMAQdxGrab(session, frame, 1);
-            NIVision.imaqDrawShapeOnImage(frame, frame, rect,
-            		DrawMode.DRAW_VALUE, ShapeMode.SHAPE_RECT, 0.0f);
+            //NIVision.imaqDrawShapeOnImage(frame, frame, rect, DrawMode.DRAW_VALUE, ShapeMode.SHAPE_RECT, 0.0f);
             
-            NIVision.imaqDrawLineOnImage(frame, frame, DrawMode.DRAW_VALUE, new Point(50, 50), new Point(100, 100), Float.MAX_VALUE);
+            //NIVision.imaqDrawLineOnImage(frame, frame, DrawMode.DRAW_VALUE, new Point(50, 50), new Point(100, 100), Float.MAX_VALUE);
             /*
             NIVision.imaqDrawShapeOnImage(frame, frame, rect,
                     DrawMode.DRAW_VALUE, ShapeMode.SHAPE_OVAL, 0.0f);*/
+            
+            drawAiming();
             
             CameraServer.getInstance().setImage(frame);
 
@@ -69,6 +80,14 @@ public class CameraServerInit extends State {
         }
         NIVision.IMAQdxStopAcquisition(session);
 		
+	}
+		
+	private void drawAiming() {
+		float color = Float.MAX_VALUE;
+		if(Components.getCorrectedDetector()) color = 255;
+		
+		NIVision.imaqDrawLineOnImage(frame, frame, DrawMode.DRAW_VALUE, new Point(140, 480), new Point(320, 215), color);
+		NIVision.imaqDrawLineOnImage(frame, frame, DrawMode.DRAW_VALUE, new Point(640-140, 480), new Point(320, 215), color);
 	}
 
 

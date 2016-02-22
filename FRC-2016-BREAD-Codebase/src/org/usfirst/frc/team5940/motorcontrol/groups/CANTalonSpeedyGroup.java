@@ -10,7 +10,7 @@ public class CANTalonSpeedyGroup implements MotorGroup {
     private boolean inverted = false;
     private float scaleFactor;
     
-	public CANTalonSpeedyGroup(CANTalon[] talons,boolean inverted) {
+	public CANTalonSpeedyGroup(CANTalon[] talons, boolean inverted, float scaleFactor) {
 		//Set talons
 		this.talons = talons;
 		//Set control mode
@@ -21,7 +21,7 @@ public class CANTalonSpeedyGroup implements MotorGroup {
 		//Set inverted
 		this.inverted = inverted;
 		
-		
+		this.scaleFactor = scaleFactor;
 	}
 	
 	@Override
@@ -41,11 +41,11 @@ public class CANTalonSpeedyGroup implements MotorGroup {
 	public void setValue(float motorsOut) {
 		//Invert if inverted
 		
-		if (inverted){this.motorsOut = motorsOut * -1;}
-		else {this.motorsOut = motorsOut;}
+		if (inverted){this.motorsOut = motorsOut * -1 * scaleFactor;}
+		else {this.motorsOut = motorsOut * scaleFactor;}
 		//Set talon values
 		for (int i = 0; i < talons.length; i++){
-			talons[i].set(this.motorsOut * scaleFactor);
+			talons[i].set(this.motorsOut);
 			
 		}
 	}

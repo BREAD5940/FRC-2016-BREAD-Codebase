@@ -5,7 +5,7 @@ import edu.wpi.first.wpilibj.RobotBase;
 public abstract class State implements Runnable {
 	//Unused things
 	@SuppressWarnings("unused")
-	private RobotBase robot;
+	protected RobotBase robot;
 	//Refresh delay
 	private int delay = 25;
 	

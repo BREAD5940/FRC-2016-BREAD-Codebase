@@ -27,9 +27,9 @@ public class ConfigurableJoystick extends Joystick {
 		
 		if(lowDead < value && value < highDead) return 0;
 		
-		if(lowDead >= value) return (value - lowDead)/(-1-lowDead);
+		if(lowDead >= value) return (value - lowDead)/(1+lowDead);
 		
-		if(highDead <= value) return (value - highDead)/(1-lowDead);
+		if(highDead <= value) return (value - highDead)/(1-highDead);
 		
 		return 0;
 	}

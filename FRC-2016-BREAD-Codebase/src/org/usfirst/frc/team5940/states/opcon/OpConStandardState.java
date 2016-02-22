@@ -67,7 +67,14 @@ public class OpConStandardState extends State {
 		}
 		
 		float newRVal = (float) shooterControl;
-		if(Components.getCorrectedDetector() && newRVal < 0) newRVal = 0;
+		if(Components.getCorrectedDetector() && newRVal < 0) {
+			newRVal = 0;
+		}
+		
+		//Slows down roller when ball is in all the way
+		/*if(Components.getCorrectedDetector() && newRVal > 0.5) {
+			newRVal = 0.5f;
+		}*/
 		roller.setValue(newRVal);
 	}
 	
