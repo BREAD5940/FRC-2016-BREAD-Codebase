@@ -16,7 +16,7 @@ public class VictorGroup implements MotorGroup {
 	}
 	
 	@Override
-	/**Gets the name
+	/**Gets the name of the group
 	 * @return The name of the group
 	*/
 	public String getName() {
@@ -53,8 +53,8 @@ public class VictorGroup implements MotorGroup {
 	public void setGear(int gear) {}
 
 	@Override
-	/**Sets the enabledness
-	 * @param enabled The enabledness
+	/**Sets if the robot is enabled
+	 * @param enabled or disabled False is disabled
 	*/
 	public void setEnabled(boolean enabled) {
 		//Sets enabledness
@@ -67,7 +67,7 @@ public class VictorGroup implements MotorGroup {
 	}
 
 	@Override
-	/**Gets the enabledness
+	/**Gets if the robot is enabled or not.
 	 * @return The enabledness of the motors
 	*/
 	public boolean getEnabled() {
@@ -98,7 +98,7 @@ public class VictorGroup implements MotorGroup {
 	}
 
 	@Override
-	/**Sets the motorvalues
+	/**Sets the motor values
 	 * @return motorsOut The value
 	*/
 	public void setValue(float motorsOut) {
