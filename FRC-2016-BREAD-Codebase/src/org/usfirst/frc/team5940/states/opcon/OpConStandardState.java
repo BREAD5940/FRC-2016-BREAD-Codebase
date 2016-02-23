@@ -72,10 +72,8 @@ public class OpConStandardState extends State {
 		}
 
 		float newRVal = (float) shooterControl;
-
-		if(Components.getCorrectedDetector() && newRVal < 0) {
+		if (Components.getCorrectedDetector() && newRVal < 0)
 			newRVal = 0;
-		}
 		roller.setValue(newRVal);
 	}
 
@@ -86,7 +84,7 @@ public class OpConStandardState extends State {
 		shooterControl = Components.getCorrectedAxis(1);
 
 		if (controller.getRawButton(1)) {
-			driver.setValues(0, 0);
+			shooterControl = 0.25;
 		}
 
 		if (controller.getRawButton(2)) {
@@ -124,7 +122,7 @@ public class OpConStandardState extends State {
 			shooterControl = -1;
 		}
 		if (controller.getRawButton(4)) {
-			driver.setValues(0, 0);
+			shooterControl = 0.25;
 		}
 
 		if (controller.getRawButton(2)) {
@@ -154,7 +152,7 @@ public class OpConStandardState extends State {
 		horizontal = Components.getCorrectedAxis(4);
 		shooterControl = (Components.getCorrectedAxis(3) - Components.getCorrectedAxis(2));
 		if (controller.getRawButton(9)) {
-			driver.setValues(0, 0);
+			shooterControl = 0.25;
 		}
 
 		if (controller.getRawButton(10)) {
@@ -177,8 +175,7 @@ public class OpConStandardState extends State {
 	}
 
 	/**
-	 * Sets the controller for Marius to control
-	 * There is nothing in here yet
+	 * Sets the controller for Marius to control There is nothing in here yet
 	 */
 	private void setMarius() {
 
