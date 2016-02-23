@@ -7,6 +7,8 @@ import edu.wpi.first.wpilibj.RobotBase;
 
 public class AutoSelector {
 	
+	/** This function chooses a auto program based on switch input. 
+	 */
 	public static State getSelectedAuto(RobotBase robot) {
 		if(Components.sel0.get()) return new BreachAndShoot(robot);
 		if(Components.sel1.get()) return new DoubleBreach(robot);
