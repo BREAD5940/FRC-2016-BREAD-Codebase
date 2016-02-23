@@ -19,20 +19,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 
 public class CameraServerInit extends State {
-	
-	
-	
-	
 	float val = 0;
 	
-	
-	
-	
-	
-	
-	
-	
-	
+	/**
+	 * Constructor
+	 * @param robot RobotBase for super
+	 */
     public CameraServerInit(RobotBase robot) {
 		super(robot);
 	}
@@ -40,6 +32,9 @@ public class CameraServerInit extends State {
     int session;
     Image frame;
     
+    /**
+     * Sets up camera session, frame, and grabbing
+     */
 	@Override
 	protected void init() {
 		frame = NIVision.imaqCreateImage(NIVision.ImageType.IMAGE_RGB, 0);
@@ -51,6 +46,10 @@ public class CameraServerInit extends State {
 		
 	}
 
+	
+	/**
+	 * Contains all the normal code in Intermediate vision with drawing and overlays changed. Note, only works in operator control.
+	 */
 	@Override
 	protected void update() {
 		NIVision.IMAQdxStartAcquisition(session);
@@ -81,7 +80,10 @@ public class CameraServerInit extends State {
         NIVision.IMAQdxStopAcquisition(session);
 		
 	}
-		
+	
+	/**
+	 * Overlays a triangle that helps with aiming and changes color based on ball detection.
+	 */
 	private void drawAiming() {
 		float color = Float.MAX_VALUE;
 		if(Components.getCorrectedDetector()) color = 255;
