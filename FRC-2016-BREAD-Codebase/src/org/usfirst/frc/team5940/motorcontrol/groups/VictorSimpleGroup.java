@@ -32,7 +32,7 @@ public class VictorSimpleGroup implements MotorGroup{
 	}
 	
 	/**
-	 * This inputs a value into the moto
+	 * This inputs a value into the motors
 	 */
 	@Override
 	public void setValue(float motorsOut) {
@@ -60,7 +60,7 @@ public class VictorSimpleGroup implements MotorGroup{
 	}
 
 	/**
-	 * This will return the current speed of the motorgroup but not yet
+	 * This will return the current speed of the motor group but not yet
 	 */
 	@Override
 	public float getSpeed() {
@@ -69,7 +69,7 @@ public class VictorSimpleGroup implements MotorGroup{
 	}
 
 	/**
-	 * This will return the total amount of gears on the robot but not yet
+	 * This will return the total amount of gears on the robot 
 	 */
 	@Override
 	public int getGearsAmount() {
@@ -87,7 +87,7 @@ public class VictorSimpleGroup implements MotorGroup{
 	}
 
 	/**
-	 * This sets the robot to a gear
+	 * This sets the robot to a gear 
 	 */
 	@Override
 	public void setGear(int gear) {
