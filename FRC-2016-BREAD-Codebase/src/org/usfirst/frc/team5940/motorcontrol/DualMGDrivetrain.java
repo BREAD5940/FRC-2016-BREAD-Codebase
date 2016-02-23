@@ -10,15 +10,35 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DualMGDrivetrain {
 
+	// The variables that stores the left and right motor groups
 	public final MotorGroup left;
 	public final MotorGroup right;
+
+	// This stores the variables in order to make the robot move straight
+	// this will most likely not be used for competition robot because there
+	// are better ways to do this
 	public float leftSpeedBonus = 0;
 	public float rightSpeedBonus = 0;
 	public float leftSpeedPenalty = 0;
 	public float rightSpeedPenalty = 0;
+
+	// This stores the previous angle the robot turned to for the spin to angle
+	// method.
 	public double previousAngle = 0;
+	// This says whether or not the robot is turning for the spin to angle
+	// method.
 	public boolean turning = false;
 
+	/**
+	 * The method to initialize dualMGDrivetrain
+	 * 
+	 * @param left
+	 *            Makes a MotorGroup equal to the input to be used later by
+	 *            DualMGDrivetrain
+	 * @param right
+	 *            Makes a MotorGroup equal to the input to be used later by
+	 *            DualMGDrivetrain
+	 */
 	public DualMGDrivetrain(MotorGroup left, MotorGroup right) {
 		this.left = left;
 		this.right = right;
@@ -51,7 +71,7 @@ public class DualMGDrivetrain {
 	 * This sets the gears to the input and if you input a gear that is greater
 	 * than the amount of gears we have than it will set it to the max gear. Oh
 	 * yeah by the way I have the total amount of gears currently set to four
-	 * and we might need to change that
+	 * and we might need to change that.
 	 * 
 	 * @param gear
 	 *            the gear to change to
@@ -64,20 +84,23 @@ public class DualMGDrivetrain {
 		// This is because in order to set the gear you need to subtract one?
 		gear = gear - 1;
 		if (gear < 0) {
+			// If the gear is less than one set it to zero
 			left.setGear(0);
 			right.setGear(0);
 		} else if (gear >= totalGears) {
+			// If the new gear is greater than the total amount of gears
 			left.setGear(totalGears - 1);
 			right.setGear(totalGears - 1);
 		} else {
+			// If the gear is within the bounds
 			left.setGear(gear);
 			right.setGear(gear);
 		}
 	}
 
 	/**
-	 * This just returns the left MotorGroup gear so just hope that it is the
-	 * same as the right MotorGroup gear thing.
+	 * This returns the current gear for the left motor. The right gear will be
+	 * the same as the left gear.
 	 * 
 	 * @return gear the gear of the left motor
 	 */
@@ -86,20 +109,19 @@ public class DualMGDrivetrain {
 	}
 
 	/**
-	 * This just returns the left MotorGroup enabled-ness so just hope that it
-	 * is the same as the right MotorGroup enabled-ness thing.
+	 * The right motor will also be enabled if the left one is.
 	 * 
-	 * @return enabledness the enabledness of the left motor
+	 * @return whether or not the left motor is enabled
 	 */
 	public boolean getEnabled() {
 		return left.getEnabled();
 	}
 
 	/**
-	 * Disables both motors or enables them your choice dawg
+	 * Disables or enables both motors.
 	 * 
 	 * @param enabled
-	 *            the enabledness to set to the motors
+	 *            Whether or not to enable the motors
 	 */
 	public void setEnabled(Boolean enabled) {
 		left.setEnabled(enabled);
@@ -107,7 +129,8 @@ public class DualMGDrivetrain {
 	}
 
 	/**
-	 * Sets the value of the two MotorGroups
+	 * Sets the speed of the motors. This could work for tank drive but it is
+	 * recommended to use updateTank.
 	 * 
 	 * @param leftValue
 	 *            the value to set to the left motorGroup
@@ -120,20 +143,20 @@ public class DualMGDrivetrain {
 	}
 
 	/**
-	 * This shows the value of the two motors. It might not work fifty fifty
-	 * chance.
+	 * This returns the speed of the two motors.
 	 * 
 	 * @return it is an array with the first value being the left motorGroup
 	 *         value and the second value being the right motorGroup value
 	 */
 	public float[] getSetValue() {
-		float[] speeds = new float[]{left.getSetValue(), right.getSetValue()};
+		float[] speeds = new float[] { left.getSetValue(), right.getSetValue() };
 
 		return speeds;
 	}
 
 	/**
-	 * This updates the tank
+	 * This is used for tank drive. Tank drive is useful for testing but not
+	 * much else.
 	 * 
 	 * @param leftSpeed
 	 *            the speed for the right motor
@@ -152,12 +175,14 @@ public class DualMGDrivetrain {
 	}
 
 	/**
-	 * This arcade steers or west coast
+	 * This is used for the robot to be controlled for arcade drive. This can
+	 * also be used for west coast because they are programmatically the same
+	 * but the inputs are different.
 	 * 
 	 * @param forwardInput
-	 *            amount forward
+	 *            forward speed
 	 * @param horiszontalInput
-	 *            amount horizontal
+	 *            horizontal speed
 	 * @param scaleFactor
 	 *            Scales the output by this number, use 1 for default
 	 */
@@ -174,7 +199,9 @@ public class DualMGDrivetrain {
 	}
 
 	/**
-	 * Calculates the arcade drive but also could be used for west coast drive
+	 * Calculates the math behind updateArcade. The advantage of doing the math
+	 * outside of the original method is to be able to use JUnit test in order
+	 * to check the math
 	 * 
 	 * @param forwardInput
 	 *            the power that you want it to go forward
@@ -186,9 +213,10 @@ public class DualMGDrivetrain {
 	 */
 	public static float[] calculateArcade(double forwardInput, double horizontalInput, double scaleFactor) {
 		// This is the stuff I added
-		/*if (forwardInput > -0.05 & forwardInput < 0.05) {
-			horizontalInput = horizontalInput / 5;
-		}*/
+		/*
+		 * if (forwardInput > -0.05 & forwardInput < 0.05) { horizontalInput =
+		 * horizontalInput / 5; }
+		 */
 		// It is up to here
 		// Set floats
 
@@ -225,7 +253,8 @@ public class DualMGDrivetrain {
 	}
 
 	/**
-	 * sets the speed of the wheels to what calculateStupidDrive returns
+	 * sets the speed of the wheels to what calculateBrakingDriveReturns returns
+	 * This makes the robot move slower based on the maxValue input.
 	 * 
 	 * @param forwardInput
 	 *            the power that you want it to go forward
@@ -236,9 +265,9 @@ public class DualMGDrivetrain {
 	 * @param maxValue
 	 *            the maxSpeed the wheels to go
 	 */
-	public void updateStupidDrive(double forwardInput, double horizontalInput, double scaleFactor, double maxValue) {
+	public void updateBrakingDrive(double forwardInput, double horizontalInput, double scaleFactor, double maxValue) {
 		// Get the things from the thing
-		float[] motorSpeeds = calculateStupidDrive(forwardInput, horizontalInput, scaleFactor, maxValue);
+		float[] motorSpeeds = calculateBrakingDrive(forwardInput, horizontalInput, scaleFactor, maxValue);
 		// Get the things from the array
 		float rightOut = Array.getFloat(motorSpeeds, 0);
 		float leftOut = Array.getFloat(motorSpeeds, 1);
@@ -250,7 +279,7 @@ public class DualMGDrivetrain {
 	}
 
 	/**
-	 * Calculates the math behind stupid drive
+	 * Calculates the math behind braking drive
 	 * 
 	 * @param forwardInput
 	 *            the power that you want it to go forward
@@ -262,7 +291,7 @@ public class DualMGDrivetrain {
 	 *            the maxSpeed the wheels to go
 	 * @return speed the speed of the wheels
 	 */
-	public static float[] calculateStupidDrive(double forwardInput, double horizontalInput, double scaleFactor,
+	public static float[] calculateBrakingDrive(double forwardInput, double horizontalInput, double scaleFactor,
 			double maxValue) {
 
 		// Set the things
@@ -288,10 +317,8 @@ public class DualMGDrivetrain {
 			}
 		}
 
-		// Scale
 		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
-		// Do max value stuff
 		maxValue = maxValue - maxValue * 0.15;
 		maxValue = 1 - maxValue;
 		leftOut *= maxValue;
@@ -319,10 +346,10 @@ public class DualMGDrivetrain {
 	 *            the reverse power or amount the other inputs will be divided
 	 *            by
 	 */
-	public void updateMemeDrive(double forwardInput, double horizontalInput, double scaleFactor, double breakInput) {
+	public void updateReverseBrakingDrive(double forwardInput, double horizontalInput, double scaleFactor,
+			double breakInput) {
 		float leftOut;
 		float rightOut;
-		// Set things
 		if (forwardInput > 0.05) {
 			leftOut = (float) forwardInput;
 			rightOut = (float) forwardInput;
@@ -349,16 +376,19 @@ public class DualMGDrivetrain {
 			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 		}
-		// Set the things
 		left.setValue((float) leftOut);
 		right.setValue((float) rightOut);
 	}
 
 	/**
-	 * Four seconds to spin at 0.25 power
+	 * This spins the robot to a new angle based on time. This is not that
+	 * accurate but works.
 	 * 
 	 * @param newAngle
-	 * @return
+	 *            This is the angle that you want the robot to move to
+	 * @param relativePositioning
+	 *            this says whether or not you want the robot to rotate to
+	 *            newAngle or to rotate the newAngle input degrees
 	 */
 	public void spinToAngle(double newAngle, boolean relativePositioning) {
 		turning = true;
@@ -379,11 +409,6 @@ public class DualMGDrivetrain {
 			left.setValue((float) 0.25);
 			right.setValue((float) -0.25);
 		}
-		// if (turningTime > 0.5) {
-		// turningTime = turningTime - 0.45;
-		// } else if (turningTime < -0.5) {
-		// turningTime = turningTime + 0.45;
-		// }
 		previousAngle = newAngle;
 		SmartDashboard.putNumber("Time", turningTime);
 		Timer.delay(turningTime);
@@ -400,11 +425,20 @@ public class DualMGDrivetrain {
 		turning = false;
 	}
 
+	/**
+	 * Sets both the motor speeds to zero
+	 */
 	public void disableMotors() {
 		left.setValue(0);
 		right.setValue(0);
 	}
 
+	/**
+	 * Makes the robot turn at a quarter speed
+	 * 
+	 * @param rightTurn
+	 *            whether or not turn right
+	 */
 	public void turn(boolean rightTurn) {
 		if (rightTurn) {
 			left.setValue((float) 0.25);
@@ -415,13 +449,24 @@ public class DualMGDrivetrain {
 		}
 	}
 
+	/**
+	 * Makes the robot move straight
+	 * 
+	 * @param speed
+	 *            The speed at which the robot moves
+	 * @param leftRate
+	 *            how fast the encoders say the left wheels of the robot is
+	 *            moving
+	 * @param rightRate
+	 *            how fast the encoders say the right wheels of the robot is
+	 *            moving
+	 */
 	public void moveStraight(float speed, float leftRate, float rightRate) {
 		float leftSpeed = speed;
 		float rightSpeed = speed;
 		if (rightRate > leftRate) {
 			leftSpeedBonus += 0.01;
-		}
-		else if (leftRate > rightRate) {
+		} else if (leftRate > rightRate) {
 			rightSpeedBonus += 0.01;
 		}
 		leftSpeed += leftSpeedBonus;
