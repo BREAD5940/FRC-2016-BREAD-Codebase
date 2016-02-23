@@ -11,6 +11,9 @@ public class DoubleBreach extends State {
 		// TODO Auto-generated constructor stub
 	}
 
+	/** 
+	 * This class moves through a defense, back, and through again.
+	 */
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
