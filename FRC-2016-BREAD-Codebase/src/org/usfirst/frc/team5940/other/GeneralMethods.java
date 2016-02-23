@@ -20,6 +20,8 @@ public class GeneralMethods {
 		return in;
 	}
 
+	/** This method sets the firstNumber and the secondNumber closer to each other. 
+  */
 	public static float[] lowerToNumber(float firstNumber, float secondNumber) {
 		float[] numbers = new float[2];
 		if (firstNumber > 1 && firstNumber >= secondNumber || firstNumber < -1 && firstNumber <= secondNumber) {
