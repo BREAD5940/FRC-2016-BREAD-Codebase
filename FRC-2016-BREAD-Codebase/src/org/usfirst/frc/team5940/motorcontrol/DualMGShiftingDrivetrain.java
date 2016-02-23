@@ -28,11 +28,8 @@ public class DualMGShiftingDrivetrain extends DualMGDrivetrain {
 	}
 
 	/**
-	 * This sets the gears to the input and if you input a gear that is greater
-	 * than the amount of gears we have than it will set it to the max gear. Oh
-	 * yeah by the way I have the total amount of gears currently set to four
-	 * and we might need to change that
-	 * 
+	 * This sets the gears to the input. If you input a gear that is greater or less than
+	 * than the amount of gears we have than it will set it to the max gear or the lowest gear, respectively. 
 	 * @param gear
 	 *            the gear to change to
 	 */
@@ -57,8 +54,7 @@ public class DualMGShiftingDrivetrain extends DualMGDrivetrain {
 	}
 
 	/**
-	 * This just returns the left MotorGroup gear so just hope that it is the
-	 * same as the right MotorGroup gear thing.
+	 * This just returns the MotorGroup gear.
 	 * 
 	 * @return gear the gear of the left motor
 	 */

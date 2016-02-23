@@ -17,6 +17,9 @@ public class ShootFromSpy extends State {
 	DualMGShiftingDrivetrain driver = Components.drivetrain;
 	MotorGroup shooter = Components.rollerGroup;
 	
+	/** 
+	 * This class can shoot from the spy box.
+	 */
 	@Override
 	protected void init() {
 		// TODO Make the right value.

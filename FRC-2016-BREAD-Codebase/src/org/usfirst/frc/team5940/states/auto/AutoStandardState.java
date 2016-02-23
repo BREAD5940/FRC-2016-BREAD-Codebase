@@ -59,12 +59,18 @@ public class AutoStandardState extends State {
 		super(robot);
 	}
 
+	/**
+	 * Moves the robot through a defense and back.
+	 */
 	public static void backAndForth() {
 		moveForDistance(auto_distance_of_1, (float) 0.5);
 
 		moveForDistance(auto_distance_of_1, (float) -0.5);
 	}
 
+	/**
+	 * This method homes in on an object. 
+	 */
 	public void ultrasonicHomeIn() {
 		while (leftUltrasonic.getRangeInches() > 20) {
 			// driver.updateArcade(0.5, 0, 1);
@@ -76,6 +82,7 @@ public class AutoStandardState extends State {
 	// Putting ball in courtyard if you already have the ball and going
 	// through
 
+	
 	public void breachAndPass() {
 		moveForDistance(auto_distance_of_3, (float) 0.5);
 
@@ -93,6 +100,10 @@ public class AutoStandardState extends State {
 
 	// an auto program that goes forward, to a different defense, and goes
 	// through that defense.
+	
+	/**
+	 * This method breaches a defense a goes back to the middle area through another. 
+	 */
 	public void loopAround() {
 		moveForDistance(auto_distance_of_4a, (float) 0.5);
 
@@ -105,6 +116,9 @@ public class AutoStandardState extends State {
 		moveForDistance(auto_distance_of_4a, (float) 0.5);
 	}
 
+	/**
+	 * moves forward
+	 */
 	public static void moveForward() {
 		moveForDistance(auto_distance_of_1, (float) 0.5);
 	}
@@ -136,6 +150,11 @@ public class AutoStandardState extends State {
 	 * e.printStackTrace(); } shooter.setValue(0); }
 	 */
 
+	/**
+	 * Moves for a certain distance.
+	 * @param distance 
+	 * @param speed
+	 */
 	public static void moveForDistance(float distance, float speed) {
 		float leftEncDistance = leftEncoderDistance;
 		float rightEncDistance = rightEncoderDistance;
@@ -184,6 +203,7 @@ public class AutoStandardState extends State {
 		driver.updateArcade(0, 0, 1);
 	}
 
+	
 	@Override
 	protected void init() {
 		DigitalInput auto1 = new DigitalInput(0);
@@ -231,7 +251,9 @@ public class AutoStandardState extends State {
 
 		// back-and-forth auto program
 	}
-
+/**
+ * updates the talon and encoders.
+ */
 	@Override
 	protected void update() {
 		CANTalon r2 = Components.rETalon;
