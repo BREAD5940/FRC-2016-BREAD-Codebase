@@ -17,6 +17,9 @@ public class BreachAndShoot extends State {
 	DualMGShiftingDrivetrain driver = Components.drivetrain;
 	MotorGroup shooter = Components.rollerGroup;
 	
+	/**
+	 * This class will go through a defense, go to the tower, and shoot.
+	 */
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
