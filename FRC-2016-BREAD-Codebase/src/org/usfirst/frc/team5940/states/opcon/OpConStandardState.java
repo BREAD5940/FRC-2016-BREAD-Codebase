@@ -166,8 +166,7 @@ public class OpConStandardState extends State {
 				e.printStackTrace();
 			}
 			driver.setValues(0, 0);
-			while (controller.getRawButton(10))
-				;
+			while (controller.getRawButton(10));
 		}
 
 		shiftDown = controller.getRawButton(5);
