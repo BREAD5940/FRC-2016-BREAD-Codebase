@@ -41,7 +41,7 @@ public abstract class State implements Runnable {
 	protected abstract void init();
 	
 	/**
-	 * Called forever with a delay of delay while the Thread is not interrupted.
+	 * Called forever with a delay of delay (the var) while the Thread is not interrupted.
 	 */
 	protected abstract void update();
 	

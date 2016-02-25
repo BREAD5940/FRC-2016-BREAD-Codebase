@@ -26,7 +26,7 @@ public class AutoManager extends State {
 	// DualMGDrivetrain driver;
 	static Ultrasonic leftUltrasonic;
 	static Ultrasonic rightUltrasonic;
-	int auto_program = 1;
+	//int auto_program = 1;
 	static int auto_distance_of_1 = 400; // TODO Get the right value
 	static int auto_distance_of_3 = 400; // TODO Get the right value
 	int auto_distance_of_4a = 400; // TODO Get the right value
@@ -166,7 +166,7 @@ public class AutoManager extends State {
 		CANTalon r2 = new CANTalon(2);
 		CANTalon l3 = new CANTalon(3);
 		CANTalon l4 = new CANTalon(4);
-		while (leftEncDistance < distance && rightEncDistance < distance) {
+		while (leftEncoderDistance < distance && rightEncoderDistance < distance) {
 			if (speed > 0) {
 				if (leftEncoderRate > rightEncoderRate) {
 					// Left is going faster than the right

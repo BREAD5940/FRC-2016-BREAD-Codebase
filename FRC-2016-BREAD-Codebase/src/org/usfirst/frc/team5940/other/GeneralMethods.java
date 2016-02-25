@@ -20,7 +20,7 @@ public class GeneralMethods {
 		return in;
 	}
 
-	/** This method sets the firstNumber and the secondNumber closer to each other. 
+	/** This method sets a number (firstNumber or secondNumber, which ever is bigger) to 1, and the other to itself /= the other number. 
   */
 	public static float[] lowerToNumber(float firstNumber, float secondNumber) {
 		float[] numbers = new float[2];
