@@ -17,8 +17,8 @@ public class DoubleBreach extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoStandardState.backAndForth();
-		AutoStandardState.moveForward();
+		AutoManager.backAndForth();
+		AutoManager.moveForward();
 		
 	}
 

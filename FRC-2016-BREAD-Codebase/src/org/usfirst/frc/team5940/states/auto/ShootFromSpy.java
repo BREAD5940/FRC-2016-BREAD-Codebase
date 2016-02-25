@@ -23,20 +23,20 @@ public class ShootFromSpy extends State {
 	@Override
 	protected void init() {
 		// TODO Make the right value.
-		AutoStandardState.moveForDistance(400, (float) 0.5);
+		AutoManager.moveForDistance(400, (float) 0.5);
 		
-		if (AutoStandardState.leftUltrasonic.getRangeInches() < 6 || AutoStandardState.leftUltrasonic.getRangeInches() > 35
-				|| AutoStandardState.rightUltrasonic.getRangeInches() - AutoStandardState.leftUltrasonic.getRangeInches() > 20) {
+		if (AutoManager.leftUltrasonic.getRangeInches() < 6 || AutoManager.leftUltrasonic.getRangeInches() > 35
+				|| AutoManager.rightUltrasonic.getRangeInches() - AutoManager.leftUltrasonic.getRangeInches() > 20) {
 			// turn right
-			while (AutoStandardState.leftUltrasonic.getRangeInches() < 6 || AutoStandardState.leftUltrasonic.getRangeInches() > 35
-					|| AutoStandardState.rightUltrasonic.getRangeInches() - AutoStandardState.leftUltrasonic.getRangeInches() > 20) {
+			while (AutoManager.leftUltrasonic.getRangeInches() < 6 || AutoManager.leftUltrasonic.getRangeInches() > 35
+					|| AutoManager.rightUltrasonic.getRangeInches() - AutoManager.leftUltrasonic.getRangeInches() > 20) {
 				driver.updateArcade(0, 0.25, 1);
 			}
-		} else if (AutoStandardState.rightUltrasonic.getRangeInches() < 6 || AutoStandardState.rightUltrasonic.getRangeInches() > 35
-				|| AutoStandardState.leftUltrasonic.getRangeInches() - AutoStandardState.rightUltrasonic.getRangeInches() > 20) {
+		} else if (AutoManager.rightUltrasonic.getRangeInches() < 6 || AutoManager.rightUltrasonic.getRangeInches() > 35
+				|| AutoManager.leftUltrasonic.getRangeInches() - AutoManager.rightUltrasonic.getRangeInches() > 20) {
 			// turn left
-			while (AutoStandardState.rightUltrasonic.getRangeInches() < 6 || AutoStandardState.rightUltrasonic.getRangeInches() > 35
-					|| AutoStandardState.leftUltrasonic.getRangeInches() - AutoStandardState.rightUltrasonic.getRangeInches() > 20) {
+			while (AutoManager.rightUltrasonic.getRangeInches() < 6 || AutoManager.rightUltrasonic.getRangeInches() > 35
+					|| AutoManager.leftUltrasonic.getRangeInches() - AutoManager.rightUltrasonic.getRangeInches() > 20) {
 				driver.updateArcade(0, -0.25, 1);
 			}
 		}

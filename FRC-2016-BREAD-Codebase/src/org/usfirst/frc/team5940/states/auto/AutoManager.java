@@ -16,7 +16,12 @@ import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-public class AutoStandardState extends State {
+public class AutoManager extends State {
+
+	public AutoManager(RobotBase robot) {
+		super(robot);
+	}
+
 
 	// DualMGDrivetrain driver;
 	static Ultrasonic leftUltrasonic;
@@ -39,8 +44,8 @@ public class AutoStandardState extends State {
 	static float rightEncoderRate;
 	static float leftEncoderRate;
 	static float pastDistance;
-	static float rightBonusSpeed;
-	static float leftBonusSpeed;
+	static float rightBonusSpeed = 0;
+	static float leftBonusSpeed = 0;
 	static float newRightSpeed;
 	static float newLeftSpeed;
 	static float[] newSpeeds;
@@ -54,10 +59,7 @@ public class AutoStandardState extends State {
 						// CAN
 						// port
 
-	public AutoStandardState(RobotBase robot) {
-		// Call the state constructor
-		super(robot);
-	}
+	
 
 	/**
 	 * Moves the robot through a defense and back.
@@ -204,53 +206,6 @@ public class AutoStandardState extends State {
 	}
 
 	
-	@Override
-	protected void init() {
-		DigitalInput auto1 = new DigitalInput(0);
-		DigitalInput auto2 = new DigitalInput(1);
-		DigitalInput auto3 = new DigitalInput(2);
-		DigitalInput auto4 = new DigitalInput(3);
-		DigitalInput auto5 = new DigitalInput(4);
-		DigitalInput auto6 = new DigitalInput(5);
-		pastDistance = 0;
-		CANTalon r1 = new CANTalon(1);
-		CANTalon r2 = new CANTalon(2);
-		CANTalon l3 = new CANTalon(3);
-		CANTalon l4 = new CANTalon(4);
-		rightBonusSpeed = 0;
-		leftBonusSpeed = 0;
-		DualMGDrivetrain driver = new DualMGShiftingDrivetrain(
-				new CANTalonSimpleGroup(new CANTalon[] { l3, l4 }, false),
-				new CANTalonSimpleGroup(new CANTalon[] { r1, r2 }, true), new DoubleSolenoid(0, 1), 1);
-
-		Ultrasonic leftUltrasonic = new Ultrasonic(4, 5);
-		Ultrasonic rightUltrasonic = new Ultrasonic(6, 7);
-		MotorGroup shooter = new CANTalonSimpleGroup(new CANTalon[] { new CANTalon(0) }, false);// TODO
-		/*
-		 * if (auto1.get()) { backAndForth(); } else if (auto2.get()) {
-		 * breachAndPass(); } else if (auto3.get()) { loopAround(); } else if
-		 * (auto4.get()) { breachAndShoot(); } else if (auto5.get()) {
-		 * moveForward(); } else if (auto6.get()) { ultrasonicHomeIn(); }
-		 */
-		// TODO Make the init
-		// driver = new DualMGShiftingDrivetrain(new VictorSimpleGroup(new
-		// Victor[] { l3, l4 }, false),
-		// new VictorSimpleGroup(new Victor[] { r1, r2 }, true), new
-		// DoubleSolenoid(0, 1), 1);
-
-		// while (leftEncoder.getDistance() < 400) {
-		// driver.moveStraight((float) 0.75, (float) leftEncoder.getRate(),
-		// (float) rightEncoder.getRate());
-		// }
-		// leftEncoder.reset();
-		// rightEncoder.reset();
-		// while (leftEncoder.getDistance() < 400) {
-		// driver.moveStraight((float) -0.75, (float) leftEncoder.getRate(),
-		// (float) rightEncoder.getRate());
-		// }
-
-		// back-and-forth auto program
-	}
 /**
  * updates the talon and encoders.
  */
@@ -274,4 +229,11 @@ public class AutoStandardState extends State {
 		// SmartDashboard.putNumber("Average Voltage",
 		// Math.pow(potato.getAverageVoltage(), 2)*100);
 	}
+
+@Override
+protected void init() {
+	// TODO Auto-generated method stub
+	
+}
+
 }

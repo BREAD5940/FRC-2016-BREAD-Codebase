@@ -4,7 +4,7 @@ package org.usfirst.frc.team5940.management;
 
 import org.usfirst.frc.team5940.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.auto.AutoSelector;
-import org.usfirst.frc.team5940.states.auto.AutoStandardState;
+import org.usfirst.frc.team5940.states.auto.AutoManager;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -14,6 +14,7 @@ public class Robot extends SampleRobot {
 	//Set the threads
 	public Thread state;
 	public Thread camera;
+	public Thread autoManager;
 
 	public Robot() {
 		//Call the super constructor
@@ -29,6 +30,10 @@ public class Robot extends SampleRobot {
 	
 	@Override
 	public void autonomous() {
+		this.autoManager = new Thread(new AutoManager(this));
+		this.autoManager.start();
+		
+		
 		//Intturupt state if existent
 		if (state != null) {
 			state.interrupt();
