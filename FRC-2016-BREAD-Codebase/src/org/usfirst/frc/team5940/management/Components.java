@@ -48,7 +48,7 @@ public class Components {
 	public static int PCMDownPort = 0;//TODO test
 	
 	//Shifting Solenoid
-	public static DoubleSolenoid shifter = new DoubleSolenoid(PCMCANPort, PCMUpPort, PCMDownPort);
+	public static DoubleSolenoid shifter = new DoubleSolenoid(PCMCANPort, PCMDownPort, PCMUpPort);
 	
 	//Drivetrain
 	public static DualMGShiftingDrivetrain drivetrain = new DualMGShiftingDrivetrain(lGroup, rGroup, shifter, 0);
