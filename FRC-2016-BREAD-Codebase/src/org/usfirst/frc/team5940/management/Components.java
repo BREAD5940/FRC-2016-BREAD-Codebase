@@ -82,7 +82,8 @@ public class Components {
 	public static int controllerPort = 0;
 	
 	//Joystick
-	public static Joystick controller = new ConfigurableJoystick(controllerPort, new double[][]{{-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, {-0.15, 0.15}, {-0.05, 0.05}, }, /*new double[]{}*/new double[]{2, 2, 2, 2, 2, 2});
+	static double exp = 3;
+	public static Joystick controller = new ConfigurableJoystick(controllerPort, new double[][]{/*{-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, {-0.05, 0.05}, {-0.15, 0.15}, {-0.05, 0.05}*/}, /*new double[]{}*/new double[]{exp, exp, exp, exp, exp, exp});
 	
 	//Axis corrector
 	public static double getCorrectedAxis(int axis) {
