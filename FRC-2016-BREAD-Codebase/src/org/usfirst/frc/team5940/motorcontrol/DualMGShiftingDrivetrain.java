@@ -13,6 +13,7 @@ public class DualMGShiftingDrivetrain extends DualMGDrivetrain {
 		super(left, right);
 		gearChanger = gearShifter;
 		currentGear = gear;
+		setGears(gear);
 		// TODO Auto-generated constructor stub
 	}
 
