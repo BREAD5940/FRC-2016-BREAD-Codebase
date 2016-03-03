@@ -1,2 +1,2 @@
 # FRC-2016-BREAD-Codebase
-Our team's actual code. This will make the robot play the game with someone controlling it during Tele Op. It will also make the robot execute our wishes during the autonomos phase.
+FRC Team 5940's code for FIRST Stronghold. This enables the robot to do things by itself during the Autonomous period, as well as be operator controlled during the TeleOp period.
