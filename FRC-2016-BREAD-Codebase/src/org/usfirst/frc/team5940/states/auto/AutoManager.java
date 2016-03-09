@@ -200,14 +200,6 @@ public class AutoManager extends State {
 		leftEncoderRate = l3.getEncVelocity();
 		rightEncoderRate = -r2.getEncVelocity();
 		// // TODO Make the auto Note: This should be in INIT()
-		// SmartDashboard.putNumber("Distance From Objects",
-		// potato.getVoltage()/0.1024);
-		// SmartDashboard.putNumber("Average Value",
-		// Math.sqrt(potato.getAverageValue())/6);
-		// SmartDashboard.putNumber("Voltage Thingy", potato.getVoltage());
-		// SmartDashboard.putNumber("Value Thingy", (potato.getValue())/24);
-		// SmartDashboard.putNumber("Average Voltage",
-		// Math.pow(potato.getAverageVoltage(), 2)*100);
 	}
 
 @Override
