@@ -24,8 +24,6 @@ public class AutoManager extends State {
 
 
 	// DualMGDrivetrain driver;
-	static Ultrasonic leftUltrasonic;
-	static Ultrasonic rightUltrasonic;
 	//int auto_program = 1;
 	static int auto_distance_of_1 = 400; // TODO Get the right value
 	static int auto_distance_of_3 = 400; // TODO Get the right value
@@ -49,15 +47,8 @@ public class AutoManager extends State {
 	static float newRightSpeed;
 	static float newLeftSpeed;
 	static float[] newSpeeds;
-	AnalogInput potato = new AnalogInput(0);
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
-	static DualMGDrivetrain driver;
-
-	MotorGroup shooter;// TODO
-						// Correct
-						// CAN
-						// port
 
 	
 
@@ -70,17 +61,6 @@ public class AutoManager extends State {
 		moveForDistance(auto_distance_of_1, (float) -0.5);
 	}
 
-	/**
-	 * This method homes in on an object. 
-	 */
-	public void ultrasonicHomeIn() {
-		while (leftUltrasonic.getRangeInches() > 20) {
-			// driver.updateArcade(0.5, 0, 1);
-			SmartDashboard.putNumber("Distance From Objects", leftUltrasonic.getRangeInches());
-		}
-		// driver.updateArcade(0, 0, 0);
-	}
-
 	// Putting ball in courtyard if you already have the ball and going
 	// through
 
@@ -88,14 +68,14 @@ public class AutoManager extends State {
 	public void breachAndPass() {
 		moveForDistance(auto_distance_of_3, (float) 0.5);
 
-		shooter.setValue((float) 0.1);
+		Components.rollerGroup.setValue((float) 0.1);
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		shooter.setValue(0);
+		Components.rollerGroup.setValue(0);
 
 		moveForDistance(auto_distance_of_3, (float) -0.5);
 	}
@@ -202,7 +182,7 @@ public class AutoManager extends State {
 			SmartDashboard.putNumber("Distance of the right encoder", rightEncDistance);
 		}
 		pastDistance += distance;
-		driver.updateArcade(0, 0, 1);
+		Components.drivetrain.updateArcade(0, 0, 1);
 	}
 
 	
