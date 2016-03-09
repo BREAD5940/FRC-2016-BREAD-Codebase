@@ -23,6 +23,10 @@ public class Components {
 	public static CANTalon rETalon = new CANTalon(2);
 	public static CANTalon lETalon = new CANTalon(3);
 	
+	//Encoder pulses/ft
+	public static float encPulsesPerFloatLow = 1;//TODO Needs to be calculated or tested
+	public static float encPulsesPerFloatHigh = 1;//TODO Needs to be calculated or tested
+	
 	//Drive CANTalons
 	public static CANTalon r1 = new CANTalon(1);
 	public static CANTalon r2 = rETalon;
@@ -34,11 +38,16 @@ public class Components {
 		r1.set(2);
 		l2.changeControlMode(TalonControlMode.Follower);
 		l2.set(3);
+		
+		float lPF = encPulsesPerFloatLow;
+		float rPF = encPulsesPerFloatLow;
+		if(lEncoderInvert) lPF *= -1;
+		if(rEncoderInvert) rPF *= -1;
+		lETalon.configEncoderCodesPerRev((int) lPF);
+		rETalon.configEncoderCodesPerRev((int) rPF);
 	}
 	
 	//Drive MotorGroups
-//	public static MotorGroup lGroup = new CANTalonSimpleGroup(new CANTalon[]{l1, l2}, lMotorInvert);
-//	public static MotorGroup rGroup = new CANTalonSimpleGroup(new CANTalon[]{r1, r2}, rMotorInvert);
 	public static MotorGroup lGroup = new CANTalonSimpleGroup(new CANTalon[]{l1}, lMotorInvert);
 	public static MotorGroup rGroup = new CANTalonSimpleGroup(new CANTalon[]{r2}, rMotorInvert);
 	
@@ -51,7 +60,7 @@ public class Components {
 	public static DoubleSolenoid shifter = new DoubleSolenoid(PCMCANPort, PCMDownPort, PCMUpPort);
 	
 	//Drivetrain
-	public static DualMGShiftingDrivetrain drivetrain = new DualMGShiftingDrivetrain(lGroup, rGroup, shifter, 0);
+	public static DualMGShiftingDrivetrain drivetrain = new DualMGShiftingDrivetrain(lGroup, rGroup, shifter, 0);//TODO Needs to be changes to ShiftingSpeedy when encoder scaling tested
 	
 	
 	//ROLLER
@@ -76,7 +85,7 @@ public class Components {
 	
 	//CONTROLLERS
 	//Inversions
-	public static boolean[] invertAxes = {false, true, false, false, false, true};//TODO test, NOT USED IN COMPONENT SETUP, MUST BE USED IN CODE
+	public static boolean[] invertAxes = {false, true, false, false, false, true};//TODO NOT USED IN COMPONENT SETUP, MUST BE USED IN CODE UNLESS getCorrectedAxis USED
 	
 	//Port
 	public static int controllerPort = 0;
@@ -106,5 +115,5 @@ public class Components {
 	
 	
 	//CAMERA
-	//TODO it
+	public static String cameraID = "cam0";
 }
