@@ -4,6 +4,7 @@ import org.usfirst.frc.team5940.management.Components;
 import org.usfirst.frc.team5940.states.State;
 
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class AutoSelector {
 

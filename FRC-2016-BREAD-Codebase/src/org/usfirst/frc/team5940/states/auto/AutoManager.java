@@ -22,9 +22,8 @@ public class AutoManager extends State {
 		super(robot);
 	}
 
-
 	// DualMGDrivetrain driver;
-	//int auto_program = 1;
+	// int auto_program = 1;
 	static int auto_distance_of_1 = 400; // TODO Get the right value
 	static int auto_distance_of_3 = 400; // TODO Get the right value
 	int auto_distance_of_4a = 400; // TODO Get the right value
@@ -51,25 +50,22 @@ public class AutoManager extends State {
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
 
-	
-
 	/**
 	 * Moves the robot through a defense and back.
 	 */
 	public static void backAndForth() {
-		moveForDistance(auto_distance_of_1, (float) 0.2);
+		moveForDistance(auto_distance_of_1, (float) 0.5);
 
-		moveForDistance(auto_distance_of_1, (float) -0.2);
+		moveForDistance(auto_distance_of_1, (float) -0.5);
 	}
 
 	// Putting ball in courtyard if you already have the ball and going
 	// through
 
-	
 	public void breachAndPass() {
 		moveForDistance(auto_distance_of_3, (float) 0.5);
 
-		Components.rollerGroup.setValue((float) 0.1);
+		Components.rollerGroup.setValue((float) 0.5);
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -83,9 +79,10 @@ public class AutoManager extends State {
 
 	// an auto program that goes forward, to a different defense, and goes
 	// through that defense.
-	
+
 	/**
-	 * This method breaches a defense a goes back to the middle area through another. 
+	 * This method breaches a defense a goes back to the middle area through
+	 * another.
 	 */
 	public void loopAround() {
 		moveForDistance(auto_distance_of_4a, (float) 0.5);
@@ -135,84 +132,75 @@ public class AutoManager extends State {
 
 	/**
 	 * Moves for a certain distance.
-	 * @param distance 
+	 * 
+	 * @param distance
 	 * @param speed
 	 */
 	public static void moveForDistance(float distance, float speed) {
-		float leftEncDistance = leftEncoderDistance;
-		float rightEncDistance = rightEncoderDistance;
-		leftEncDistance -= pastDistance;
-		rightEncDistance -= pastDistance;
 		CANTalon r1 = new CANTalon(1);
 		CANTalon r2 = new CANTalon(2);
 		CANTalon l3 = new CANTalon(3);
 		CANTalon l4 = new CANTalon(4);
-		while (leftEncoderDistance < distance && rightEncoderDistance < distance) {
-//			if (speed > 0) {
-//				if (leftEncoderRate > rightEncoderRate) {
-//					// Left is going faster than the right
-//					// Give right a bonus to match the left encoder speed
-//					rightBonusSpeed += 0.01;
-//				} else if (rightEncoderRate > leftEncoderRate) {
-//					// Right is going faster than the left
-//					// Give left a bonus to match the right encoder speed
-//					leftBonusSpeed += 0.01;
-//				}
-//			}
-//			else {
-//				if (leftEncoderRate < rightEncoderRate) {
-//					// Left is going faster than the right because it is going backwards
-//					rightBonusSpeed -= 0.01;
-//				}
-//				else if (rightEncoderRate < leftEncoderRate) {
-//					// Right is going faster than the left becuase it is going backwards
-//					leftBonusSpeed -= 0.01;
-//				}
-//			}
-//			newSpeeds = GeneralMethods.lowerToNumber(speed + leftBonusSpeed, speed + rightBonusSpeed);
-//			newRightSpeed = newSpeeds[1];
-//			newLeftSpeed = newSpeeds[0];
+		r1.setPosition(0);
+		l3.setPosition(0);
+		while (l3.getEncPosition() < distance && r1.getEncPosition() < distance) {
+			SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
+			SmartDashboard.putNumber("Right Encoder Distance", r1.getEncPosition());
+			// if (speed > 0) {
+			// if (leftEncoderRate > rightEncoderRate) {
+			// // Left is going faster than the right
+			// // Give right a bonus to match the left encoder speed
+			// rightBonusSpeed += 0.01;
+			// } else if (rightEncoderRate > leftEncoderRate) {
+			// // Right is going faster than the left
+			// // Give left a bonus to match the right encoder speed
+			// leftBonusSpeed += 0.01;
+			// }
+			// }
+			// else {
+			// if (leftEncoderRate < rightEncoderRate) {
+			// // Left is going faster than the right because it is going
+			// backwards
+			// rightBonusSpeed -= 0.01;
+			// }
+			// else if (rightEncoderRate < leftEncoderRate) {
+			// // Right is going faster than the left becuase it is going
+			// backwards
+			// leftBonusSpeed -= 0.01;
+			// }
+			// }
+			// newSpeeds = GeneralMethods.lowerToNumber(speed + leftBonusSpeed,
+			// speed + rightBonusSpeed);
+			// newRightSpeed = newSpeeds[1];
+			// newLeftSpeed = newSpeeds[0];
 			r1.set(-speed);
 			r2.set(-speed);
 			l3.set(speed);
 			l4.set(speed);
 
-//			SmartDashboard.putNumber("Speed of the left encoder", leftEncoderRate);
-//			SmartDashboard.putNumber("Speed of the right encoder", rightEncoderRate);
-//			SmartDashboard.putNumber("Distance of the left encoder", leftEncDistance);
-//			SmartDashboard.putNumber("Distance of the right encoder", rightEncDistance);
+			// SmartDashboard.putNumber("Speed of the left encoder",
+			// leftEncoderRate);
+			// SmartDashboard.putNumber("Speed of the right encoder",
+			// rightEncoderRate);
+			// SmartDashboard.putNumber("Distance of the left encoder",
+			// leftEncDistance);
+			// SmartDashboard.putNumber("Distance of the right encoder",
+			// rightEncDistance);
 		}
-		pastDistance += distance;
 		Components.drivetrain.updateArcade(0, 0, 1);
 	}
 
-	
-/**
- * updates the talon and encoders.
- */
+	/**
+	 * updates the talon and encoders.
+	 */
 	@Override
 	protected void update() {
-		potatoTestNumber += 1;
-		CANTalon r2 = Components.rETalon;
-		CANTalon l3 = Components.l2;
-		CANTalon r1 = Components.rETalon;
-		CANTalon l4 = Components.r2;
-		SmartDashboard.putNumber("Potato", potatoTestNumber);
-		SmartDashboard.putNumber("Right Encoder Distance", r2.getEncPosition());
-		SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
-		SmartDashboard.putNumber("Other Right Encoder Distance", r1.getEncPosition());
-		SmartDashboard.putNumber("Other Left Encoder Distance", l4.getEncPosition());
-		leftEncoderDistance = l3.getEncPosition();
-		rightEncoderDistance = -r2.getEncPosition();
-		leftEncoderRate = l3.getEncVelocity();
-		rightEncoderRate = -r2.getEncVelocity();
 		// // TODO Make the auto Note: This should be in INIT()
 	}
 
-@Override
-protected void init() {
-	// TODO Auto-generated method stub
-	
-}
+	@Override
+	protected void init() {
+		// TODO Auto-generated method stub
+	}
 
 }
