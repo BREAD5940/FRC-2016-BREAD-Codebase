@@ -51,8 +51,6 @@ public class OpConStandardState extends State {
 
 		SmartDashboard.putNumber("Update working?", working++);
 
-		driver.updateArcade(forward, horizontal, 1);
-
 		if (driverPerson.equals("NickH"))
 			setNickH();
 		if (driverPerson.equals("Hung"))
@@ -62,6 +60,7 @@ public class OpConStandardState extends State {
 		if (driverPerson.equals("Marius"))
 			setMarius();
 
+		driver.updateArcade(-forward, -horizontal, 1);
 		// shiftDown = controller.getRawButton(1);
 		// shiftUp = controller.getRawButton(4);
 
