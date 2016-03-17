@@ -42,7 +42,6 @@ public class OpConStandardState extends State {
 	 */
 	@Override
 	protected void update() {
-		System.out.println("This be a test");
 		// forward =
 		// Components.getCorrectedAxis(3)-Components.getCorrectedAxis(2);
 		// horizontal = Components.getCorrectedAxis(4);
