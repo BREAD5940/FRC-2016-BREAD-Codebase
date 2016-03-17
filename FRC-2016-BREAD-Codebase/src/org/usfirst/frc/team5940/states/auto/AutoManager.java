@@ -47,6 +47,7 @@ public class AutoManager extends State {
 	static float newRightSpeed;
 	static float newLeftSpeed;
 	static float[] newSpeeds;
+	float potatoTestNumber = 0;
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
 
@@ -56,9 +57,9 @@ public class AutoManager extends State {
 	 * Moves the robot through a defense and back.
 	 */
 	public static void backAndForth() {
-		moveForDistance(auto_distance_of_1, (float) 0.5);
+		moveForDistance(auto_distance_of_1, (float) 0.2);
 
-		moveForDistance(auto_distance_of_1, (float) -0.5);
+		moveForDistance(auto_distance_of_1, (float) -0.2);
 	}
 
 	// Putting ball in courtyard if you already have the ball and going
@@ -147,39 +148,39 @@ public class AutoManager extends State {
 		CANTalon l3 = new CANTalon(3);
 		CANTalon l4 = new CANTalon(4);
 		while (leftEncoderDistance < distance && rightEncoderDistance < distance) {
-			if (speed > 0) {
-				if (leftEncoderRate > rightEncoderRate) {
-					// Left is going faster than the right
-					// Give right a bonus to match the left encoder speed
-					rightBonusSpeed += 0.01;
-				} else if (rightEncoderRate > leftEncoderRate) {
-					// Right is going faster than the left
-					// Give left a bonus to match the right encoder speed
-					leftBonusSpeed += 0.01;
-				}
-			}
-			else {
-				if (leftEncoderRate < rightEncoderRate) {
-					// Left is going faster than the right because it is going backwards
-					rightBonusSpeed -= 0.01;
-				}
-				else if (rightEncoderRate < leftEncoderRate) {
-					// Right is going faster than the left becuase it is going backwards
-					leftBonusSpeed -= 0.01;
-				}
-			}
-			newSpeeds = GeneralMethods.lowerToNumber(speed + leftBonusSpeed, speed + rightBonusSpeed);
-			newRightSpeed = newSpeeds[1];
-			newLeftSpeed = newSpeeds[0];
-			r1.set(newRightSpeed);
-			r2.set(newRightSpeed);
-			l3.set(newLeftSpeed);
-			l4.set(newLeftSpeed);
+//			if (speed > 0) {
+//				if (leftEncoderRate > rightEncoderRate) {
+//					// Left is going faster than the right
+//					// Give right a bonus to match the left encoder speed
+//					rightBonusSpeed += 0.01;
+//				} else if (rightEncoderRate > leftEncoderRate) {
+//					// Right is going faster than the left
+//					// Give left a bonus to match the right encoder speed
+//					leftBonusSpeed += 0.01;
+//				}
+//			}
+//			else {
+//				if (leftEncoderRate < rightEncoderRate) {
+//					// Left is going faster than the right because it is going backwards
+//					rightBonusSpeed -= 0.01;
+//				}
+//				else if (rightEncoderRate < leftEncoderRate) {
+//					// Right is going faster than the left becuase it is going backwards
+//					leftBonusSpeed -= 0.01;
+//				}
+//			}
+//			newSpeeds = GeneralMethods.lowerToNumber(speed + leftBonusSpeed, speed + rightBonusSpeed);
+//			newRightSpeed = newSpeeds[1];
+//			newLeftSpeed = newSpeeds[0];
+			r1.set(-speed);
+			r2.set(-speed);
+			l3.set(speed);
+			l4.set(speed);
 
-			SmartDashboard.putNumber("Speed of the left encoder", leftEncoderRate);
-			SmartDashboard.putNumber("Speed of the right encoder", rightEncoderRate);
-			SmartDashboard.putNumber("Distance of the left encoder", leftEncDistance);
-			SmartDashboard.putNumber("Distance of the right encoder", rightEncDistance);
+//			SmartDashboard.putNumber("Speed of the left encoder", leftEncoderRate);
+//			SmartDashboard.putNumber("Speed of the right encoder", rightEncoderRate);
+//			SmartDashboard.putNumber("Distance of the left encoder", leftEncDistance);
+//			SmartDashboard.putNumber("Distance of the right encoder", rightEncDistance);
 		}
 		pastDistance += distance;
 		Components.drivetrain.updateArcade(0, 0, 1);
@@ -191,10 +192,16 @@ public class AutoManager extends State {
  */
 	@Override
 	protected void update() {
+		potatoTestNumber += 1;
 		CANTalon r2 = Components.rETalon;
-		CANTalon l3 = Components.lETalon;
-		SmartDashboard.putNumber("Right Encoder Position", r2.getEncPosition());
-		SmartDashboard.putNumber("Right Encoder Position", l3.getEncPosition());
+		CANTalon l3 = Components.l2;
+		CANTalon r1 = Components.rETalon;
+		CANTalon l4 = Components.r2;
+		SmartDashboard.putNumber("Potato", potatoTestNumber);
+		SmartDashboard.putNumber("Right Encoder Distance", r2.getEncPosition());
+		SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
+		SmartDashboard.putNumber("Other Right Encoder Distance", r1.getEncPosition());
+		SmartDashboard.putNumber("Other Left Encoder Distance", l4.getEncPosition());
 		leftEncoderDistance = l3.getEncPosition();
 		rightEncoderDistance = -r2.getEncPosition();
 		leftEncoderRate = l3.getEncVelocity();
