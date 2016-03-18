@@ -46,7 +46,7 @@ public class AutoManager extends State {
 	static float newRightSpeed;
 	static float newLeftSpeed;
 	static float[] newSpeeds;
-	float potatoTestNumber = 0;
+	static float potatoTestNumber = 0;
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
 
@@ -54,9 +54,10 @@ public class AutoManager extends State {
 	 * Moves the robot through a defense and back.
 	 */
 	public static void backAndForth() {
-		moveForDistance(auto_distance_of_1, (float) 0.1);
+		SmartDashboard.putBoolean("Back And Forth Activated", true);
+		moveForDistance(auto_distance_of_1, (float) 0.2);
 
-		moveForDistance(auto_distance_of_1, (float) -0.1);
+		moveForDistance(auto_distance_of_1, (float) -0.2);
 	}
 
 	// Putting ball in courtyard if you already have the ball and going
@@ -100,7 +101,8 @@ public class AutoManager extends State {
 	 * moves forward
 	 */
 	public static void moveForward() {
-		moveForDistance(auto_distance_of_1, (float) 0.1);
+		SmartDashboard.putBoolean("Move Forward Activated", true);
+		moveForDistance(auto_distance_of_1, (float) 0.2);
 	}
 
 	/*
@@ -137,15 +139,32 @@ public class AutoManager extends State {
 	 * @param speed
 	 */
 	public static void moveForDistance(float distance, float speed) {
-		CANTalon r1 = new CANTalon(1);
-		CANTalon r2 = new CANTalon(2);
-		CANTalon l3 = new CANTalon(3);
-		CANTalon l4 = new CANTalon(4);
-		r1.setPosition(0);
-		l3.setPosition(0);
-		while (Math.abs(l3.getEncPosition()) < distance && Math.abs(r1.getEncPosition()) < distance) {
-			SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
-			SmartDashboard.putNumber("Right Encoder Distance", r1.getEncPosition());
+		Components.r1.setPosition(0);
+		Components.l2.setPosition(0);
+		try {
+			Thread.sleep(100);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+//		Components.r1.set(0);
+//		Components.r2.set(0);
+//		Components.l1.set(0);
+//		Components.l2.set(0);
+		potatoTestNumber += 1;
+		SmartDashboard.putNumber("Move For Distance", potatoTestNumber);
+//		r1.setPosition(0);
+//		l3.setPosition(0);
+//		if (potatoTestNumber == 1) {
+			SmartDashboard.putNumber("Distance", distance);
+			SmartDashboard.putNumber("Right Encoder Start Distance", Components.r1.getEncPosition());
+			SmartDashboard.putNumber("Left Encoder Start Distance", Components.l2.getEncPosition());
+//		}
+		while (Math.abs(Components.l2.getEncPosition()) < distance && Math.abs(Components.r1.getEncPosition()) < distance) {
+			
+//			SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
+//			SmartDashboard.putNumber("Right Encoder Distance", r1.getEncPosition());
+			
 			// if (speed > 0) {
 			// if (leftEncoderRate > rightEncoderRate) {
 			// // Left is going faster than the right
@@ -173,10 +192,10 @@ public class AutoManager extends State {
 			// speed + rightBonusSpeed);
 			// newRightSpeed = newSpeeds[1];
 			// newLeftSpeed = newSpeeds[0];
-			r1.set(-speed);
-			r2.set(-speed);
-			l3.set(speed);
-			l4.set(speed);
+			Components.r1.set(-speed);
+			Components.r2.set(-speed);
+			Components.l1.set(speed);
+			Components.l2.set(speed);
 
 			// SmartDashboard.putNumber("Speed of the left encoder",
 			// leftEncoderRate);
@@ -187,7 +206,12 @@ public class AutoManager extends State {
 			// SmartDashboard.putNumber("Distance of the right encoder",
 			// rightEncDistance);
 		}
-		Components.drivetrain.updateArcade(0, 0, 1);
+//		SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
+//		SmartDashboard.putNumber("Right Encoder Distance", r1.getEncPosition());
+		Components.r1.set(0);
+		Components.r2.set(0);
+		Components.l1.set(0);
+		Components.l2.set(0);
 	}
 
 	/**

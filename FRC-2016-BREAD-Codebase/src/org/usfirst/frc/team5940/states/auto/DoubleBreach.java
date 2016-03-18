@@ -3,6 +3,7 @@ package org.usfirst.frc.team5940.states.auto;
 import org.usfirst.frc.team5940.states.State;
 
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DoubleBreach extends State {
 
@@ -17,8 +18,13 @@ public class DoubleBreach extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoManager.backAndForth();
-		AutoManager.moveForward();
+		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) -0.2);
+		SmartDashboard.putBoolean("Double Breach Start", true);
+		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) 0.2);
+		SmartDashboard.putBoolean("Double Breach Midway", true);
+		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) -0.2);
+		SmartDashboard.putBoolean("Double Breach Done", true);
+		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) 0.2);
 	}
 
 	@Override
