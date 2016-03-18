@@ -14,7 +14,7 @@ public class AutoSelector {
 	public static State getSelectedAuto(RobotBase robot) {
 		boolean practiceMode = true;
 		if (practiceMode == true) {
-			return new BreachAndPass(robot);
+			return new DoubleBreach(robot);
 		} else {
 			if (Components.sel0.get())
 				return new BreachAndPass(robot);

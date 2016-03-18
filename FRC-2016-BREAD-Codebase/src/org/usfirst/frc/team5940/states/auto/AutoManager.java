@@ -54,9 +54,9 @@ public class AutoManager extends State {
 	 * Moves the robot through a defense and back.
 	 */
 	public static void backAndForth() {
-		moveForDistance(auto_distance_of_1, (float) 0.5);
+		moveForDistance(auto_distance_of_1, (float) 0.1);
 
-		moveForDistance(auto_distance_of_1, (float) -0.5);
+		moveForDistance(auto_distance_of_1, (float) -0.1);
 	}
 
 	// Putting ball in courtyard if you already have the ball and going
@@ -100,7 +100,7 @@ public class AutoManager extends State {
 	 * moves forward
 	 */
 	public static void moveForward() {
-		moveForDistance(auto_distance_of_1, (float) 0.5);
+		moveForDistance(auto_distance_of_1, (float) 0.1);
 	}
 
 	/*
@@ -143,7 +143,7 @@ public class AutoManager extends State {
 		CANTalon l4 = new CANTalon(4);
 		r1.setPosition(0);
 		l3.setPosition(0);
-		while (l3.getEncPosition() < distance && r1.getEncPosition() < distance) {
+		while (Math.abs(l3.getEncPosition()) < distance && Math.abs(r1.getEncPosition()) < distance) {
 			SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
 			SmartDashboard.putNumber("Right Encoder Distance", r1.getEncPosition());
 			// if (speed > 0) {
