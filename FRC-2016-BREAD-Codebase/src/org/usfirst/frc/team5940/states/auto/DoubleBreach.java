@@ -18,12 +18,8 @@ public class DoubleBreach extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) -0.2);
-		SmartDashboard.putBoolean("Double Breach Start", true);
 		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) 0.2);
-		SmartDashboard.putBoolean("Double Breach Midway", true);
 		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) -0.2);
-		SmartDashboard.putBoolean("Double Breach Done", true);
 		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) 0.2);
 	}
 
