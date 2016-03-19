@@ -162,8 +162,8 @@ public class AutoManager extends State {
 //		}
 		while (Math.abs(Components.l2.getEncPosition()) < distance && Math.abs(Components.r1.getEncPosition()) < distance) {
 			
-//			SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
-//			SmartDashboard.putNumber("Right Encoder Distance", r1.getEncPosition());
+			SmartDashboard.putNumber("Left Encoder Distance", Components.l2.getEncPosition());
+			SmartDashboard.putNumber("Right Encoder Distance", Components.r1.getEncPosition());
 			
 			// if (speed > 0) {
 			// if (leftEncoderRate > rightEncoderRate) {
@@ -192,8 +192,8 @@ public class AutoManager extends State {
 			// speed + rightBonusSpeed);
 			// newRightSpeed = newSpeeds[1];
 			// newLeftSpeed = newSpeeds[0];
-			Components.r1.set(-speed);
-			Components.r2.set(-speed);
+//			Components.r1.set(-speed);
+//			Components.r2.set(-speed);
 			Components.l1.set(speed);
 			Components.l2.set(speed);
 
