@@ -140,7 +140,7 @@ public class AutoManager extends State {
 	 */
 	public static void moveForDistance(float distance, float speed) {
 		Components.r1.setPosition(0);
-		Components.l2.setPosition(0);
+		Components.l1.setPosition(0);
 		try {
 			Thread.sleep(100);
 		} catch (InterruptedException e) {
@@ -158,11 +158,11 @@ public class AutoManager extends State {
 //		if (potatoTestNumber == 1) {
 			SmartDashboard.putNumber("Distance", distance);
 			SmartDashboard.putNumber("Right Encoder Start Distance", Components.r1.getEncPosition());
-			SmartDashboard.putNumber("Left Encoder Start Distance", Components.l2.getEncPosition());
+			SmartDashboard.putNumber("Left Encoder Start Distance", Components.l1.getEncPosition());
 //		}
-		while (Math.abs(Components.l2.getEncPosition()) < distance && Math.abs(Components.r1.getEncPosition()) < distance) {
+		while (Math.abs(Components.l1.getEncPosition()) < distance && Math.abs(Components.r1.getEncPosition()) < distance) {
 			
-			SmartDashboard.putNumber("Left Encoder Distance", Components.l2.getEncPosition());
+			SmartDashboard.putNumber("Left Encoder Distance", Components.l1.getEncPosition());
 			SmartDashboard.putNumber("Right Encoder Distance", Components.r1.getEncPosition());
 			
 			// if (speed > 0) {
@@ -192,8 +192,8 @@ public class AutoManager extends State {
 			// speed + rightBonusSpeed);
 			// newRightSpeed = newSpeeds[1];
 			// newLeftSpeed = newSpeeds[0];
-//			Components.r1.set(-speed);
-//			Components.r2.set(-speed);
+			Components.r1.set(-speed);
+			Components.r2.set(-speed);
 			Components.l1.set(speed);
 			Components.l2.set(speed);
 
