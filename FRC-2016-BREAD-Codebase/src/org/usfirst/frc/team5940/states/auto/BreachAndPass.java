@@ -20,9 +20,9 @@ public class BreachAndPass extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoManager.moveForDistance(AutoManager.auto_distance_of_3, (float) 0.1);
+		AutoManager.moveForDistance(AutoManager.auto_distance_of_3, (float) 0.5);
 
-		shooter.setValue((float) 0.1);
+		shooter.setValue((float) 0.2);
 		try {
 			Thread.sleep(500);
 		} catch (InterruptedException e) {
@@ -31,7 +31,7 @@ public class BreachAndPass extends State {
 		}
 		shooter.setValue(0);
 		
-		AutoManager.moveForDistance(AutoManager.auto_distance_of_3, (float) -0.1);
+		AutoManager.moveForDistance(AutoManager.auto_distance_of_3, (float) -0.5);
 	}
 
 	@Override
