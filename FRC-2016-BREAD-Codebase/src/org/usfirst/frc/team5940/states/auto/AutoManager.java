@@ -192,6 +192,7 @@ public class AutoManager extends State {
 			// speed + rightBonusSpeed);
 			// newRightSpeed = newSpeeds[1];
 			// newLeftSpeed = newSpeeds[0];
+//			Components.drivetrain.updateArcade(speed, 0, 1);
 			Components.r1.set(-speed);
 			Components.r2.set(-speed);
 			Components.l1.set(speed);
@@ -208,6 +209,7 @@ public class AutoManager extends State {
 		}
 //		SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
 //		SmartDashboard.putNumber("Right Encoder Distance", r1.getEncPosition());
+//		Components.drivetrain.updateArcade(0, 0, 1);
 		Components.r1.set(0);
 		Components.r2.set(0);
 		Components.l1.set(0);
