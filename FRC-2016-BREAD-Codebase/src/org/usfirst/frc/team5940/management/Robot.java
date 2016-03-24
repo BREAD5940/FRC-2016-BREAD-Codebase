@@ -8,6 +8,7 @@ import org.usfirst.frc.team5940.states.auto.AutoManager;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends SampleRobot {
@@ -16,6 +17,12 @@ public class Robot extends SampleRobot {
 	public Thread camera;
 	public Thread autoManager;
 
+	double rightValue = 0.5;
+	double leftValue = 0.5;
+	double rollerValue = 0.5;
+	long startTime;
+	long currentTime;
+	
 	public Robot() {
 		//Call the super constructor
 		super();
@@ -70,5 +77,125 @@ public class Robot extends SampleRobot {
 	public void test() {
 		//Test robot
 		//TODO Make this do something
+		// Move forwards
+		startTime = System.currentTimeMillis();
+		SmartDashboard.putNumber("Start time for test", startTime);
+		while (currentTime >= startTime + 2000){
+			SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
+			SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
+			Components.r1.set(rightValue);
+			Components.r2.set(rightValue);
+			Components.l1.set(leftValue);
+			Components.l2.set(leftValue);
+			currentTime = System.currentTimeMillis();
+		}
+    	
+    	try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	// move backwards
+    	startTime = System.currentTimeMillis();
+    	SmartDashboard.putNumber("Start time for test", startTime);
+    	while (currentTime >= startTime + 2000){
+    		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
+    		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
+    		Components.r1.set(-1 * rightValue);
+    		Components.r2.set(-1 * rightValue);
+    		Components.l1.set(-1 * leftValue);
+    		Components.l2.set(-1 * leftValue);
+    		currentTime = System.currentTimeMillis();
+    	}
+    	
+    	try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	// move right
+    	startTime = System.currentTimeMillis();
+    	SmartDashboard.putNumber("Start time for test", startTime);
+    	while (currentTime >= startTime + 2000){
+    		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
+    		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
+    		Components.r1.set(rightValue);
+    		Components.r2.set(rightValue);
+    		Components.l1.set(-1 * leftValue);
+    		Components.l2.set(-1 * leftValue);
+    		currentTime = System.currentTimeMillis();
+    	}
+    	
+    	try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	//move left
+    	startTime = System.currentTimeMillis();
+    	SmartDashboard.putNumber("Start time for test", startTime);
+    	while (currentTime >= startTime + 2000){
+    		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
+    		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
+    		Components.r1.set(-1 * leftValue);
+    		Components.r2.set(-1 * leftValue);    	
+    		Components.l1.set(rightValue);
+    		Components.l2.set(rightValue);
+    		currentTime = System.currentTimeMillis();
+    	}
+    	
+    	try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	//move roller forwards
+    	startTime = System.currentTimeMillis();
+    	SmartDashboard.putNumber("Start Time For Test", startTime);
+    	while (currentTime >= startTime + 2000){
+    		Components.roller.set(rollerValue);
+    		currentTime = System.currentTimeMillis();
+    	}
+
+    	try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	//move roller backwards
+    	startTime = System.currentTimeMillis();
+    	SmartDashboard.putNumber("Start Time For Test", startTime);
+    	while (currentTime >= startTime + 2000){
+    		Components.roller.set(-1 * rollerValue);
+    		currentTime = System.currentTimeMillis();
+    	}
+    	
+    	// Make the ball sensor test
+    	SmartDashboard.putBoolean("Is the detector working? You tell me!", Components.getCorrectedDetector());
+    	
+    	
+    	// Test the camera
+    	Thread camera =  new Thread(new CameraServerInit(this));
+    	camera.start();
+    	
+    	try {
+			Thread.sleep(10000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	
+    	camera.interrupt();
+    	
 	}
 }
