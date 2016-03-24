@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5940.motorcontrol.groups;
 
 import edu.wpi.first.wpilibj.CANTalon;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class CANTalonSpeedyGroup implements MotorGroup {
 	
@@ -20,6 +21,7 @@ public class CANTalonSpeedyGroup implements MotorGroup {
 		}
 		// Set inverted
 		this.inverted = inverted;
+		SmartDashboard.putNumber("ScaleFactor", scaleFactor);
 		this.scaleFactor = scaleFactor;
 	}
 
@@ -47,6 +49,8 @@ public class CANTalonSpeedyGroup implements MotorGroup {
 		float value = motorsOut;
 		if (inverted){value = -value;}
 		value = value*scaleFactor;
+		SmartDashboard.putNumber("Value", value);
+		SmartDashboard.putNumber("MotorsOut", this.motorsOut);
 		//Set talon values
 		for (int i = 0; i < talons.length; i++){
 			talons[i].set(this.motorsOut);
@@ -165,6 +169,7 @@ public class CANTalonSpeedyGroup implements MotorGroup {
 	 *            the conversion factor
 	 */
 	public void setScaleFactor(float scaleFactor) {
+		SmartDashboard.putNumber("ScaleFactor", scaleFactor);
 		this.scaleFactor = scaleFactor;
 	}
 

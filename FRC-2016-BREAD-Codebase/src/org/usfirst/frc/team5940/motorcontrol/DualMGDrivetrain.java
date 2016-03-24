@@ -231,19 +231,19 @@ public class DualMGDrivetrain {
 		float leftAbsoluteValue = (float) Math.abs(leftOut);
 		float rightAbsoluteValue = (float) Math.abs(rightOut);
 		// Change the things
-		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
-			if (rightAbsoluteValue > leftAbsoluteValue) {
-				leftOut /= rightAbsoluteValue;
-				rightOut /= rightAbsoluteValue;
-			} else {
-				leftOut /= leftAbsoluteValue;
-				rightOut /= leftAbsoluteValue;
-			}
-		}
+//		if (rightAbsoluteValue > 1 || leftAbsoluteValue > 1) {
+//			if (rightAbsoluteValue > leftAbsoluteValue) {
+//				leftOut /= rightAbsoluteValue;
+//				rightOut /= rightAbsoluteValue;
+//			} else {
+//				leftOut /= leftAbsoluteValue;
+//				rightOut /= leftAbsoluteValue;
+//			}
+//		}
 
 		// Multipley the things by the scaleFactor
-		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
-		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+//		leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
+//		rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 
 		// return the things
 		float[] motorSpeeds = new float[2];

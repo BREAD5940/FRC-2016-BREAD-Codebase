@@ -4,6 +4,7 @@ import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSpeedyGroup;
 import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
+import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class DualMGShiftingSpeedyDrivetrain extends DualMGShiftingDrivetrain {
 
@@ -14,6 +15,8 @@ public class DualMGShiftingSpeedyDrivetrain extends DualMGShiftingDrivetrain {
 		super(left, right, gearShifter, gear);
 		this.lowGearScale = lowGearScale;
 		this.highGearScale = highGearScale;
+		SmartDashboard.putNumber("highScaleFactor", this.highGearScale);
+		SmartDashboard.putNumber("LowScaleFactor", this.lowGearScale);
 	}
 	
 	/**
@@ -27,6 +30,11 @@ public class DualMGShiftingSpeedyDrivetrain extends DualMGShiftingDrivetrain {
 		super.setGears(gear);
 		CANTalonSpeedyGroup left = (CANTalonSpeedyGroup) this.left;
 		CANTalonSpeedyGroup right = (CANTalonSpeedyGroup) this.right;
+		SmartDashboard.putNumber("newHighScaleFactor", this.highGearScale);
+		SmartDashboard.putNumber("newLowScaleFactor", this.lowGearScale);
+		SmartDashboard.putBoolean("Gear Change", true);
+//		SmartDashboard.putNumber("highScaleFactor", highGearScale);
+//		SmartDashboard.putNumber("LowScaleFactor", lowGearScale);
 		
 		if(gear == 0) {
 			left.setScaleFactor((float) lowGearScale);
