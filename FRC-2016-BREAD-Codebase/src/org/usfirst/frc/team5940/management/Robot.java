@@ -3,12 +3,12 @@ package org.usfirst.frc.team5940.management;
 
 
 import org.usfirst.frc.team5940.camera.CameraServerInit;
-import org.usfirst.frc.team5940.states.auto.AutoSelector;
 import org.usfirst.frc.team5940.states.auto.AutoManager;
+import org.usfirst.frc.team5940.states.auto.AutoSelector;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;
-import edu.wpi.first.wpilibj.Timer;
+import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 public class Robot extends SampleRobot {
@@ -22,6 +22,10 @@ public class Robot extends SampleRobot {
 	double rollerValue = 0.5;
 	long startTime;
 	long currentTime;
+	final static String AllOfThem = "Systems Test";
+	final static String Motors = "Motors Test";
+	final static String RollerTest = "Rollers Test";
+	final static String CameraTest = "Camera Test";
 	
 	public Robot() {
 		//Call the super constructor
@@ -65,7 +69,7 @@ public class Robot extends SampleRobot {
 		if (state != null) {
 			state.interrupt();
 		}
-		//Activiate op con
+		//Activate op con
 		state = new Thread(new OpConStandardState(this));
 		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "OpCon state failed to start."); }
 	}
@@ -73,10 +77,16 @@ public class Robot extends SampleRobot {
 	/**
 	 * Runs during test mode
 	 */
+	//Test robot
 	@Override
 	public void test() {
-		//Test robot
-		//TODO Make this do something
+		
+		SendableChooser testChooser = new SendableChooser();
+		testChooser.addDefault("All of them", AllOfThem);
+		testChooser.addObject("Drive Train only", Motors);
+		testChooser.addObject("Roller only",RollerTest);
+		testChooser.addObject("Camera only", CameraTest);
+		
 		// Move forwards
 		startTime = System.currentTimeMillis();
 		SmartDashboard.putNumber("Start time for test", startTime);
@@ -182,7 +192,6 @@ public class Robot extends SampleRobot {
     	
     	// Make the ball sensor test
     	SmartDashboard.putBoolean("Is the detector working? You tell me!", Components.getCorrectedDetector());
-    	
     	
     	// Test the camera
     	Thread camera =  new Thread(new CameraServerInit(this));
