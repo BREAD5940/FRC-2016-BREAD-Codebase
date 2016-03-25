@@ -2,19 +2,22 @@
 package org.usfirst.frc.team5940.motorcontrol;
 
 import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSpeedyGroup;
-import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
 
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 
 public class DualMGShiftingSpeedyDrivetrain extends DualMGShiftingDrivetrain {
 
-	double lowGearScale;
-	double highGearScale;
+	double lowLGearScale;
+	double highLGearScale;
+	double lowRGearScale;
+	double highRGearScale;
 	
-	public DualMGShiftingSpeedyDrivetrain(CANTalonSpeedyGroup left, CANTalonSpeedyGroup right, DoubleSolenoid gearShifter, int gear, double lowGearScale, double highGearScale) {
+	public DualMGShiftingSpeedyDrivetrain(CANTalonSpeedyGroup left, CANTalonSpeedyGroup right, DoubleSolenoid gearShifter, int gear, double lowLGearScale, double highLGearScale, double lowRGearScale, double highRGearScale) {
 		super(left, right, gearShifter, gear);
-		this.lowGearScale = lowGearScale;
-		this.highGearScale = highGearScale;
+		this.lowLGearScale = lowLGearScale;
+		this.highLGearScale = highLGearScale;
+		this.lowRGearScale = lowRGearScale;
+		this.highRGearScale = highRGearScale;
 		this.setGears(gear);
 	}
 	
@@ -31,13 +34,13 @@ public class DualMGShiftingSpeedyDrivetrain extends DualMGShiftingDrivetrain {
 		CANTalonSpeedyGroup right = (CANTalonSpeedyGroup) this.right;
 		
 		if(gear == 0) {
-			left.setScaleFactor((float) lowGearScale);
-			right.setScaleFactor((float) lowGearScale);
+			left.setScaleFactor((float) lowLGearScale);
+			right.setScaleFactor((float) lowRGearScale);
 		}
 		
 		if(gear == 1) {
-			left.setScaleFactor((float) highGearScale);
-			right.setScaleFactor((float) highGearScale);
+			left.setScaleFactor((float) highLGearScale);
+			right.setScaleFactor((float) highRGearScale);
 		}
 	}
 
