@@ -25,6 +25,7 @@ public class Robot extends SampleRobot {
 	final static String AllOfThem = "Systems Test";
 	final static String Motors = "Motors Test";
 	final static String RollerTest = "Rollers Test";
+	final static String SensorTest = "Sensors Test";
 	final static String CameraTest = "Camera Test";
 	
 	public Robot() {
@@ -85,11 +86,15 @@ public class Robot extends SampleRobot {
 		testChooser.addDefault("All of them", AllOfThem);
 		testChooser.addObject("Drive Train only", Motors);
 		testChooser.addObject("Roller only",RollerTest);
+		testChooser.addObject("Ball Sensor Only", SensorTest);
 		testChooser.addObject("Camera only", CameraTest);
+		//String selected = (String) testChooser.getSelected();
 		
 		// Move forwards
-		startTime = System.currentTimeMillis();
-		SmartDashboard.putNumber("Start time for test", startTime);
+		if ((testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(Motors))){
+			startTime = System.currentTimeMillis();
+			SmartDashboard.putNumber("Start time for test", startTime);
+			SmartDashboard.putString("Test Status", "Moving robot forward");
 		while (currentTime >= startTime + 2000){
 			SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
 			SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
@@ -99,17 +104,19 @@ public class Robot extends SampleRobot {
 			Components.l2.set(leftValue);
 			currentTime = System.currentTimeMillis();
 		}
-    	
-    	try {
+		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}
     	
     	// move backwards
-    	startTime = System.currentTimeMillis();
-    	SmartDashboard.putNumber("Start time for test", startTime);
+		if ( (testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(Motors))){
+			startTime = System.currentTimeMillis();
+    		SmartDashboard.putNumber("Start time for test", startTime);
+			SmartDashboard.putString("Test Status", "Moving robot backward");
     	while (currentTime >= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
@@ -119,17 +126,19 @@ public class Robot extends SampleRobot {
     		Components.l2.set(-1 * leftValue);
     		currentTime = System.currentTimeMillis();
     	}
-    	
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}
     	
     	// move right
+		if ( (testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(Motors))){
     	startTime = System.currentTimeMillis();
     	SmartDashboard.putNumber("Start time for test", startTime);
+		SmartDashboard.putString("Test Status", "Moving robot to the right");
     	while (currentTime >= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
@@ -139,17 +148,19 @@ public class Robot extends SampleRobot {
     		Components.l2.set(-1 * leftValue);
     		currentTime = System.currentTimeMillis();
     	}
-    	
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-    	
+		}
+		
     	//move left
+		if ( (testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(Motors))){
     	startTime = System.currentTimeMillis();
     	SmartDashboard.putNumber("Start time for test", startTime);
+    	SmartDashboard.putString("Test Status", "Moving robot to the left");
     	while (currentTime >= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
@@ -159,43 +170,70 @@ public class Robot extends SampleRobot {
     		Components.l2.set(rightValue);
     		currentTime = System.currentTimeMillis();
     	}
-    	
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}
     	
     	//move roller forwards
-    	startTime = System.currentTimeMillis();
-    	SmartDashboard.putNumber("Start Time For Test", startTime);
+		if ((testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(RollerTest))){
+			startTime = System.currentTimeMillis();
+			SmartDashboard.putNumber("Start Time For Test", startTime);
+			SmartDashboard.putString("Test Status", "Moving roller forwards");
     	while (currentTime >= startTime + 2000){
     		Components.roller.set(rollerValue);
     		currentTime = System.currentTimeMillis();
     	}
-
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		}
     	
     	//move roller backwards
+		if ( (testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(RollerTest))){
     	startTime = System.currentTimeMillis();
     	SmartDashboard.putNumber("Start Time For Test", startTime);
+		SmartDashboard.putString("Test Status", "Moving roller backwards");
     	while (currentTime >= startTime + 2000){
     		Components.roller.set(-1 * rollerValue);
     		currentTime = System.currentTimeMillis();
     	}
+    	try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    	}
     	
     	// Make the ball sensor test
-    	SmartDashboard.putBoolean("Is the detector working? You tell me!", Components.getCorrectedDetector());
+		if ( (testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(SensorTest))){
+	    	startTime = System.currentTimeMillis();
+	    	SmartDashboard.putNumber("Start Time For Test", startTime);
+			SmartDashboard.putString("Test Status", "Testing the ball sensor");
+		while (currentTime >= startTime + 2000){
+    		SmartDashboard.putBoolean("Is the detector working? You tell me!", Components.getCorrectedDetector());
+    		currentTime = System.currentTimeMillis();
+		}
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
+		}
     	
     	// Test the camera
-    	Thread camera =  new Thread(new CameraServerInit(this));
-    	camera.start();
+    	if ((testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(CameraTest))){
+			SmartDashboard.putString("Test Status", "Activating camera feed.");
+			Thread camera =  new Thread(new CameraServerInit(this));
+			camera.start();
     	
     	try {
 			Thread.sleep(10000);
@@ -204,7 +242,7 @@ public class Robot extends SampleRobot {
 			e.printStackTrace();
 		}
     	
-    	camera.interrupt();
-    	
+    		camera.interrupt();
+    	}
 	}
 }
