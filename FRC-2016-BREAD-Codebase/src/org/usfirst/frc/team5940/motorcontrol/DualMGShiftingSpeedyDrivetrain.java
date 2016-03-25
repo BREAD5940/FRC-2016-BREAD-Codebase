@@ -14,6 +14,7 @@ public class DualMGShiftingSpeedyDrivetrain extends DualMGShiftingDrivetrain {
 		super(left, right, gearShifter, gear);
 		this.lowGearScale = lowGearScale;
 		this.highGearScale = highGearScale;
+		this.setGears(gear);
 	}
 	
 	/**
