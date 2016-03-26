@@ -11,6 +11,11 @@ import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * Our management code runs 
+ * @author Developer
+ *
+ */
 public class Robot extends SampleRobot {
 	//Set the threads
 	public Thread state;
@@ -39,7 +44,9 @@ public class Robot extends SampleRobot {
 		Components.setupTalons();
 	}
 	
-	
+	/**
+	 * Starts our autonomous thread.
+	 */
 	@Override
 	public void autonomous() {
 		this.autoManager = new Thread(new AutoManager(this));
@@ -59,6 +66,9 @@ public class Robot extends SampleRobot {
 		
 	}
 
+	/**
+	 * Starts our Operator Control thread
+	 */
 	@Override
 	public void operatorControl() {
 		SmartDashboard.putBoolean("cam", false);
@@ -76,7 +86,7 @@ public class Robot extends SampleRobot {
 	}
 	
 	/**
-	 * Runs during test mode
+	 * Runs our system test code.
 	 */
 	//Test robot
 	@Override

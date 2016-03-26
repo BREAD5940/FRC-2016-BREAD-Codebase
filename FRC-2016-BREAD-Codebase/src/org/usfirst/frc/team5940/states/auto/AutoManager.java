@@ -46,12 +46,12 @@ public class AutoManager extends State {
 	static float newRightSpeed;
 	static float newLeftSpeed;
 	static float[] newSpeeds;
-	static float potatoTestNumber = 0;
+	static float TestNumber = 0;
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
 
 	/**
-	 * Moves the robot through a defense and back.
+	 * Moves the robot through a defense and back to the courtyard through the same defense.
 	 */
 	public static void backAndForth() {
 		SmartDashboard.putBoolean("Back And Forth Activated", true);
@@ -60,9 +60,9 @@ public class AutoManager extends State {
 		moveForDistance(auto_distance_of_1, (float) -0.2);
 	}
 
-	// Putting ball in courtyard if you already have the ball and going
-	// through
-
+	/** 
+	 * Moves the robot through a defense and then throws a ball out of the pickup system and into the courtyard.
+	 */ 
 	public void breachAndPass() {
 		moveForDistance(auto_distance_of_3, (float) 0.5);
 
@@ -78,12 +78,9 @@ public class AutoManager extends State {
 		moveForDistance(auto_distance_of_3, (float) -0.5);
 	}
 
-	// an auto program that goes forward, to a different defense, and goes
-	// through that defense.
-
 	/**
-	 * This method breaches a defense a goes back to the middle area through
-	 * another.
+	 * This method breaches a defense a goes back to the neutral zone through
+	 * another defense. All distances are set by variables auto_distance_of + a number + a letter in some instances.
 	 */
 	public void loopAround() {
 		moveForDistance(auto_distance_of_4a, (float) 0.5);
@@ -98,7 +95,7 @@ public class AutoManager extends State {
 	}
 
 	/**
-	 * moves forward
+	 * moves forward a set distance.
 	 */
 	public static void moveForward() {
 		SmartDashboard.putBoolean("Move Forward Activated", true);
@@ -151,14 +148,14 @@ public class AutoManager extends State {
 //		Components.r2.set(0);
 //		Components.l1.set(0);
 //		Components.l2.set(0);
-		potatoTestNumber += 1;
-		SmartDashboard.putNumber("Move For Distance", potatoTestNumber);
+		TestNumber += 1;
+		SmartDashboard.putNumber("Move For Distance", TestNumber);
 //		r1.setPosition(0);
 //		l3.setPosition(0);
-//		if (potatoTestNumber == 1) {
-			SmartDashboard.putNumber("Distance", distance);
-			SmartDashboard.putNumber("Right Encoder Start Distance", Components.r1.getEncPosition());
-			SmartDashboard.putNumber("Left Encoder Start Distance", Components.l1.getEncPosition());
+//		if (TestNumber == 1) {
+		SmartDashboard.putNumber("Distance", distance);
+		SmartDashboard.putNumber("Right Encoder Start Distance", Components.r1.getEncPosition());
+		SmartDashboard.putNumber("Left Encoder Start Distance", Components.l1.getEncPosition());
 //		}
 		while (Math.abs(Components.l1.getEncPosition()) < distance && Math.abs(Components.r1.getEncPosition()) < distance) {
 			
@@ -216,9 +213,6 @@ public class AutoManager extends State {
 //		Components.l2.set(0);
 	}
 
-	/**
-	 * updates the talon and encoders.
-	 */
 	@Override
 	protected void update() {
 		// // TODO Make the auto Note: This should be in INIT()

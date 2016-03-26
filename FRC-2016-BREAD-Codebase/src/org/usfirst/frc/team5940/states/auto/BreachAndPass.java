@@ -7,6 +7,8 @@ import org.usfirst.frc.team5940.states.State;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/** this class will move the robot through a defense, pass the ball, and move back. 
+ */
 public class BreachAndPass extends State {
 
 	public BreachAndPass(RobotBase robot) {
@@ -15,8 +17,7 @@ public class BreachAndPass extends State {
 	}
 
 	MotorGroup shooter = Components.rollerGroup;
-	/** this class will move the robot through a defense, pass the ball, and move back. 
-	 */
+	
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub

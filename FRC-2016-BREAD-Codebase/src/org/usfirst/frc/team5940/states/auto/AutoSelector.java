@@ -9,7 +9,7 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 public class AutoSelector {
 
 	/**
-	 * This function chooses a auto program based on switch input.
+	 * This function chooses a auto program based on a rotary switch input.
 	 */
 	public static State getSelectedAuto(RobotBase robot) {
 		boolean practiceMode = true;

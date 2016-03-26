@@ -9,6 +9,11 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
+/**
+ * This code runs all of our driver-related code. 
+ * @author The 5940 Robotics team.
+ *
+ */
 public class OpConStandardState extends State {
 
 	Joystick controller = Components.controller;
@@ -30,15 +35,12 @@ public class OpConStandardState extends State {
 		super(robot);
 	}
 
-	/**
-	 * Is called when the operator controlled period starts
-	 */
 	@Override
 	protected void init() {
 	}
 
 	/**
-	 * Is called repeatedly throughout the operator controlled period
+	 * Updates driver inputs and controls.
 	 */
 	@Override
 	protected void update() {
@@ -76,6 +78,9 @@ public class OpConStandardState extends State {
 		roller.setValue(newRVal);
 	}
 
+	/**
+	 * Sets the control for Nick's drive.
+	 */
 	private void setNickH() {
 		SmartDashboard.putNumber("NickH working?", working++);
 		forward = (Components.getCorrectedAxis(3) - Components.getCorrectedAxis(2));
@@ -107,7 +112,7 @@ public class OpConStandardState extends State {
 	}
 
 	/**
-	 * Sets the controller for Hung to control
+	 * Sets the control for Hung's drive.
 	 */
 	private void setHung() {
 		forward = (Components.getCorrectedAxis(3) - Components.getCorrectedAxis(2));
@@ -144,7 +149,7 @@ public class OpConStandardState extends State {
 	}
 
 	/**
-	 * Sets the controller for Alex to control
+	 * Sets the control for Alex's drive.
 	 */
 	private void setAlex() {
 		forward = Components.getCorrectedAxis(1);
@@ -173,7 +178,7 @@ public class OpConStandardState extends State {
 	}
 
 	/**
-	 * Sets the controller for Marius to control There is nothing in here yet
+	 * Sets the control for Marius's drive.
 	 */
 	private void setMarius() {
 
