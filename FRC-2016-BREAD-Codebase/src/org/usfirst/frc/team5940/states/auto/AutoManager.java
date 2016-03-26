@@ -51,7 +51,8 @@ public class AutoManager extends State {
 	// leftEncoder.setDistancePerPulse(1);
 
 	/**
-	 * Moves the robot through a defense and back to the courtyard through the same defense.
+	 * Moves the robot through a defense and back to the courtyard through the
+	 * same defense.
 	 */
 	public static void backAndForth() {
 		SmartDashboard.putBoolean("Back And Forth Activated", true);
@@ -60,9 +61,10 @@ public class AutoManager extends State {
 		moveForDistance(auto_distance_of_1, (float) -0.2);
 	}
 
-	/** 
-	 * Moves the robot through a defense and then throws a ball out of the pickup system and into the courtyard.
-	 */ 
+	/**
+	 * Moves the robot through a defense and then throws a ball out of the
+	 * pickup system and into the courtyard.
+	 */
 	public void breachAndPass() {
 		moveForDistance(auto_distance_of_3, (float) 0.5);
 
@@ -80,7 +82,8 @@ public class AutoManager extends State {
 
 	/**
 	 * This method breaches a defense a goes back to the neutral zone through
-	 * another defense. All distances are set by variables auto_distance_of + a number + a letter in some instances.
+	 * another defense. All distances are set by variables auto_distance_of + a
+	 * number + a letter in some instances.
 	 */
 	public void loopAround() {
 		moveForDistance(auto_distance_of_4a, (float) 0.5);
@@ -144,24 +147,25 @@ public class AutoManager extends State {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-//		Components.r1.set(0);
-//		Components.r2.set(0);
-//		Components.l1.set(0);
-//		Components.l2.set(0);
+		// Components.r1.set(0);
+		// Components.r2.set(0);
+		// Components.l1.set(0);
+		// Components.l2.set(0);
 		TestNumber += 1;
 		SmartDashboard.putNumber("Move For Distance", TestNumber);
-//		r1.setPosition(0);
-//		l3.setPosition(0);
-//		if (TestNumber == 1) {
+		// r1.setPosition(0);
+		// l3.setPosition(0);
+		// if (TestNumber == 1) {
 		SmartDashboard.putNumber("Distance", distance);
 		SmartDashboard.putNumber("Right Encoder Start Distance", Components.r1.getEncPosition());
 		SmartDashboard.putNumber("Left Encoder Start Distance", Components.l1.getEncPosition());
-//		}
-		while (Math.abs(Components.l1.getEncPosition()) < distance && Math.abs(Components.r1.getEncPosition()) < distance) {
-			
+		// }
+		while (Math.abs(Components.l1.getEncPosition()) < distance
+				&& Math.abs(Components.r1.getEncPosition()) < distance) {
+
 			SmartDashboard.putNumber("Left Encoder Distance", Components.l1.getEncPosition());
 			SmartDashboard.putNumber("Right Encoder Distance", Components.r1.getEncPosition());
-			
+
 			// if (speed > 0) {
 			// if (leftEncoderRate > rightEncoderRate) {
 			// // Left is going faster than the right
@@ -190,10 +194,10 @@ public class AutoManager extends State {
 			// newRightSpeed = newSpeeds[1];
 			// newLeftSpeed = newSpeeds[0];
 			Components.drivetrain.updateArcade(speed, 0, 1);
-//			Components.r1.set(-speed);
-//			Components.r2.set(-speed);
-//			Components.l1.set(speed);
-//			Components.l2.set(speed);
+			// Components.r1.set(-speed);
+			// Components.r2.set(-speed);
+			// Components.l1.set(speed);
+			// Components.l2.set(speed);
 
 			// SmartDashboard.putNumber("Speed of the left encoder",
 			// leftEncoderRate);
@@ -204,13 +208,15 @@ public class AutoManager extends State {
 			// SmartDashboard.putNumber("Distance of the right encoder",
 			// rightEncDistance);
 		}
-//		SmartDashboard.putNumber("Left Encoder Distance", l3.getEncPosition());
-//		SmartDashboard.putNumber("Right Encoder Distance", r1.getEncPosition());
+		// SmartDashboard.putNumber("Left Encoder Distance",
+		// l3.getEncPosition());
+		// SmartDashboard.putNumber("Right Encoder Distance",
+		// r1.getEncPosition());
 		Components.drivetrain.updateArcade(0, 0, 1);
-//		Components.r1.set(0);
-//		Components.r2.set(0);
-//		Components.l1.set(0);
-//		Components.l2.set(0);
+		// Components.r1.set(0);
+		// Components.r2.set(0);
+		// Components.l1.set(0);
+		// Components.l2.set(0);
 	}
 
 	@Override

@@ -24,9 +24,11 @@ public class Components {
 	public static boolean lEncoderInvert = false;
 	public static boolean rEncoderInvert = true;
 	
-	public static float lowMotorScaleFactor = 10;
-	public static float highMotorScaleFactor = 20;
-
+	public static float lLowMotorScaleFactor = -10;
+	public static float lHighMotorScaleFactor = -20;
+	public static float rLowMotorScaleFactor = 10;
+	public static float rHighMotorScaleFactor = 20;
+	
 	//Encoder CANTalons
 	public static CANTalon rETalon = new CANTalon(2);
 	public static CANTalon lETalon = new CANTalon(3);
@@ -56,8 +58,8 @@ public class Components {
 	}
 	
 	//Drive MotorGroups
-	public static CANTalonSpeedyGroup lGroup = new CANTalonSpeedyGroup(new CANTalon[]{l1}, lMotorInvert, lowMotorScaleFactor);
-	public static CANTalonSpeedyGroup rGroup = new CANTalonSpeedyGroup(new CANTalon[]{r2}, rMotorInvert, lowMotorScaleFactor);
+	public static CANTalonSpeedyGroup lGroup = new CANTalonSpeedyGroup(new CANTalon[]{l1}, lMotorInvert, lLowMotorScaleFactor);
+	public static CANTalonSpeedyGroup rGroup = new CANTalonSpeedyGroup(new CANTalon[]{r2}, rMotorInvert, rLowMotorScaleFactor);
 //	public static MotorGroup lGroup = new CANTalonSimpleGroup(new CANTalon[]{l1}, lMotorInvert);
 //	public static MotorGroup rGroup = new CANTalonSimpleGroup(new CANTalon[]{r2}, rMotorInvert);
 	
@@ -70,7 +72,7 @@ public class Components {
 	public static DoubleSolenoid shifter = new DoubleSolenoid(PCMCANPort, PCMDownPort, PCMUpPort);
 	
 	//Drivetrain
-	public static DualMGShiftingSpeedyDrivetrain drivetrain = new DualMGShiftingSpeedyDrivetrain(lGroup, rGroup, shifter, 0, lowMotorScaleFactor, highMotorScaleFactor, lowMotorScaleFactor, highMotorScaleFactor);//TODO Needs to be changes to ShiftingSpeedy when encoder scaling tested
+	public static DualMGShiftingSpeedyDrivetrain drivetrain = new DualMGShiftingSpeedyDrivetrain(lGroup, rGroup, shifter, 0, lLowMotorScaleFactor, lHighMotorScaleFactor, rLowMotorScaleFactor, rHighMotorScaleFactor);//TODO Needs to be changes to ShiftingSpeedy when encoder scaling tested
 	
 	
 	//ROLLER
