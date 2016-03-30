@@ -62,6 +62,8 @@ public class OpConStandardState extends State {
 		if (driverPerson.equals("Marius"))
 			setMarius();
 
+		SmartDashboard.putNumber("forward", forward);
+		
 		driver.updateArcade(-forward, -horizontal, 1);
 		
 		SmartDashboard.putNumber("Left Encoder Distance", Components.l1.getEncPosition());

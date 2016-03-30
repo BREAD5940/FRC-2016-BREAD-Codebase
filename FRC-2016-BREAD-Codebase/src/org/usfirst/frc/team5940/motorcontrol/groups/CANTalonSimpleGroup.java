@@ -2,6 +2,11 @@ package org.usfirst.frc.team5940.motorcontrol.groups;
 
 import edu.wpi.first.wpilibj.CANTalon;
 
+/**
+ * 
+ * @author Team 5940
+ *
+ */
 public class CANTalonSimpleGroup implements MotorGroup {
 
 	CANTalon[] talons;

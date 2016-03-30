@@ -24,8 +24,8 @@ public class Components {
 	public static boolean lEncoderInvert = false;
 	public static boolean rEncoderInvert = true;
 	
-	public static float lLowMotorScaleFactor = -10;
-	public static float lHighMotorScaleFactor = -20;
+	public static float lLowMotorScaleFactor = -500;
+	public static float lHighMotorScaleFactor = -500;
 	public static float rLowMotorScaleFactor = 10;
 	public static float rHighMotorScaleFactor = 20;
 	
