@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.CANTalon;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotBase;
+import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.Ultrasonic;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
@@ -26,7 +27,7 @@ public class AutoManager extends State {
 	// int auto_program = 1;
 	static float auto_distance_of_1 = 400; // TODO Get the right value
 	static float auto_distance_of_3 = 15500; // TODO Get the right value
-	static float auto_speed_of_3 = (float) 0.25;
+	static float defaultAutoSpeed = (float) 0.25;
 	int auto_distance_of_4a = 400; // TODO Get the right value
 	int auto_distance_of_4b = 100;
 	int auto_distance_of_4c = 800; // TODO Get the right value (Note: It
@@ -224,6 +225,12 @@ public class AutoManager extends State {
 		// Components.l1.set(0);
 		// Components.l2.set(0);
 
+	}
+	
+	public static void moveForTime(double time, double speed) {
+		Components.drivetrain.updateArcade(speed, 0, 1);
+		Timer.delay(time);
+		Components.drivetrain.updateArcade(0, 0, 1);
 	}
 
 	@Override

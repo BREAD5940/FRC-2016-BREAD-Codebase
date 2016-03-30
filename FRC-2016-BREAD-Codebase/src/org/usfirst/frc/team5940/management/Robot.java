@@ -4,6 +4,7 @@ package org.usfirst.frc.team5940.management;
 
 import org.usfirst.frc.team5940.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.auto.Breach;
+import org.usfirst.frc.team5940.states.auto.BreachAndPassAndComeBack;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -58,7 +59,7 @@ public class Robot extends SampleRobot {
 		}
 		//Activate auto
 		//state = new Thread(AutoSelector.getSelectedAuto(this));
-		state = new Thread(new Breach(this));
+		state = new Thread(new BreachAndPassAndComeBack(this));
 		try{
 			SmartDashboard.putString("Auto State Name", state.getClass().getSimpleName());
 			state.start();

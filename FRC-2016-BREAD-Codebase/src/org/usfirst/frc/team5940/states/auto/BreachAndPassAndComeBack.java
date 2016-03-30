@@ -7,7 +7,9 @@ import org.usfirst.frc.team5940.states.State;
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
-/** this class will move the robot through a defense, pass the ball, and move back. 
+/**
+ * this class will move the robot through a defense, pass the ball, and move
+ * back.
  */
 public class BreachAndPassAndComeBack extends State {
 
@@ -17,11 +19,13 @@ public class BreachAndPassAndComeBack extends State {
 	}
 
 	MotorGroup shooter = Components.rollerGroup;
-	
+
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoManager.moveForDistance( (float) 1000, 3000);
+		SmartDashboard.putBoolean("Started", true);
+
+		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, 3000);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -36,8 +40,9 @@ public class BreachAndPassAndComeBack extends State {
 			e.printStackTrace();
 		}
 		shooter.setValue(0);
-		
-		AutoManager.moveForDistance((float) -1000, 3000);
+
+		SmartDashboard.putBoolean("At the end", true);
+		AutoManager.moveForDistance((float) -AutoManager.defaultAutoSpeed, 3000);
 	}
 
 	@Override

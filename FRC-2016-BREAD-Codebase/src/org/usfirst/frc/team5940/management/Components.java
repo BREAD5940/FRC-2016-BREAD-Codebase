@@ -18,8 +18,8 @@ import edu.wpi.first.wpilibj.Joystick;
 public class Components {
 	//DRIVETRAIN
 	//Inversions
-	public static boolean lMotorInvert = true;
-	public static boolean rMotorInvert = false;
+	public static boolean lMotorInvert = false;
+	public static boolean rMotorInvert = true;
 	public static boolean lEncoderInvert = false;
 	public static boolean rEncoderInvert = true;
 	
