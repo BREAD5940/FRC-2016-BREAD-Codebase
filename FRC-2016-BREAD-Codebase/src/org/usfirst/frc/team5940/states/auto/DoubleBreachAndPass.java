@@ -25,9 +25,9 @@ public class DoubleBreachAndPass extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoManager.moveForDistance((float) 0.5,3000);
-		AutoManager.moveForDistance((float) -0.5,3000);
-		AutoManager.moveForDistance((float) 0.5,3000);
+		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, 3000);
+		AutoManager.moveForDistance((float) -AutoManager.defaultAutoSpeed, 3000);
+		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, 3000);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {

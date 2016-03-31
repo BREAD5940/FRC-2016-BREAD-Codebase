@@ -3,8 +3,13 @@ package org.usfirst.frc.team5940.management;
 
 
 import org.usfirst.frc.team5940.camera.CameraServerInit;
+import org.usfirst.frc.team5940.states.auto.AutoSelector;
 import org.usfirst.frc.team5940.states.auto.Breach;
+import org.usfirst.frc.team5940.states.auto.BreachAndComeBack;
+import org.usfirst.frc.team5940.states.auto.BreachAndPass;
 import org.usfirst.frc.team5940.states.auto.BreachAndPassAndComeBack;
+import org.usfirst.frc.team5940.states.auto.DoubleBreach;
+import org.usfirst.frc.team5940.states.auto.DoubleBreachAndPass;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -58,8 +63,8 @@ public class Robot extends SampleRobot {
 			state.interrupt();
 		}
 		//Activate auto
-		//state = new Thread(AutoSelector.getSelectedAuto(this));
-		state = new Thread(new BreachAndPassAndComeBack(this));
+		state = new Thread(AutoSelector.getSelectedAuto(this));
+//		state = new Thread(new AutoSelector(this));
 		try{
 			SmartDashboard.putString("Auto State Name", state.getClass().getSimpleName());
 			state.start();
