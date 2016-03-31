@@ -150,11 +150,8 @@ public class Robot extends SampleRobot {
 		while (currentTime >= startTime + 2000){
 			SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
 			SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
-			Components.r1.set(rightValue);
-			Components.r2.set(rightValue);
-			Components.rGroup.setValue((float) rightValue);
-			Components.l1.set(leftValue);
-			Components.l2.set(leftValue);
+			Components.rGroup.setValue(rightValue);
+			Components.lGroup.setValue(leftValue);
 			currentTime = System.currentTimeMillis();
 		}
 		try {
@@ -173,10 +170,8 @@ public class Robot extends SampleRobot {
     	while (currentTime <= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
-    		Components.r1.set(-1 * rightValue);
-    		Components.r2.set(-1 * rightValue);
-    		Components.l1.set(-1 * leftValue);
-    		Components.l2.set(-1 * leftValue);
+    		Components.rGroup.setValue(-1 * rightValue);
+    		Components.lGroup.setValue(-1 * leftValue);
     		currentTime = System.currentTimeMillis();
     	}
     	try {
@@ -195,10 +190,8 @@ public class Robot extends SampleRobot {
     	while (currentTime <= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
-    		Components.r1.set(rightValue);
-    		Components.r2.set(rightValue);
-    		Components.l1.set(-1 * leftValue);
-    		Components.l2.set(-1 * leftValue);
+    		Components.rGroup.setValue(rightValue);
+    		Components.lGroup.setValue(-1 * leftValue);
     		currentTime = System.currentTimeMillis();
     	}
     	try {
@@ -217,10 +210,8 @@ public class Robot extends SampleRobot {
     	while (currentTime <= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
-    		Components.r1.set(-1 * leftValue);
-    		Components.r2.set(-1 * leftValue);    	
-    		Components.l1.set(rightValue);
-    		Components.l2.set(rightValue);
+    		Components.rGroup.setValue(-1 * leftValue);    	
+    		Components.lGroup.setValue(rightValue);
     		currentTime = System.currentTimeMillis();
     	}
     	try {
@@ -237,7 +228,7 @@ public class Robot extends SampleRobot {
 			SmartDashboard.putNumber("Start Time For Test", startTime);
 			SmartDashboard.putString("Test Status", "Moving roller forwards");
     	while (currentTime <= startTime + 2000){
-    		Components.roller.set(rollerValue);
+    		Components.rollerGroup.setValue(rollerValue);
     		currentTime = System.currentTimeMillis();
     	}
     	try {
@@ -248,13 +239,13 @@ public class Robot extends SampleRobot {
 		}
 		}
     	
-    	//move roller backwards
+    	//move roller forwards
 		if ( (testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(RollerTest))){
     	startTime = System.currentTimeMillis();
     	SmartDashboard.putNumber("Start Time For Test", startTime);
 		SmartDashboard.putString("Test Status", "Moving roller backwards");
     	while (currentTime <= startTime + 2000){
-    		Components.roller.set(-1 * rollerValue);
+    		Components.rollerGroup.setValue(-1 * rollerValue);
     		currentTime = System.currentTimeMillis();
     	}
     	try {
