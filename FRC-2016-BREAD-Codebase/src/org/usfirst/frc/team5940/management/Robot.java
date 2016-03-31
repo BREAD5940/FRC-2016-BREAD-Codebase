@@ -3,8 +3,7 @@ package org.usfirst.frc.team5940.management;
 
 
 import org.usfirst.frc.team5940.camera.CameraServerInit;
-import org.usfirst.frc.team5940.states.auto.AutoManager;
-import org.usfirst.frc.team5940.states.auto.AutoSelector;
+import org.usfirst.frc.team5940.states.auto.Breach;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -49,8 +48,8 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void autonomous() {
-		this.autoManager = new Thread(new AutoManager(this));
-		this.autoManager.start();
+//		this.autoManager = new Thread(new AutoManager(this));
+//		this.autoManager.start();
 		
 		
 		//Intturupt state if existent
@@ -58,7 +57,8 @@ public class Robot extends SampleRobot {
 			state.interrupt();
 		}
 		//Activate auto
-		state = new Thread(AutoSelector.getSelectedAuto(this));
+		//state = new Thread(AutoSelector.getSelectedAuto(this));
+		state = new Thread(new Breach(this));
 		try{
 			SmartDashboard.putString("Auto State Name", state.getClass().getSimpleName());
 			state.start();

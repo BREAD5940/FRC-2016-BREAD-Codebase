@@ -12,22 +12,22 @@ public class AutoSelector {
 	 * This function chooses a auto program based on a rotary switch input.
 	 */
 	public static State getSelectedAuto(RobotBase robot) {
-		boolean practiceMode = true;
+		boolean practiceMode = false;
 		if (practiceMode == true) {
-			return new BreachAndPass(robot);
+			return new BreachAndPassAndComeBack(robot);
 		} else {
 			if (Components.sel0.get())
-				return new BreachAndPass(robot);
+				return null;
 			if (Components.sel1.get())
-				return new DoubleBreach(robot);
+				return new Breach(robot);
 			if (Components.sel2.get())
-				return null;
+				return new BreachAndComeBack(robot);
 			if (Components.sel3.get())
-				return null;
+				return new BreachAndPass(robot);
 			if (Components.sel4.get())
-				return null;
+				return new BreachAndPassAndComeBack(robot);
 			if (Components.sel5.get())
-				return null;
+				return new DoubleBreach(robot);
 			return null;
 		}
 	}

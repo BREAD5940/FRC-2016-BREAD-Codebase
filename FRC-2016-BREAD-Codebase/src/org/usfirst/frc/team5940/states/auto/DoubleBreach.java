@@ -21,9 +21,9 @@ public class DoubleBreach extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) 0.5);
-		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) -0.5);
-		AutoManager.moveForDistance(AutoManager.auto_distance_of_1, (float) 0.5);
+		AutoManager.moveForDistance((float) 0.5,3000);
+		AutoManager.moveForDistance((float) -0.5,3000);
+		AutoManager.moveForDistance((float) 0.5,3000);
 	}
 
 	@Override

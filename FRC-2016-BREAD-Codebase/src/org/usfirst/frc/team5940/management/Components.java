@@ -1,8 +1,7 @@
 package org.usfirst.frc.team5940.management;
 
-import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingSpeedyDrivetrain;
+import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSimpleGroup;
-import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSpeedyGroup;
 import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
 import org.usfirst.frc.team5940.other.ConfigurableJoystick;
 
@@ -24,10 +23,10 @@ public class Components {
 	public static boolean lEncoderInvert = false;
 	public static boolean rEncoderInvert = true;
 	
-	public static float lLowMotorScaleFactor = -500;
-	public static float lHighMotorScaleFactor = -500;
-	public static float rLowMotorScaleFactor = 10;
-	public static float rHighMotorScaleFactor = 20;
+//	public static float lLowMotorScaleFactor = -500;
+//	public static float lHighMotorScaleFactor = -500;
+//	public static float rLowMotorScaleFactor = 10;
+//	public static float rHighMotorScaleFactor = 20;
 	
 	//Encoder CANTalons
 	public static CANTalon rETalon = new CANTalon(2);
@@ -58,8 +57,8 @@ public class Components {
 	}
 	
 	//Drive MotorGroups
-	public static CANTalonSpeedyGroup lGroup = new CANTalonSpeedyGroup(new CANTalon[]{l1}, lMotorInvert, lLowMotorScaleFactor);
-	public static CANTalonSpeedyGroup rGroup = new CANTalonSpeedyGroup(new CANTalon[]{r2}, rMotorInvert, rLowMotorScaleFactor);
+	public static CANTalonSimpleGroup lGroup = new CANTalonSimpleGroup(new CANTalon[]{l1}, lMotorInvert);
+	public static CANTalonSimpleGroup rGroup = new CANTalonSimpleGroup(new CANTalon[]{r2}, rMotorInvert);
 //	public static MotorGroup lGroup = new CANTalonSimpleGroup(new CANTalon[]{l1}, lMotorInvert);
 //	public static MotorGroup rGroup = new CANTalonSimpleGroup(new CANTalon[]{r2}, rMotorInvert);
 	
@@ -72,7 +71,7 @@ public class Components {
 	public static DoubleSolenoid shifter = new DoubleSolenoid(PCMCANPort, PCMDownPort, PCMUpPort);
 	
 	//Drivetrain
-	public static DualMGShiftingSpeedyDrivetrain drivetrain = new DualMGShiftingSpeedyDrivetrain(lGroup, rGroup, shifter, 0, lLowMotorScaleFactor, lHighMotorScaleFactor, rLowMotorScaleFactor, rHighMotorScaleFactor);//TODO Needs to be changes to ShiftingSpeedy when encoder scaling tested
+	public static DualMGShiftingDrivetrain drivetrain = new DualMGShiftingDrivetrain(lGroup, rGroup, shifter, 0);//TODO Needs to be changes to ShiftingSpeedy when encoder scaling tested
 	
 	
 	//ROLLER

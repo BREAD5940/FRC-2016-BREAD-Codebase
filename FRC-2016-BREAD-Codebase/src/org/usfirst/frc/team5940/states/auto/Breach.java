@@ -9,9 +9,9 @@ import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 
 /** this class will move the robot through a defense, pass the ball, and move back. 
  */
-public class BreachAndPass extends State {
+public class Breach extends State {
 
-	public BreachAndPass(RobotBase robot) {
+	public Breach(RobotBase robot) {
 		super(robot);
 		// TODO Auto-generated constructor stub
 	}
@@ -21,13 +21,14 @@ public class BreachAndPass extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoManager.moveForDistance((float) 1000, 3000);
-		try {
-			Thread.sleep(1000);
+		AutoManager.moveForDistance((float) AutoManager.auto_speed_of_3, 3000);
+		/*try {
+			Thread.sleep(3000);
 		} catch (InterruptedException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
+		}*/
+		/*
 		shooter.setValue((float) 0.2);
 		try {
 			Thread.sleep(500);
@@ -36,7 +37,7 @@ public class BreachAndPass extends State {
 			e.printStackTrace();
 		}
 		shooter.setValue(0);
-		
+		*/
 		//AutoManager.moveForDistance(AutoManager.auto_distance_of_3, (float) -1000);
 	}
 
