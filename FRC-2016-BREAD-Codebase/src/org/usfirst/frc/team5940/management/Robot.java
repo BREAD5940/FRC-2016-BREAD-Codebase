@@ -22,16 +22,7 @@ public class Robot extends SampleRobot {
 	public Thread camera;
 	public Thread autoManager;
 
-	double rightValue = 0.5;
-	double leftValue = 0.5;
-	double rollerValue = 0.5;
-	long startTime;
-	long currentTime;
-	final static String AllOfThem = "Systems Test";
-	final static String Motors = "Motors Test";
-	final static String RollerTest = "Rollers Test";
-	final static String SensorTest = "Sensors Test";
-	final static String CameraTest = "Camera Test";
+	
 	
 	public Robot() {
 		//Call the super constructor
@@ -72,18 +63,20 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void operatorControl() {
-		SmartDashboard.putBoolean("cam", false);
-        SmartDashboard.putBoolean("caminitend", false);
-		this.camera = new Thread(new CameraServerInit(this));
-		this.camera.start();
-		
-		//Intrupt state if existent
-		if (state != null) {
-			state.interrupt();
-		}
-		//Activate op con
-		state = new Thread(new OpConStandardState(this));
-		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "OpCon state failed to start."); }
+		SmartDashboard.putNumber("point", 0);
+		testCode();
+//		SmartDashboard.putBoolean("cam", false);
+//        SmartDashboard.putBoolean("caminitend", false);
+//		this.camera = new Thread(new CameraServerInit(this));
+//		this.camera.start();
+//		
+//		//Intrupt state if existent
+//		if (state != null) {
+//			state.interrupt();
+//		}
+//		//Activate op con
+//		state = new Thread(new OpConStandardState(this));
+//		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "OpCon state failed to start."); }
 	}
 	
 	/**
@@ -93,15 +86,58 @@ public class Robot extends SampleRobot {
 	@Override
 	public void test() {
 		
+		
+	}
+
+	void testCode() {
+		double rightValue = 0.5;
+		double leftValue = 0.5;
+		double rollerValue = 0.5;
+		long startTime = 0;
+		long currentTime = 0;
+		String AllOfThem = "Systems Test";
+		String Motors = "Motors Test";
+		String RollerTest = "Rollers Test";
+		String SensorTest = "Sensors Test";
+		String CameraTest = "Camera Test";
+		
+		int testofthetest = 0;
+		
+		SmartDashboard.putNumber("point", 1);
 		SendableChooser testChooser = new SendableChooser();
 		testChooser.addDefault("All of them", AllOfThem);
 		testChooser.addObject("Drive Train only", Motors);
 		testChooser.addObject("Roller only",RollerTest);
 		testChooser.addObject("Ball Sensor Only", SensorTest);
 		testChooser.addObject("Camera only", CameraTest);
+
+		SmartDashboard.putNumber("point", 2);
+		SmartDashboard.putData("chooser",testChooser);
 		//String selected = (String) testChooser.getSelected();
 		
+		SmartDashboard.putString("Test Status", "Choose in 5...");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e2) { }
+		SmartDashboard.putString("Test Status", "Choose in 4...");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e2) { }
+		SmartDashboard.putString("Test Status", "Choose in 3...");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e2) { }
+		SmartDashboard.putString("Test Status", "Choose in 2...");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e2) { }
+		SmartDashboard.putString("Test Status", "Choose in 1...");
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e2) { }
+		
 		// Move forwards
+		SmartDashboard.putString("Object", (String)testChooser.getSelected());
 		if ((testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(Motors))){
 			startTime = System.currentTimeMillis();
 			SmartDashboard.putNumber("Start time for test", startTime);
@@ -128,7 +164,7 @@ public class Robot extends SampleRobot {
 			startTime = System.currentTimeMillis();
     		SmartDashboard.putNumber("Start time for test", startTime);
 			SmartDashboard.putString("Test Status", "Moving robot backward");
-    	while (currentTime >= startTime + 2000){
+    	while (currentTime <= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
     		Components.r1.set(-1 * rightValue);
@@ -150,7 +186,7 @@ public class Robot extends SampleRobot {
     	startTime = System.currentTimeMillis();
     	SmartDashboard.putNumber("Start time for test", startTime);
 		SmartDashboard.putString("Test Status", "Moving robot to the right");
-    	while (currentTime >= startTime + 2000){
+    	while (currentTime <= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
     		Components.r1.set(rightValue);
@@ -172,7 +208,7 @@ public class Robot extends SampleRobot {
     	startTime = System.currentTimeMillis();
     	SmartDashboard.putNumber("Start time for test", startTime);
     	SmartDashboard.putString("Test Status", "Moving robot to the left");
-    	while (currentTime >= startTime + 2000){
+    	while (currentTime <= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
     		Components.r1.set(-1 * leftValue);
@@ -194,7 +230,7 @@ public class Robot extends SampleRobot {
 			startTime = System.currentTimeMillis();
 			SmartDashboard.putNumber("Start Time For Test", startTime);
 			SmartDashboard.putString("Test Status", "Moving roller forwards");
-    	while (currentTime >= startTime + 2000){
+    	while (currentTime <= startTime + 2000){
     		Components.roller.set(rollerValue);
     		currentTime = System.currentTimeMillis();
     	}
@@ -211,7 +247,7 @@ public class Robot extends SampleRobot {
     	startTime = System.currentTimeMillis();
     	SmartDashboard.putNumber("Start Time For Test", startTime);
 		SmartDashboard.putString("Test Status", "Moving roller backwards");
-    	while (currentTime >= startTime + 2000){
+    	while (currentTime <= startTime + 2000){
     		Components.roller.set(-1 * rollerValue);
     		currentTime = System.currentTimeMillis();
     	}
@@ -228,7 +264,7 @@ public class Robot extends SampleRobot {
 	    	startTime = System.currentTimeMillis();
 	    	SmartDashboard.putNumber("Start Time For Test", startTime);
 			SmartDashboard.putString("Test Status", "Testing the ball sensor");
-		while (currentTime >= startTime + 2000){
+		while (currentTime <= startTime + 2000){
     		SmartDashboard.putBoolean("Is the detector working? You tell me!", Components.getCorrectedDetector());
     		currentTime = System.currentTimeMillis();
 		}
