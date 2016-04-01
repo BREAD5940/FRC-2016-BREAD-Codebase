@@ -95,9 +95,9 @@ public class Robot extends SampleRobot {
 	}
 
 	void testCode() {
-		double rightValue = 0.5;
-		double leftValue = 0.5;
-		double rollerValue = 0.5;
+		float rightValue = 0.5f;
+		float leftValue = 0.5f;
+		float rollerValue = 0.5f;
 		long startTime = 0;
 		long currentTime = 0;
 		String AllOfThem = "Systems Test";
@@ -152,6 +152,7 @@ public class Robot extends SampleRobot {
 			SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
 			Components.r1.set(rightValue);
 			Components.r2.set(rightValue);
+			Components.rGroup.setValue((float) rightValue);
 			Components.l1.set(leftValue);
 			Components.l2.set(leftValue);
 			currentTime = System.currentTimeMillis();
