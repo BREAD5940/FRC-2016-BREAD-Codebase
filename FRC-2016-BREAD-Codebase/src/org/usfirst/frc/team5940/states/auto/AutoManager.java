@@ -38,6 +38,7 @@ public class AutoManager extends State {
 	int auto_distance_of_5 = 400;
 	int auto_distance_of_6 = 500;
 	int distanceToBackOfHole;
+	static long breachDistance = 5000;
 	static float rightEncoderDistance;
 	static float leftEncoderDistance;
 	static float rightEncoderRate;

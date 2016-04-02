@@ -5,11 +5,6 @@ package org.usfirst.frc.team5940.management;
 import org.usfirst.frc.team5940.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.auto.AutoSelector;
 import org.usfirst.frc.team5940.states.auto.Breach;
-import org.usfirst.frc.team5940.states.auto.BreachAndComeBack;
-import org.usfirst.frc.team5940.states.auto.BreachAndPass;
-import org.usfirst.frc.team5940.states.auto.BreachAndPassAndComeBack;
-import org.usfirst.frc.team5940.states.auto.DoubleBreach;
-import org.usfirst.frc.team5940.states.auto.DoubleBreachAndPass;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;
@@ -54,8 +49,8 @@ public class Robot extends SampleRobot {
 			state.interrupt();
 		}
 		//Activate auto
-		state = new Thread(AutoSelector.getSelectedAuto(this));
-//		state = new Thread(new AutoSelector(this));
+//		state = new Thread(AutoSelector.getSelectedAuto(this));
+		state = new Thread(new Breach(this));
 		try{
 			SmartDashboard.putString("Auto State Name", state.getClass().getSimpleName());
 			state.start();
@@ -69,19 +64,19 @@ public class Robot extends SampleRobot {
 	@Override
 	public void operatorControl() {
 		SmartDashboard.putNumber("point", 0);
-		testCode();
-//		SmartDashboard.putBoolean("cam", false);
-//        SmartDashboard.putBoolean("caminitend", false);
-//		this.camera = new Thread(new CameraServerInit(this));
-//		this.camera.start();
-//		
-//		//Intrupt state if existent
-//		if (state != null) {
-//			state.interrupt();
-//		}
-//		//Activate op con
-//		state = new Thread(new OpConStandardState(this));
-//		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "OpCon state failed to start."); }
+//		testCode();
+		SmartDashboard.putBoolean("cam", false);
+        SmartDashboard.putBoolean("caminitend", false);
+		this.camera = new Thread(new CameraServerInit(this));
+		this.camera.start();
+		
+		//Intrupt state if existent
+		if (state != null) {
+			state.interrupt();
+		}
+		//Activate op con
+		state = new Thread(new OpConStandardState(this));
+		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "OpCon state failed to start."); }
 	}
 	
 	/**
@@ -95,6 +90,7 @@ public class Robot extends SampleRobot {
 	}
 
 	void testCode() {
+		Components.setupTalons();
 		float rightValue = 0.5f;
 		float leftValue = 0.5f;
 		float rollerValue = 0.5f;
@@ -147,13 +143,15 @@ public class Robot extends SampleRobot {
 			startTime = System.currentTimeMillis();
 			SmartDashboard.putNumber("Start time for test", startTime);
 			SmartDashboard.putString("Test Status", "Moving robot forward");
-		while (currentTime >= startTime + 2000){
+		while (currentTime <= startTime + 2000){
 			SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
 			SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
 			Components.rGroup.setValue(rightValue);
 			Components.lGroup.setValue(leftValue);
 			currentTime = System.currentTimeMillis();
 		}
+    	Components.rGroup.setValue(0);    	
+		Components.lGroup.setValue(0);
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -174,6 +172,8 @@ public class Robot extends SampleRobot {
     		Components.lGroup.setValue(-1 * leftValue);
     		currentTime = System.currentTimeMillis();
     	}
+    	Components.rGroup.setValue(0);    	
+		Components.lGroup.setValue(0);
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -190,10 +190,12 @@ public class Robot extends SampleRobot {
     	while (currentTime <= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
-    		Components.rGroup.setValue(rightValue);
-    		Components.lGroup.setValue(-1 * leftValue);
+    		Components.rGroup.setValue(-1 * rightValue);
+    		Components.lGroup.setValue(leftValue);
     		currentTime = System.currentTimeMillis();
     	}
+    	Components.rGroup.setValue(0);    	
+		Components.lGroup.setValue(0);
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -210,10 +212,13 @@ public class Robot extends SampleRobot {
     	while (currentTime <= startTime + 2000){
     		SmartDashboard.putNumber("Right Encoder Value", Components.rETalon.getEncPosition());
     		SmartDashboard.putNumber("Left Encoder Value", Components.lETalon.getEncPosition());
-    		Components.rGroup.setValue(-1 * leftValue);    	
-    		Components.lGroup.setValue(rightValue);
+    		Components.rGroup.setValue(rightValue);    	
+    		Components.lGroup.setValue(-1 * leftValue);
     		currentTime = System.currentTimeMillis();
     	}
+    	Components.rGroup.setValue(0);    	
+		Components.lGroup.setValue(0);
+		SmartDashboard.putString("Test Status", "Complete");
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -231,6 +236,7 @@ public class Robot extends SampleRobot {
     		Components.rollerGroup.setValue(rollerValue);
     		currentTime = System.currentTimeMillis();
     	}
+		Components.rollerGroup.setValue(0);
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -248,6 +254,8 @@ public class Robot extends SampleRobot {
     		Components.rollerGroup.setValue(-1 * rollerValue);
     		currentTime = System.currentTimeMillis();
     	}
+		Components.rollerGroup.setValue(0);
+		SmartDashboard.putString("Test Status", "Complete");
     	try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e) {
@@ -265,6 +273,7 @@ public class Robot extends SampleRobot {
     		SmartDashboard.putBoolean("Is the detector working? You tell me!", Components.getCorrectedDetector());
     		currentTime = System.currentTimeMillis();
 		}
+		SmartDashboard.putString("Test Status", "Complete");
 		try {
 			Thread.sleep(2000);
 		} catch (InterruptedException e1) {
@@ -287,6 +296,7 @@ public class Robot extends SampleRobot {
 		}
     	
     		camera.interrupt();
+    		SmartDashboard.putString("Test Status", "Complete");
     	}
 	}
 }

@@ -25,7 +25,7 @@ public class BreachAndPassAndComeBack extends State {
 		// TODO Auto-generated method stub
 		SmartDashboard.putBoolean("Started", true);
 
-		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, 3000);
+		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, AutoManager.breachDistance);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
@@ -42,7 +42,7 @@ public class BreachAndPassAndComeBack extends State {
 		shooter.setValue(0);
 
 		SmartDashboard.putBoolean("At the end", true);
-		AutoManager.moveForDistance((float) -AutoManager.defaultAutoSpeed, 3000);
+		AutoManager.moveForDistance((float) -AutoManager.defaultAutoSpeed, AutoManager.breachDistance);
 	}
 
 	@Override

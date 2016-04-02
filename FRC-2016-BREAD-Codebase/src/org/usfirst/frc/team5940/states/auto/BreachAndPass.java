@@ -21,7 +21,7 @@ public class BreachAndPass extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, 3000);
+		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, AutoManager.breachDistance);
 		try {
 			Thread.sleep(1000);
 		} catch (InterruptedException e) {
