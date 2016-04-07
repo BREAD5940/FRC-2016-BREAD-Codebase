@@ -34,14 +34,8 @@ public class DoubleBreachAndPass extends State {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		shooter.setValue((float) 0.2);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		shooter.setValue(0);
+
+		Components.roller.pass();
 	}
 
 	@Override

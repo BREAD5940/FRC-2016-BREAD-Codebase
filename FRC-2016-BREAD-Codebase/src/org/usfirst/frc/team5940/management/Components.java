@@ -1,6 +1,7 @@
 package org.usfirst.frc.team5940.management;
 
 import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
+import org.usfirst.frc.team5940.motorcontrol.Roller;
 import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSimpleGroup;
 import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
 import org.usfirst.frc.team5940.other.ConfigurableJoystick;
@@ -83,10 +84,13 @@ public class Components {
 	public static DigitalInput ballDetector = new DigitalInput(9);
 	
 	//Roller CANTalon
-	public static CANTalon roller = new CANTalon(0);
+	public static CANTalon rollerTalon = new CANTalon(0);
 	
 	//Roller MotorGroup
-	public static MotorGroup rollerGroup = new CANTalonSimpleGroup(new CANTalon[]{roller}, rollerInvert);
+	public static MotorGroup rollerGroup = new CANTalonSimpleGroup(new CANTalon[]{rollerTalon}, rollerInvert);
+	
+	//Roller
+	public static Roller roller = new Roller(rollerGroup);
 	
 	//Detector corrector
 	public static boolean getCorrectedDetector() {

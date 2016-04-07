@@ -27,7 +27,7 @@ public class AutoManager extends State {
 	// int auto_program = 1;
 	static float auto_distance_of_1 = 400; // TODO Get the right value
 	static float auto_distance_of_3 = 15500; // TODO Get the right value
-	static float defaultAutoSpeed = (float) 0.25;
+	static float defaultAutoSpeed = (float) 0.4;
 	int auto_distance_of_4a = 400; // TODO Get the right value
 	int auto_distance_of_4b = 100;
 	int auto_distance_of_4c = 800; // TODO Get the right value (Note: It

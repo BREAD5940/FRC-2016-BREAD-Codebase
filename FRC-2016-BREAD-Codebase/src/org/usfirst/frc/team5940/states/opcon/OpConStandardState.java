@@ -24,7 +24,6 @@ public class OpConStandardState extends State {
 	boolean shiftUp;
 	double shooterControl;
 	DualMGShiftingDrivetrain driver = Components.drivetrain;
-	MotorGroup roller = Components.rollerGroup;
 	int working = 0;
 	float scaleFactor;
 
@@ -80,7 +79,7 @@ public class OpConStandardState extends State {
 		float newRVal = (float) shooterControl;
 		if (Components.getCorrectedDetector() && newRVal < 0)
 			newRVal = 0;
-		roller.setValue(newRVal);
+		Components.roller.setValue(newRVal);
 	}
 
 	/**
