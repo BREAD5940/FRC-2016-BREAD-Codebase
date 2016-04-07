@@ -157,7 +157,7 @@ public class OpConStandardState extends State {
 	 * Sets the control for Alex's drive.
 	 */
 	private void setAlex() {
-		forward = Components.getCorrectedAxis(1);
+		forward = -Components.getCorrectedAxis(1);
 		horizontal = Components.getCorrectedAxis(4);
 		shooterControl = (Components.getCorrectedAxis(3) - Components.getCorrectedAxis(2));
 		if (controller.getRawButton(9)) {
