@@ -13,7 +13,7 @@ public class AutoSelector {
 	 */
 	public static State getSelectedAuto(RobotBase robot) {
 		
-		if (Components.sel0.get())
+		/*if (Components.sel0.get())
 			return null;
 		if (Components.sel1.get())
 			return new Breach(robot);
@@ -25,7 +25,8 @@ public class AutoSelector {
 			return new BreachAndPassAndComeBack(robot);
 		if (Components.sel5.get())
 			return new DoubleBreach(robot);
-		return null;
+		return null;*/ //TODO test and use
+		return new Breach(robot);
 		
 	}
 }

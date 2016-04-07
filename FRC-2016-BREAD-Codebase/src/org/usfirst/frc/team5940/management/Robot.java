@@ -33,6 +33,8 @@ public class Robot extends SampleRobot {
 	@Override
 	public void robotInit() {
 		Components.setupTalons();
+		this.camera = new Thread(new CameraServerInit(this));
+		this.camera.start();
 	}
 	
 	/**
@@ -49,8 +51,8 @@ public class Robot extends SampleRobot {
 			state.interrupt();
 		}
 		//Activate auto
-//		state = new Thread(AutoSelector.getSelectedAuto(this));
-		state = new Thread(new Breach(this));
+		state = new Thread(AutoSelector.getSelectedAuto(this));
+//		state = new Thread(new Breach(this));
 		try{
 			SmartDashboard.putString("Auto State Name", state.getClass().getSimpleName());
 			state.start();
@@ -67,8 +69,7 @@ public class Robot extends SampleRobot {
 //		testCode();
 		SmartDashboard.putBoolean("cam", false);
         SmartDashboard.putBoolean("caminitend", false);
-		this.camera = new Thread(new CameraServerInit(this));
-		this.camera.start();
+		
 		
 		//Intrupt state if existent
 		if (state != null) {
