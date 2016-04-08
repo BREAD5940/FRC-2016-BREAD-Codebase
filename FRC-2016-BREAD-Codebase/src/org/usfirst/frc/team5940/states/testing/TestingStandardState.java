@@ -65,7 +65,7 @@ public class TestingStandardState extends State {
 		if(selected.equals(ALL_TESTS_NAME)) {
 			for(int i = 0; i < registeredTests.length; i++) {
 				runTest(registeredTests[i]);
-				pause();
+				pause(1000);
 			}
 		}else {
 			Test chosen = null;
@@ -73,7 +73,7 @@ public class TestingStandardState extends State {
 				if(selected.equals(registeredTests[i].getName())) chosen = registeredTests[i];
 			}
 			runTest(chosen);
-			pause();
+			pause(1000);
 		}
 		
 		
@@ -84,10 +84,10 @@ public class TestingStandardState extends State {
 		test.runTest();
 	}
 	
-	static void pause() {
+	static void pause(int length) {
 		updateStatus("Waiting...");
 		try {
-			Thread.sleep(1000);
+			Thread.sleep(length);
 		} catch (InterruptedException e) {
 		}
 	}
