@@ -16,7 +16,12 @@ public class RollerOutwardTest implements Test {
 	public void runTest() {
 		// TODO Auto-generated method stub
 		Components.roller.setValue(0.25f);
-		TestingStandardState.pause(5000);
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Components.roller.setValue(0);
 	}
 }
