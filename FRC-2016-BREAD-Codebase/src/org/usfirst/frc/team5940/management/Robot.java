@@ -66,6 +66,9 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void operatorControl() {
+		this.camera = new Thread(new CameraServerInit(this));
+		this.camera.start();
+		
 		SendableChooser testVsOpCon = new SendableChooser();
 		testVsOpCon.addDefault("Standard Operator Control", "OPCON");
 		testVsOpCon.addObject("Standard Testing", "TEST");
@@ -77,7 +80,7 @@ public class Robot extends SampleRobot {
 		}
 		//Activate op con
 		if(testVsOpCon.getSelected().equals("TEST")) state = new Thread(new TestingStandardState(this));
-		else state = new Thread(new OpConStandardState(this));
+		if(testVsOpCon.getSelected().equals("OPCON")) state = new Thread(new OpConStandardState(this));
 		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "OpCon state failed to start."); }
 		//testCode();
 		
