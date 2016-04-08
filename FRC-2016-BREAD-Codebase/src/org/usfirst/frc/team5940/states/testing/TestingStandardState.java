@@ -3,6 +3,7 @@ package org.usfirst.frc.team5940.states.testing;
 import org.usfirst.frc.team5940.management.Components;
 import org.usfirst.frc.team5940.states.State;
 import org.usfirst.frc.team5940.states.auto.AutoSelector;
+import org.usfirst.frc.team5940.states.testing.tests.AutoSelectorTest;
 
 import edu.wpi.first.wpilibj.RobotBase;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -90,7 +91,7 @@ public class TestingStandardState extends State {
 		test.runTest();
 	}
 	
-	static void pause(int length) {
+	public static void pause(int length) {
 		updateStatus("Waiting...");
 		try {
 			Thread.sleep(length);

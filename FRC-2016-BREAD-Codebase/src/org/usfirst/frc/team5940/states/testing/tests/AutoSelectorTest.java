@@ -1,6 +1,8 @@
-package org.usfirst.frc.team5940.states.testing;
+package org.usfirst.frc.team5940.states.testing.tests;
 
 import org.usfirst.frc.team5940.management.Components;
+import org.usfirst.frc.team5940.states.testing.Test;
+import org.usfirst.frc.team5940.states.testing.TestingStandardState;
 
 public class AutoSelectorTest implements Test {
 
