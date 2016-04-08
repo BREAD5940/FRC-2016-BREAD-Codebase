@@ -64,6 +64,7 @@ public class TestingStandardState extends State {
 		String selected = (String) this.testChooser.getSelected();
 		if(selected.equals(ALL_TESTS_NAME)) {
 			for(int i = 0; i < registeredTests.length; i++) {
+				
 				runTest(registeredTests[i]);
 				pause(1000);
 			}
@@ -81,6 +82,11 @@ public class TestingStandardState extends State {
 	
 	static void runTest(Test test) {
 		updateStatus("Running: " + test.getName());
+		try {
+			Thread.sleep(2000);
+		} catch (InterruptedException e) {
+			e.printStackTrace();
+		}
 		test.runTest();
 	}
 	
