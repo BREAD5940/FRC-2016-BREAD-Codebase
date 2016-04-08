@@ -52,7 +52,7 @@ public class AutoManager extends State {
 	static float TestNumber = 0;
 	static long currentTime;
 	static long startTime;
-	public static final long BREACH_TIME = 5000;
+	public static final long BREACH_TIME = 3750;
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
 
