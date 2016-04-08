@@ -5,12 +5,14 @@ import org.usfirst.frc.team5940.states.State;
 import org.usfirst.frc.team5940.states.testing.tests.AutoProgramsTest;
 import org.usfirst.frc.team5940.states.testing.tests.AutoSelectorTest;
 import org.usfirst.frc.team5940.states.testing.tests.BallSensorTest;
+import org.usfirst.frc.team5940.states.testing.tests.ControllerTest;
 import org.usfirst.frc.team5940.states.testing.tests.DrivetrainBackwardTest;
 import org.usfirst.frc.team5940.states.testing.tests.DrivetrainForwardTest;
 import org.usfirst.frc.team5940.states.testing.tests.DrivetrainLeftTest;
 import org.usfirst.frc.team5940.states.testing.tests.DrivetrainRightTest;
 import org.usfirst.frc.team5940.states.testing.tests.GearShiftDownTest;
 import org.usfirst.frc.team5940.states.testing.tests.GearShiftUpTest;
+import org.usfirst.frc.team5940.states.testing.tests.NothingTest;
 import org.usfirst.frc.team5940.states.testing.tests.RollerInwardTest;
 import org.usfirst.frc.team5940.states.testing.tests.RollerOutwardTest;
 
@@ -25,6 +27,7 @@ public class TestingStandardState extends State {
 		new AutoProgramsTest(), 
 		new AutoSelectorTest(),
 		new BallSensorTest(),
+		new ControllerTest(),
 		new DrivetrainBackwardTest(),
 		new DrivetrainForwardTest(),
 		new DrivetrainLeftTest(),
@@ -33,7 +36,8 @@ public class TestingStandardState extends State {
 		new GearShiftUpTest(),
 		new GearShiftDownTest(),
 		new RollerInwardTest(),
-		new RollerOutwardTest()
+		new RollerOutwardTest(),
+		new NothingTest()
 	};
 	public static final float rightValue = 0.5f;
 	public static final float leftValue = 0.5f;
