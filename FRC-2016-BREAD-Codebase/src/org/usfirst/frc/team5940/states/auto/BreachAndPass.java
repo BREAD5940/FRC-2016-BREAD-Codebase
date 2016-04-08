@@ -20,16 +20,8 @@ public class BreachAndPass extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, AutoManager.breachDistance);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
 		Components.roller.pass();
-		
-		//AutoManager.moveForDistance(AutoManager.auto_distance_of_3, (float) -1000);
 	}
 
 	@Override

@@ -21,21 +21,13 @@ public class BreachAndPassAndComeBack extends State {
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
-		SmartDashboard.putBoolean("Started", true);
-
-		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, AutoManager.breachDistance);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
+		SmartDashboard.putNumber("pos", 0);
+		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
+		SmartDashboard.putNumber("pos", 1);
 		Components.roller.pass();
-
-		SmartDashboard.putBoolean("At the end", true);
-		AutoManager.moveForDistance((float) -AutoManager.defaultAutoSpeed, AutoManager.breachDistance);
+		SmartDashboard.putNumber("pos", 2);
+		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) -AutoManager.defaultAutoSpeed);
+		SmartDashboard.putNumber("pos", 3);
 	}
 
 	@Override

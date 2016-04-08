@@ -159,8 +159,9 @@ public class OpConStandardState extends State {
 		forward = Components.getCorrectedAxis(1);
 		horizontal = Components.getCorrectedAxis(4);
 		shooterControl = (Components.getCorrectedAxis(3) - Components.getCorrectedAxis(2));
-		if (controller.getRawButton(9)) {
-			shooterControl = 0.25;
+		if (controller.getRawButton(1)) {
+			//shooterControl = 0.25;
+			Components.roller.pass();
 		}
 
 		if (controller.getRawButton(10)) {
@@ -177,8 +178,8 @@ public class OpConStandardState extends State {
 			while (controller.getRawButton(10));
 		}
 
-		shiftDown = controller.getRawButton(5);
-		shiftUp = controller.getRawButton(6);
+		shiftDown = controller.getRawButton(6);
+		shiftUp = controller.getRawButton(5);
 	}
 
 	/**

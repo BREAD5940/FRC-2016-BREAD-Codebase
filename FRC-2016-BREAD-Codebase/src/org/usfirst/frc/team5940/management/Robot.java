@@ -78,6 +78,8 @@ public class Robot extends SampleRobot {
 		//Activate op con
 		state = new Thread(new OpConStandardState(this));
 		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "OpCon state failed to start."); }
+		//testCode();
+		
 	}
 	
 	/**

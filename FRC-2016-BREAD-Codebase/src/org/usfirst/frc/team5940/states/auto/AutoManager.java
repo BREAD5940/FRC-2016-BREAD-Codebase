@@ -27,7 +27,7 @@ public class AutoManager extends State {
 	// int auto_program = 1;
 	static float auto_distance_of_1 = 400; // TODO Get the right value
 	static float auto_distance_of_3 = 15500; // TODO Get the right value
-	static float defaultAutoSpeed = (float) 0.4;
+	static float defaultAutoSpeed = (float) 0.6;
 	int auto_distance_of_4a = 400; // TODO Get the right value
 	int auto_distance_of_4b = 100;
 	int auto_distance_of_4c = 800; // TODO Get the right value (Note: It
@@ -52,6 +52,7 @@ public class AutoManager extends State {
 	static float TestNumber = 0;
 	static long currentTime;
 	static long startTime;
+	public static final long BREACH_TIME = 5000;
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
 
@@ -70,7 +71,7 @@ public class AutoManager extends State {
 	 * Moves the robot through a defense and then throws a ball out of the
 	 * pickup system and into the courtyard.
 	 */
-	public void breachAndPass() {
+	/*public void breachAndPass() {
 		moveForDistance( (float) 0.5,3000);
 
 		Components.rollerGroup.setValue((float) 0.5);
@@ -83,7 +84,7 @@ public class AutoManager extends State {
 		Components.rollerGroup.setValue(0);
 
 		moveForDistance((float) -0.5,3000);
-	}
+	}*/
 
 	/**
 	 * This method breaches a defense a goes back to the neutral zone through
@@ -228,9 +229,14 @@ public class AutoManager extends State {
 
 	}
 	
-	public static void moveForTime(double time, double speed) {
+	public static void moveForTime(long time, double speed) {
 		Components.drivetrain.updateArcade(speed, 0, 1);
-		Timer.delay(time);
+		try {
+			Thread.sleep(time);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		Components.drivetrain.updateArcade(0, 0, 1);
 	}
 

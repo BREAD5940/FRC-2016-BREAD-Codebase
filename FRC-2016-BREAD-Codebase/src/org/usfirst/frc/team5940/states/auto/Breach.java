@@ -16,29 +16,10 @@ public class Breach extends State {
 		// TODO Auto-generated constructor stub
 	}
 
-	MotorGroup shooter = Components.rollerGroup;
 	
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
-		AutoManager.moveForDistance((float) AutoManager.defaultAutoSpeed, AutoManager.breachDistance);
-		/*try {
-			Thread.sleep(3000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}*/
-		/*
-		shooter.setValue((float) 0.2);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		shooter.setValue(0);
-		*/
-		//AutoManager.moveForDistance(AutoManager.auto_distance_of_3, (float) -1000);
+		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
 	}
 
 	@Override

@@ -20,24 +20,8 @@ public class BreachAndComeBack extends State {
 	
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
-		AutoManager.moveForDistance( (float) AutoManager.defaultAutoSpeed, AutoManager.breachDistance);
-		try {
-			Thread.sleep(1000);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		/*shooter.setValue((float) 0.2);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		shooter.setValue(0);*/
-		
-		AutoManager.moveForDistance((float) -AutoManager.defaultAutoSpeed, AutoManager.breachDistance);
+		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
+		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) -AutoManager.defaultAutoSpeed);
 	}
 
 	@Override
