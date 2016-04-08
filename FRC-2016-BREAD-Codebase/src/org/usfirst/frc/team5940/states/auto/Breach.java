@@ -20,6 +20,7 @@ public class Breach extends State {
 	@Override
 	protected void init() {
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
+		Thread.currentThread().interrupt();
 	}
 
 	@Override

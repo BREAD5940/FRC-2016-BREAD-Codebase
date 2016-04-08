@@ -11,12 +11,16 @@ import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.RobotBase;
 /**
  * This class calls all of the component variables on the robot.  
  * @author Team 5940 
  *
  */
 public class Components {
+	//ROBOTBASE
+	public static RobotBase robot;
+	
 	//DRIVETRAIN
 	//Inversions
 	public static boolean lMotorInvert = true;

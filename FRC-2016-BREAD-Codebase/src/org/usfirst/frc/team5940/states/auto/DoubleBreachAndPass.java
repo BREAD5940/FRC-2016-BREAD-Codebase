@@ -29,6 +29,7 @@ public class DoubleBreachAndPass extends State {
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) -AutoManager.defaultAutoSpeed);
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
 		Components.roller.pass();
+		Thread.currentThread().interrupt();
 	}
 
 	@Override

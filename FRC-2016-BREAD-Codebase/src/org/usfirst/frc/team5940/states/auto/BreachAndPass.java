@@ -22,6 +22,7 @@ public class BreachAndPass extends State {
 		// TODO Auto-generated method stub
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
 		Components.roller.pass();
+		Thread.currentThread().interrupt();
 	}
 
 	@Override

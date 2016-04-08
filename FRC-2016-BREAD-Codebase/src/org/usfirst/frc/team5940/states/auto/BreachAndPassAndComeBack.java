@@ -28,6 +28,7 @@ public class BreachAndPassAndComeBack extends State {
 		SmartDashboard.putNumber("pos", 2);
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) -AutoManager.defaultAutoSpeed);
 		SmartDashboard.putNumber("pos", 3);
+		Thread.currentThread().interrupt();
 	}
 
 	@Override

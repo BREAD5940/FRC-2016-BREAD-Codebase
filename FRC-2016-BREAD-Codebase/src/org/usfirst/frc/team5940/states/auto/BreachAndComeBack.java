@@ -22,6 +22,7 @@ public class BreachAndComeBack extends State {
 	protected void init() {
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) -AutoManager.defaultAutoSpeed);
+		Thread.currentThread().interrupt();
 	}
 
 	@Override
