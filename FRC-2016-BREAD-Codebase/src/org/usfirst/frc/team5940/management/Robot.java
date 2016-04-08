@@ -4,8 +4,8 @@ package org.usfirst.frc.team5940.management;
 
 import org.usfirst.frc.team5940.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.auto.AutoSelector;
-import org.usfirst.frc.team5940.states.auto.Breach;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
+import org.usfirst.frc.team5940.states.testing.TestingStandardState;
 
 import edu.wpi.first.wpilibj.SampleRobot;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
@@ -66,18 +66,18 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void operatorControl() {
-		SmartDashboard.putNumber("point", 0);
-//		testCode();
-		SmartDashboard.putBoolean("cam", false);
-        SmartDashboard.putBoolean("caminitend", false);
-		
+		SendableChooser testVsOpCon = new SendableChooser();
+		testVsOpCon.addDefault("Standard Operator Control", "OPCON");
+		testVsOpCon.addObject("Standard Testing", "TEST");
+		SmartDashboard.putData("OpCon vs ", testVsOpCon);
 		
 		//Intrupt state if existent
 		if (state != null) {
 			state.interrupt();
 		}
 		//Activate op con
-		state = new Thread(new OpConStandardState(this));
+		if(testVsOpCon.getSelected().equals("TEST")) state = new Thread(new TestingStandardState(this));
+		else state = new Thread(new OpConStandardState(this));
 		try{ state.start(); }catch(Exception e) {SmartDashboard.putString("Status", "OpCon state failed to start."); }
 		//testCode();
 		
