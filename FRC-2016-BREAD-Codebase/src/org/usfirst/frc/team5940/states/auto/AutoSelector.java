@@ -30,7 +30,7 @@ public class AutoSelector {
 			return new BreachAndPassAndComeBack(robot);}
 		if (Components.sel5.get()) {
 			SmartDashboard.putNumber("auto", 5);
-			return new Anti2BallAuto(robot);}
+			return new DoubleBreach(robot);}
 		return new Breach(robot);
 		
 	}
