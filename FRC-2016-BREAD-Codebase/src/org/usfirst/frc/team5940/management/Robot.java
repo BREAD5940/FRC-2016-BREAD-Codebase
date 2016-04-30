@@ -28,7 +28,7 @@ public class Robot extends SampleRobot {
 		//Call the super constructor
 		super();
 		Components.robot = this;
-		SmartDashboard.putString("Codebase Version", "DEB Fixes v2.0");
+		SmartDashboard.putString("Codebase Version", "DEB Fixes v2.1");
 	}
 	
 	@Override

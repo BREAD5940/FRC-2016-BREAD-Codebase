@@ -29,7 +29,7 @@ public class Roller {
 		roller.setValue(0.15f);
 		
 		try {
-			Thread.sleep(750);
+			Thread.sleep(1000);
 		} catch (InterruptedException e) {
 		}
 		
