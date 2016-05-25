@@ -68,25 +68,6 @@ public class AutoManager extends State {
 	}
 
 	/**
-	 * Moves the robot through a defense and then throws a ball out of the
-	 * pickup system and into the courtyard.
-	 */
-	/*public void breachAndPass() {
-		moveForDistance( (float) 0.5,3000);
-
-		Components.rollerGroup.setValue((float) 0.5);
-		try {
-			Thread.sleep(500);
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		Components.rollerGroup.setValue(0);
-
-		moveForDistance((float) -0.5,3000);
-	}*/
-
-	/**
 	 * This method breaches a defense a goes back to the neutral zone through
 	 * another defense. All distances are set by variables auto_distance_of + a
 	 * number + a letter in some instances.
@@ -110,33 +91,6 @@ public class AutoManager extends State {
 		SmartDashboard.putBoolean("Move Forward Activated", true);
 		moveForDistance((float) 0.2,3000);
 	}
-
-	/*
-	 * public void breachAndShoot() { moveForDistance(auto_distance_of_3,
-	 * (float) 0.5);
-	 * 
-	 * moveForDistance(auto_distance_of_6, (float) 0.5);
-	 * 
-	 * driver.spinToAngle(30, true); // Both need to be greater than 10 inches
-	 * // Both need to be less than 35 inches // Both need to be within 20
-	 * inches of each other // TODO get correct distances if
-	 * (leftUltrasonic.getRangeInches() < 6 || leftUltrasonic.getRangeInches() >
-	 * 35 || rightUltrasonic.getRangeInches() - leftUltrasonic.getRangeInches()
-	 * > 20) { // turn right while (leftUltrasonic.getRangeInches() < 6 ||
-	 * leftUltrasonic.getRangeInches() > 35 || rightUltrasonic.getRangeInches()
-	 * - leftUltrasonic.getRangeInches() > 20) { driver.updateArcade(0, 0.25,
-	 * 1); } } else if (rightUltrasonic.getRangeInches() < 6 ||
-	 * rightUltrasonic.getRangeInches() > 35 || leftUltrasonic.getRangeInches()
-	 * - rightUltrasonic.getRangeInches() > 20) { // turn left while
-	 * (rightUltrasonic.getRangeInches() < 6 || rightUltrasonic.getRangeInches()
-	 * > 35 || leftUltrasonic.getRangeInches() -
-	 * rightUltrasonic.getRangeInches() > 20) { driver.updateArcade(0, -0.25,
-	 * 1); } } driver.updateArcade(0, 0, 1);
-	 * 
-	 * shooter.setValue((float) 0.5); try { Thread.sleep(500); } catch
-	 * (InterruptedException e) { // TODO Auto-generated catch block
-	 * e.printStackTrace(); } shooter.setValue(0); }
-	 */
 
 	/**
 	 * Moves for a certain distance.
@@ -234,7 +188,6 @@ public class AutoManager extends State {
 		try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		Components.drivetrain.updateArcade(0, 0, 1);
@@ -242,12 +195,10 @@ public class AutoManager extends State {
 
 	@Override
 	protected void update() {
-		// // TODO Make the auto Note: This should be in INIT()
 	}
 
 	@Override
 	protected void init() {
-		// TODO Auto-generated method stub
 	}
 
 }
