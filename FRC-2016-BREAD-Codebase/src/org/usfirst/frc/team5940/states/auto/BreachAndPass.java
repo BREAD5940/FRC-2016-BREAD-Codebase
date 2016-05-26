@@ -21,7 +21,7 @@ public class BreachAndPass extends State {
 	@Override
 	protected void init() {
 		// TODO Auto-generated method stub
-
+		SmartDashboard.putString("Current Auto", "Breach and Pass");
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
 		Components.roller.pass();
 

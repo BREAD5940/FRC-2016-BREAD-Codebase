@@ -21,13 +21,10 @@ public class BreachAndPassAndComeBack extends State {
 
 	@Override
 	protected void init() {
-		SmartDashboard.putNumber("pos", 0);
+		SmartDashboard.putString("Current Auto", "Breach, Pass, and Comeback");
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
-		SmartDashboard.putNumber("pos", 1);
 		Components.roller.pass();
-		SmartDashboard.putNumber("pos", 2);
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) -AutoManager.defaultAutoSpeed);
-		SmartDashboard.putNumber("pos", 3);
 		Thread.currentThread().interrupt();
 	}
 

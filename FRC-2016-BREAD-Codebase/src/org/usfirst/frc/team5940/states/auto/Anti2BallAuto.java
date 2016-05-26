@@ -13,6 +13,7 @@ public class Anti2BallAuto extends State {
 		// TODO Auto-generated constructor stub
 	}
 	protected void init() {
+		SmartDashboard.putString("Current Auto", "Anti-Two Ball Auto");
 		Components.roller.setValue(1);
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) -AutoManager.defaultAutoSpeed);
 		try {

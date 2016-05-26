@@ -45,8 +45,6 @@ public class OpConStandardState extends State {
 	@Override
 	protected void update() {
 
-		SmartDashboard.putNumber("Update working?", working++);
-
 		// Checks who the current driver is and updates variables on the
 		// controller values
 		if (driverPerson.equals("NickH"))
@@ -61,10 +59,6 @@ public class OpConStandardState extends State {
 		// Makes the robot move in arcade drive based on what updateDriver set
 		// forward and horizontal to
 		driver.updateArcade(forward, horizontal, 1);
-
-		// For testing the encoders
-		SmartDashboard.putNumber("Left Encoder Distance", Components.l1.getEncPosition());
-		SmartDashboard.putNumber("Right Encoder Distance", Components.r2.getEncPosition());
 
 		// Changes the gears based on what updateDriver set the variables to.
 		if (shiftUp) {
@@ -88,7 +82,6 @@ public class OpConStandardState extends State {
 	 * Updates the control for Nick's drive.
 	 */
 	private void updateNickH() {
-		SmartDashboard.putNumber("NickH working?", working++);
 		// getCorrectedAxis returns the controller axis value based on if it is
 		// inverted. This sets the forward and horizontal speed for if this was
 		// arcade drive

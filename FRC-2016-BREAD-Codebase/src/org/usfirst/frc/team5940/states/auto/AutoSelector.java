@@ -15,27 +15,21 @@ public class AutoSelector {
 		// This checks what the auto selector switch is returning and does the
 		// one it is set to. Some of them do not have any auto program.
 		if (Components.sel0.get()) {
-			SmartDashboard.putNumber("auto", 0);
 			return null;
 		}
 		if (Components.sel1.get()) {
-			SmartDashboard.putNumber("auto", 1);
 			return new Breach(robot);
 		}
 		if (Components.sel2.get()) {
-			SmartDashboard.putNumber("auto", 2);
 			return new BreachAndComeBack(robot);
 		}
 		if (Components.sel3.get()) {
-			SmartDashboard.putNumber("auto", 3);
 			return new BreachAndPass(robot);
 		}
 		if (Components.sel4.get()) {
-			SmartDashboard.putNumber("auto", 4);
 			return new BreachAndPassAndComeBack(robot);
 		}
 		if (Components.sel5.get()) {
-			SmartDashboard.putNumber("auto", 5);
 			return new DoubleBreach(robot);
 		}
 		return new Breach(robot);

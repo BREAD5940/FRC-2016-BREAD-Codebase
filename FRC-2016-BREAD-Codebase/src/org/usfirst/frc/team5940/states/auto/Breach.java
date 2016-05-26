@@ -19,6 +19,7 @@ public class Breach extends State {
 	
 	@Override
 	protected void init() {
+		SmartDashboard.putString("Current Auto", "Breach");
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
 		Thread.currentThread().interrupt();
 	}

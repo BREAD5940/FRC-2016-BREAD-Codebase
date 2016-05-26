@@ -20,6 +20,7 @@ public class DoubleBreach extends State {
 	 */
 	@Override
 	protected void init() {
+		SmartDashboard.putString("Current Auto", "Double Breach");
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) -AutoManager.defaultAutoSpeed);
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);

@@ -61,7 +61,6 @@ public class AutoManager extends State {
 	 * same defense.
 	 */
 	public static void backAndForth() {
-		SmartDashboard.putBoolean("Back And Forth Activated", true);
 		moveForDistance((float) 0.2,3000);
 
 		moveForDistance((float) -0.2,3000);
@@ -88,7 +87,6 @@ public class AutoManager extends State {
 	 * moves forward a set distance.
 	 */
 	public static void moveForward() {
-		SmartDashboard.putBoolean("Move Forward Activated", true);
 		moveForDistance((float) 0.2,3000);
 	}
 
@@ -112,20 +110,14 @@ public class AutoManager extends State {
 		// Components.l1.set(0);
 		// Components.l2.set(0);
 		TestNumber += 1;
-		SmartDashboard.putNumber("Move For Distance", TestNumber);
 		// r1.setPosition(0);
 		// l3.setPosition(0);
 		// if (TestNumber == 1) {
 		//SmartDashboard.putNumber("Distance", distance);
-		SmartDashboard.putNumber("Right Encoder Start Distance", Components.r1.getEncPosition());
-		SmartDashboard.putNumber("Left Encoder Start Distance", Components.l1.getEncPosition());
 		// }
 		startTime = System.currentTimeMillis();
 		currentTime = 0;
 		while (currentTime <= startTime + time) {
-
-			SmartDashboard.putNumber("Left Encoder Distance", Components.l1.getEncPosition());
-			SmartDashboard.putNumber("Right Encoder Distance", Components.r1.getEncPosition());
 
 			// if (speed > 0) {
 			// if (leftEncoderRate > rightEncoderRate) {
@@ -169,7 +161,6 @@ public class AutoManager extends State {
 			// SmartDashboard.putNumber("Distance of the right encoder",
 			// rightEncDistance);
 			currentTime = System.currentTimeMillis();
-			SmartDashboard.putNumber("currentTime", currentTime);
 		}
 		// SmartDashboard.putNumber("Left Encoder Distance",
 		// l3.getEncPosition());

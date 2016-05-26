@@ -353,10 +353,8 @@ public class DualMGDrivetrain {
 		if (forwardInput > 0.05) {
 			leftOut = (float) forwardInput;
 			rightOut = (float) forwardInput;
-			SmartDashboard.putNumber("Test Number Thing", forwardInput);
 			leftOut += horizontalInput;
 			rightOut -= horizontalInput;
-			SmartDashboard.putBoolean("small forward input", false);
 			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			// hi
@@ -368,10 +366,8 @@ public class DualMGDrivetrain {
 			forwardInput = -breakInput;
 			leftOut = (float) forwardInput;
 			rightOut = (float) forwardInput;
-			SmartDashboard.putNumber("Test Number Thing", forwardInput);
 			leftOut += horizontalInput;
 			rightOut -= horizontalInput;
-			SmartDashboard.putBoolean("small forward input", true);
 
 			leftOut *= GeneralMethods.boundToUnitVector(scaleFactor);
 			rightOut *= GeneralMethods.boundToUnitVector(scaleFactor);
@@ -396,10 +392,7 @@ public class DualMGDrivetrain {
 			previousAngle = 0;
 		}
 		boolean negativeTime = false;
-		SmartDashboard.putBoolean("Turning", turning);
 		double turningTime;
-		SmartDashboard.putNumber("New Angle", newAngle);
-		SmartDashboard.putNumber("Past Angle", previousAngle);
 		left.setValue((float) -0.25);
 		right.setValue((float) 0.25);
 		turningTime = (previousAngle - newAngle) / 90;
@@ -410,7 +403,6 @@ public class DualMGDrivetrain {
 			right.setValue((float) -0.25);
 		}
 		previousAngle = newAngle;
-		SmartDashboard.putNumber("Time", turningTime);
 		Timer.delay(turningTime);
 		if (negativeTime) {
 			left.setValue((float) -0.25);

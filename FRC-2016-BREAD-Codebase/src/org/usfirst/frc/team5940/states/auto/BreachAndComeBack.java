@@ -20,6 +20,7 @@ public class BreachAndComeBack extends State {
 	
 	@Override
 	protected void init() {
+		SmartDashboard.putString("Current Auto", "Breach and Comeback");
 		AutoManager.moveForTime(AutoManager.BREACH_TIME, (float) AutoManager.defaultAutoSpeed);
 		Components.drivetrain.updateArcade(0, 0, 1);
 		try {
