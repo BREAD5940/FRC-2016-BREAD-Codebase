@@ -1,2 +1,9 @@
 # FRC-2016-BREAD-Codebase
-FRC Team 5940's code for FIRST Stronghold. This enables the robot to do things by itself during the Autonomous period, as well as be operator controlled during the TeleOp period.
+Main robot code for Team 5940's Stronghold robot, Focaccia. 
+
+Included is:
+ - Code for the on-board autonomous selector
+ - Multiple tele-operated driver preferences
+ - Full systems test program
+ - Driver camera overlay/dashboard
+ - Archive of test programs
