@@ -58,6 +58,10 @@ public class OpConStandardState extends State {
 		if (driverPerson.equals("Marius"))
 			updateMarius();
 
+		//PUT ROBOT STOPPING CODE HERE:
+		
+		
+		
 		// Makes the robot move in arcade drive based on what updateDriver set
 		// forward and horizontal to
 		driver.updateArcade(forward, horizontal, 1);
@@ -175,6 +179,7 @@ public class OpConStandardState extends State {
 	 */
 	private void updateAlex() {
 		// see updateNickH()
+		
 		forward = Components.getCorrectedAxis(1);
 		horizontal = Components.getCorrectedAxis(4);
 		shooterControl = (Components.getCorrectedAxis(3) - Components.getCorrectedAxis(2));
