@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5940.management;
 
-import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingDrivetrain;
+import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingSafeDrivetrain;
 import org.usfirst.frc.team5940.motorcontrol.Roller;
 import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSimpleGroup;
 import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
@@ -25,7 +25,7 @@ public class Components {
 	//Inversions
 	public static boolean lMotorInvert = true;
 	public static boolean rMotorInvert = false;
-	public static boolean lEncoderInvert = true;
+	public static boolean lEncoderInvert = false;
 	public static boolean rEncoderInvert = true;
 	
 //	public static float lLowMotorScaleFactor = -500;
@@ -88,7 +88,7 @@ public class Components {
 	public static DoubleSolenoid shifter = new DoubleSolenoid(PCMCANPort, PCMDownPort, PCMUpPort);
 	
 	//Drivetrain
-	public static DualMGShiftingDrivetrain drivetrain = new DualMGShiftingDrivetrain(lGroup, rGroup, shifter, 0);//TODO Needs to be changes to ShiftingSpeedy when encoder scaling tested
+	public static DualMGShiftingSafeDrivetrain drivetrain = new DualMGShiftingSafeDrivetrain(lGroup, rGroup, shifter, 0);//TODO Needs to be changes to ShiftingSpeedy when encoder scaling tested
 	
 	
 	//ROLLER

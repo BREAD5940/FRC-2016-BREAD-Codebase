@@ -52,6 +52,8 @@ public class AutoManager extends State {
 	static float TestNumber = 0;
 	static long currentTime;
 	static long startTime;
+	static int tooSlow = 500;//Minimum encoder velocity to continue moveForTime()ing after getMoving //TODO Update based on Michael's Thursday Testing
+	static long getMoving = 100;//ms Delay before tooSlow gets checked so motors can get up to speed //TODO Increase if auto keeps breaking after a short move
 	public static final long BREACH_TIME = 3750;
 	// rightEncoder.setDistancePerPulse(1);
 	// leftEncoder.setDistancePerPulse(1);
@@ -176,11 +178,34 @@ public class AutoManager extends State {
 	
 	public static void moveForTime(long time, double speed) {
 		Components.drivetrain.updateArcade(speed, 0, 1);
-		try {
+		/*try {
 			Thread.sleep(time);
 		} catch (InterruptedException e) {
 			e.printStackTrace();
+		}*/
+		
+		if(time <= getMoving) {
+			try {
+				Thread.sleep(time);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+		}else {
+			try {
+				Thread.sleep(getMoving);
+			} catch (InterruptedException e) {
+				e.printStackTrace();
+			}
+			
+			long startTime = System.currentTimeMillis();
+			while(System.currentTimeMillis() < (startTime+(time-getMoving))) {
+				int absLeft = Math.abs(Components.getCorrectedLeftVelocity());
+				int absRight = Math.abs(Components.getCorrectedRightVelocity());
+				if((absLeft < tooSlow) || (absRight < tooSlow))
+					Components.drivetrain.setGears(-1);
+			}
 		}
+		
 		Components.drivetrain.updateArcade(0, 0, 1);
 	}
 
