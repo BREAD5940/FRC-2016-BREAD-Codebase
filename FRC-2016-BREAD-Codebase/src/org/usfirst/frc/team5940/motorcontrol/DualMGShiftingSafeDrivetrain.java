@@ -16,10 +16,13 @@ public class DualMGShiftingSafeDrivetrain extends DualMGShiftingDrivetrain {
 	{
 		if(gear == -1)
 		{
-			//TODO add death stuff hear
+			this.left.setEnabled(false);
+			this.right.setEnabled(false);
 		}
 		else 
 		{
+			this.left.setEnabled(true);
+			this.right.setEnabled(true);
 			super.setGears(gear);
 		}
 	}
