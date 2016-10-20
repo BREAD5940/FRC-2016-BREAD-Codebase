@@ -59,6 +59,20 @@ public class Components {
 		rETalon.configEncoderCodesPerRev((int) rPF);
 	}
 	
+	public static int getCorrectedRightVelocity()
+	{
+		int multiplier = 1;
+		if(rEncoderInvert) {multiplier = -1;}
+		return rETalon.getEncVelocity() * multiplier;
+	}
+	
+	public static int getCorrectedLeftVelocity()
+	{
+		int multiplier = 1;
+		if(lEncoderInvert) {multiplier = -1;}
+		return lETalon.getEncVelocity() * multiplier;
+	}
+	
 	//Drive MotorGroups
 	public static CANTalonSimpleGroup lGroup = new CANTalonSimpleGroup(new CANTalon[]{l1}, lMotorInvert);
 	public static CANTalonSimpleGroup rGroup = new CANTalonSimpleGroup(new CANTalon[]{r2}, rMotorInvert);
