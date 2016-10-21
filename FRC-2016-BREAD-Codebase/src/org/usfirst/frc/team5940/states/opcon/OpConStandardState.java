@@ -57,8 +57,8 @@ public class OpConStandardState extends State {
 			updateMarius();
 
 		//PUT ROBOT STOPPING CODE HERE:
-		
-		
+		SmartDashboard.putNumber("Right v: " , Components.rETalon.getEncPosition());
+		SmartDashboard.putNumber("Left v: " , Components.lETalon.getEncPosition());
 		
 		// Makes the robot move in arcade drive based on what updateDriver set
 		// forward and horizontal to

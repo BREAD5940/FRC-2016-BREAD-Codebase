@@ -25,7 +25,7 @@ public class Components {
 	//Inversions
 	public static boolean lMotorInvert = true;
 	public static boolean rMotorInvert = false;
-	public static boolean lEncoderInvert = false;
+	public static boolean lEncoderInvert = true;
 	public static boolean rEncoderInvert = true;
 	
 //	public static float lLowMotorScaleFactor = -500;
@@ -55,8 +55,6 @@ public class Components {
 		
 		float lPF = encPulsesPerFloatLow;
 		float rPF = encPulsesPerFloatLow;
-		if(lEncoderInvert) lPF *= -1;
-		if(rEncoderInvert) rPF *= -1;
 		lETalon.configEncoderCodesPerRev((int) lPF);
 		rETalon.configEncoderCodesPerRev((int) rPF);
 	}
