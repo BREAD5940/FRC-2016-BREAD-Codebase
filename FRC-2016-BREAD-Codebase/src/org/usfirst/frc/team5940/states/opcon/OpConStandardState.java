@@ -37,6 +37,7 @@ public class OpConStandardState extends State {
 
 	@Override
 	protected void init() {
+		Components.drivetrain.setGears(0);
 	}
 
 	/**
