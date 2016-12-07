@@ -11,5 +11,5 @@ Included is:
 
 Feel free to look over our code and if you have any suggestions/request/problems please open an issue and we're happy to assist.
 
-## [Documantation](http://bread5940.github.io/FRC-2016-BREAD-Codebase/FRC-2016-BREAD-Codebase/doc/)
+## [Documentation](http://bread5940.github.io/FRC-2016-BREAD-Codebase)
 
