@@ -1,6 +1,6 @@
 package org.usfirst.frc.team5940.motorcontrol.groups;
 
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.*;
 
 /**
  * 

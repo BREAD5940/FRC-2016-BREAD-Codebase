@@ -1,13 +1,14 @@
 package org.usfirst.frc.team5940.management;
 
 import org.usfirst.frc.team5940.motorcontrol.DualMGShiftingSafeDrivetrain;
+import com.ctre.CANTalon;
+import com.ctre.CANTalon.TalonControlMode;
+
 import org.usfirst.frc.team5940.motorcontrol.Roller;
 import org.usfirst.frc.team5940.motorcontrol.groups.CANTalonSimpleGroup;
 import org.usfirst.frc.team5940.motorcontrol.groups.MotorGroup;
 import org.usfirst.frc.team5940.other.ConfigurableJoystick;
 
-import edu.wpi.first.wpilibj.CANTalon;
-import edu.wpi.first.wpilibj.CANTalon.TalonControlMode;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.Joystick;

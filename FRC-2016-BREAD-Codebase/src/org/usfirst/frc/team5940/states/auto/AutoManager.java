@@ -9,7 +9,7 @@ import org.usfirst.frc.team5940.other.GeneralMethods;
 import org.usfirst.frc.team5940.states.State;
 
 import edu.wpi.first.wpilibj.AnalogInput;
-import edu.wpi.first.wpilibj.CANTalon;
+import com.ctre.*;
 import edu.wpi.first.wpilibj.DigitalInput;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
 import edu.wpi.first.wpilibj.RobotBase;
