@@ -2,7 +2,6 @@
 package org.usfirst.frc.team5940.management;
 
 
-import org.usfirst.frc.team5940.camera.CameraServerInit;
 import org.usfirst.frc.team5940.states.auto.AutoSelector;
 import org.usfirst.frc.team5940.states.opcon.OpConStandardState;
 import org.usfirst.frc.team5940.states.testing.TestingStandardState;
@@ -34,8 +33,6 @@ public class Robot extends SampleRobot {
 	@Override
 	public void robotInit() {
 		Components.setupTalons();
-		this.camera = new Thread(new CameraServerInit(this));
-		this.camera.start();
 	}
 	
 	/**
@@ -66,8 +63,6 @@ public class Robot extends SampleRobot {
 	 */
 	@Override
 	public void operatorControl() {
-		this.camera = new Thread(new CameraServerInit(this));
-		this.camera.start();
 		
 		SendableChooser testVsOpCon = new SendableChooser();
 		testVsOpCon.addDefault("Standard Operator Control", "OPCON");
@@ -290,10 +285,7 @@ public class Robot extends SampleRobot {
 		}
     	
     	// Test the camera
-    	if ((testChooser.getSelected().equals(AllOfThem)) || (testChooser.getSelected().equals(CameraTest))){
-			SmartDashboard.putString("Test Status", "Activating camera feed.");
-			Thread camera =  new Thread(new CameraServerInit(this));
-			camera.start();
+    	
     	
     	try {
 			Thread.sleep(10000);
@@ -306,4 +298,3 @@ public class Robot extends SampleRobot {
     		SmartDashboard.putString("Test Status", "Complete");
     	}
 	}
-}
